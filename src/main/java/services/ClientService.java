@@ -7,7 +7,7 @@ import models.Client;
 import repositories.ClientRepository;
 
 @RequestScoped // Avoid circular dependency between services
-public class ClientService extends PersonService<ClientRepository, Client>
+public class ClientService extends EntityService<ClientRepository, Client>
 
 {
 

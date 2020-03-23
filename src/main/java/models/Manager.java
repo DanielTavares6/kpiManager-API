@@ -1,12 +1,13 @@
 package models;
 
+
 public class Manager extends Person
 
 {
-
 	// currentPortfolio is the current total sum of client's contract values
 
 	private long currentPortfolio;
+
 	
 	public Manager() 
 	
@@ -21,7 +22,6 @@ public class Manager extends Person
 	public void setCurrentPortfolio(long currentPortfolio) {
 		this.currentPortfolio = currentPortfolio;
 	}
-	
-	
 
+	
 }
