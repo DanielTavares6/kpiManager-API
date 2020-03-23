@@ -1,20 +1,21 @@
 package models;
 
-public class Client extends Person
+import javax.persistence.Entity;
+
+@Entity
+public class Client extends Entity_
 
 { 
 	
-	//Client is a collective Person
-	
+	private static final long serialVersionUID = 1L;
 	private long nipc;
 	private long potentialRevenue;
 	
-
-	public Client() 
-	
-	{
-		isCollective = true;
-	}
+//	public Client() 
+//	
+//	{
+//		isCollective = true;
+//	}
 
 
 
