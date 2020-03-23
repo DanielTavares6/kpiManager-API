@@ -9,6 +9,8 @@
 		<!-- Implementação do JPA -->
 		<jta-data-source>java:/MySqlDS</jta-data-source>
 
+
+
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
