@@ -33,6 +33,8 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		return service.showAllEntities();
 	}
 	
+	///////////// STATISTICS-MODULE ////////////////////////
+	
 	@GET
 	@Path("allWeeks")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +43,49 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		
 		return service.showAllWeeks();
 	}
+	
+	@GET
+	@Path("allClients")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllClients() {
+		
+		return service.showAllClients();
+	}
+	
+	@GET
+	@Path("allBManagers")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> getAllBManagers()
+
+	{
+		return service.showAllBManagers();
+	}
+	
+	@GET
+	@Path("allInteractions")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> getAllInteractions()
+
+	{
+		return service.showAllInteractions();
+	}
+	
+	@GET
+	@Path("allUnities")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> getAllUnities()
+
+	{
+		return service.showAllUnities();
+	}
+	
+	////////////////////////////////////////////////////
+	
+	
 
 	@GET
 	@Path("allIds")
@@ -51,6 +96,8 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.getAllKeys();
 	}
+	
+	
 
 
 

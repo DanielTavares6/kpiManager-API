@@ -30,6 +30,28 @@ public class ManagerRepository extends PersonRepository <Manager>
 	protected String getAllWeeksQueryName() {
 		return Director.GET_ALL_WEEKS;
 	}
+
+	@Override
+	protected String getAllClientsQueryName() {
+		return Director.GET_ALL_CLIENTS;
+	}
+
+	@Override
+	protected String getAllBManagersQueryName() {
+		return Director.GET_ALL_B_MANAGERS;
+	}
+
+	@Override
+	protected String getAllUnitiesQueryName() {
+		// TODO Auto-generated method stub
+		return Director.GET_ALL_UNITIES;
+	}
+
+	@Override
+	protected String getAllInteractionsQueryName() {
+		// TODO Auto-generated method stub
+		return Director.GET_ALL_INTERACTIONS;
+	}
 	
 	
 	// O manager é uma person, o client é uma entity.

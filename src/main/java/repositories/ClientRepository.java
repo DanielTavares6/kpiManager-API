@@ -32,6 +32,30 @@ public class ClientRepository extends EntityRepository <Client>
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	protected String getAllClientsQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String getAllBManagersQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String getAllUnitiesQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String getAllInteractionsQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

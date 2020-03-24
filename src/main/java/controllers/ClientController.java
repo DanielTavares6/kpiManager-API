@@ -12,9 +12,8 @@ import services.ClientService;
 
 
 @Path("clients")
-public class ClientController extends EntityController<ClientService, ClientRepository, Client>
+public class ClientController extends EntityController<ClientService, ClientRepository, Client>{
 
-{
-
+	
 
 }

@@ -16,12 +16,13 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	
 	public abstract Class <T> getEntityClass();
-	
 	public abstract String getAllEntityQueryName();
-	
 	protected abstract String getAllIdsQueryName();
-	
 	protected abstract String getAllWeeksQueryName();
+	protected abstract String getAllClientsQueryName();
+	protected abstract String getAllBManagersQueryName();
+	protected abstract String getAllUnitiesQueryName();
+	protected abstract String getAllInteractionsQueryName();
 	
 	public T getObj(long id)
 
@@ -52,6 +53,34 @@ public abstract class EntityRepository<T extends Entity_>  {
 		
 		return entityManager.createNamedQuery
 				(getAllWeeksQueryName(), String.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllClients() {
+		
+		return entityManager.createNamedQuery
+				(getAllClientsQueryName(), String.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllBManagers() {
+		
+		return entityManager.createNamedQuery
+				(getAllBManagersQueryName(), String.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllInteractions() {
+		
+		return entityManager.createNamedQuery
+				(getAllInteractionsQueryName(), String.class)
+				.getResultList();
+	}
+
+	public Collection<String> showAllUnities() {
+		
+		return entityManager.createNamedQuery
+				(getAllUnitiesQueryName(), String.class)
 				.getResultList();
 	}
 	
