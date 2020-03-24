@@ -17,46 +17,66 @@ public class Interaction extends Entity_ {
 	private Unit idUnit;
 	@ManyToOne
 	private Client idClient;
-	@ManyToOne
-	private InteractionType idInteraction;
 
-	public Date getDateInteraction() {
+	private long idInteraction;
+
+	public Date getDateInteraction() 
+	
+	{
 		return dateInteraction;
 	}
 
-	public void setDateInteraction(Date dateInteraction) {
+	public void setDateInteraction(Date dateInteraction) 
+	
+	{
 		this.dateInteraction = dateInteraction;
 	}
 
-	public Person getIdPerson() {
+	public Person getIdPerson()
+	
+	{
 		return idPerson;
 	}
 
-	public void setIdPerson(Person idPerson) {
+	public void setIdPerson(Person idPerson) 
+	
+	{
 		this.idPerson = idPerson;
 	}
 
-	public Unit getIdUnit() {
+	public Unit getIdUnit() 
+	
+	{
 		return idUnit;
 	}
 
-	public void setIdUnit(Unit idUnit) {
+	public void setIdUnit(Unit idUnit) 
+	
+	{
 		this.idUnit = idUnit;
 	}
 
-	public Client getIdClient() {
+	public Client getIdClient()
+	
+	{
 		return idClient;
 	}
 
-	public void setIdClient(Client idClient) {
+	public void setIdClient(Client idClient)
+	
+	{
 		this.idClient = idClient;
 	}
 
-	public InteractionType getIdInteraction() {
+	public long getIdInteraction() 
+	
+	{
 		return idInteraction;
 	}
 
-	public void setIdInteraction(InteractionType idInteraction) {
+	public void setIdInteraction(long idInteraction)
+	
+	{
 		this.idInteraction = idInteraction;
 	}
 

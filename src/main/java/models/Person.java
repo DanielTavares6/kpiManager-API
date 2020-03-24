@@ -10,7 +10,6 @@ public abstract class Person extends Entity_
 
 	private static final long serialVersionUID = 1L;
 
-	protected Boolean isCollective;
 	private String username;
 	private String password;
 	private String name;
@@ -21,14 +20,7 @@ public abstract class Person extends Entity_
 	// Role will define the permissions
 	private String role;
 
-	public Boolean getIsCollective() {
-		return isCollective;
-	}
-
-	public void setIsCollective(Boolean isCollective) {
-		this.isCollective = isCollective;
-	}
-
+	
 	public String getUsername() {
 		return username;
 	}

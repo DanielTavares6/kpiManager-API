@@ -7,7 +7,7 @@ import models.Person;
 import repositories.PersonRepository;
 
 @Transactional
-public abstract class PersonService <R extends PersonRepository<E>, E extends Person> 
+public abstract class PersonService <R extends PersonRepository<E>, E extends Person> extends EntityService<R,E>
 
 {
 
