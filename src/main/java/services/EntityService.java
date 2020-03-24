@@ -31,6 +31,10 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 	{
 		return repository.getAllKeys();
 	}
+	
+	public Collection<String> showAllWeeks() {
+		return repository.showAllWeeks();
+	}
 
 
 	

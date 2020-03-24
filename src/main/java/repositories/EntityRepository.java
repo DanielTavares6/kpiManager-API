@@ -21,6 +21,8 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	protected abstract String getAllIdsQueryName();
 	
+	protected abstract String getAllWeeksQueryName();
+	
 	public T getObj(long id)
 
 	{
@@ -43,6 +45,13 @@ public abstract class EntityRepository<T extends Entity_>  {
 	{
 		return entityManager.createNamedQuery
 				(getAllIdsQueryName(), Long.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllWeeks() {
+		
+		return entityManager.createNamedQuery
+				(getAllWeeksQueryName(), String.class)
 				.getResultList();
 	}
 	

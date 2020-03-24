@@ -3,6 +3,7 @@ package repositories;
 import javax.faces.bean.ApplicationScoped;
 
 import models.Client;
+import models.Director;
 import models.Manager;
 
 @ApplicationScoped
@@ -23,6 +24,11 @@ public class ManagerRepository extends PersonRepository <Manager>
 	@Override
 	protected String getAllIdsQueryName() {
 		return Manager.GET_ALL_MANAGERS_IDS;
+	}
+
+	@Override
+	protected String getAllWeeksQueryName() {
+		return Director.GET_ALL_WEEKS;
 	}
 	
 	

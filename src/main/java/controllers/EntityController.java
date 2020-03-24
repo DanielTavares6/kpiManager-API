@@ -32,6 +32,15 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.showAllEntities();
 	}
+	
+	@GET
+	@Path("allWeeks")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllWeeks() {
+		
+		return service.showAllWeeks();
+	}
 
 	@GET
 	@Path("allIds")

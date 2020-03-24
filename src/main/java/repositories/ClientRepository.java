@@ -26,6 +26,12 @@ public class ClientRepository extends EntityRepository <Client>
 	protected String getAllIdsQueryName() {
 		return Client.GET_ALL_CLIENTS_IDS;
 	}
+
+	@Override
+	protected String getAllWeeksQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
