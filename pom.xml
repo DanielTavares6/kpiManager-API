@@ -11,7 +11,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -24,8 +23,19 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+<!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java -->
+<dependency>
+    <groupId>com.sendgrid</groupId>
+    <artifactId>sendgrid-java</artifactId>
+    <version>4.4.3</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.sendgrid/java-http-client -->
+<dependency>
+    <groupId>com.sendgrid</groupId>
+    <artifactId>java-http-client</artifactId>
+    <version>4.3.1</version>
+</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>

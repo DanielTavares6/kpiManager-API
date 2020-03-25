@@ -1,9 +1,19 @@
 package services;
 
+import java.io.IOException;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
+
+import com.sendgrid.Content;
+import com.sendgrid.Email;
+import com.sendgrid.Mail;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
 
 import models.Manager;
 import models.dto.ManagerDTO;
@@ -23,11 +33,15 @@ public class ManagerService {
 	public Manager create(ManagerDTO entity) {
 
 		Manager m = new Manager();
-		
-		String password = entity.getPassword();
-		String [] hashcode = passwordToHashcode(password);
-		m = entity.normalize(entity, m,hashcode[1],hashcode[0]);
 
+		String password = entity.getPassword();
+		String[] hashcode = passwordToHashcode(password);
+		m = entity.normalize(entity, m, hashcode[1], hashcode[0]);
+		try {
+			sendGrid();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return repository.create(m);
 	}
 
@@ -47,4 +61,32 @@ public class ManagerService {
 		return result;
 	}
 
+	public void sendGrid() throws IOException {
+
+		Email from = new Email("danieljosetavares@gmail.com");
+		Email to = new Email("filipebastias@hotmail.com"); // use your own email address here
+
+		String subject = "Sending email test";
+		Content content = new Content("text/html", "and <em>easy</em> to do anywhere with <strong>Java</strong>");
+
+		Mail mail = new Mail(from, subject, to, content);
+
+		SendGrid sg = new SendGrid("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");
+		Request request = new Request();
+
+		try {
+			request.setMethod(Method.POST);
+			request.setEndpoint("mail/send");
+			request.setBody(mail.build());
+
+			Response response = sg.api(request);
+
+			System.out.println(response.getStatusCode());
+			System.out.println(response.getHeaders());
+			System.out.println(response.getBody());
+		} catch (IOException ex) {
+			throw ex;
+		}
+
+	}
 }
