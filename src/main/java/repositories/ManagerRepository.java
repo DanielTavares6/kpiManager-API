@@ -9,6 +9,13 @@ public class ManagerRepository extends PersonRepository <Manager>
 
 {
 
+	public Manager getManagerByUsername(String username) {
+		
+		return entityManager.createNamedQuery(Manager.GET_MANAGER_BY_USERNAME,Manager.class)
+				.setParameter("username", username)
+				.getSingleResult();
+	}
+	
 	@Override
 	public Class<Manager> getEntityClass() {
 		return Manager.class;

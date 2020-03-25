@@ -14,6 +14,11 @@ public abstract class EntityRepository<T extends Entity_>  {
 	protected EntityManager entityManager;
 	
 	
+	public T create(T obj) {
+		return entityManager.merge(obj);
+	}
+	
+	
 	public abstract Class <T> getEntityClass();
 	
 	public abstract String getAllEntityQueryName();
@@ -52,6 +57,8 @@ public abstract class EntityRepository<T extends Entity_>  {
 				(getAllIdsQueryName(), Long.class)
 				.getResultList();
 	}
+	
+	
 	
 	
 }

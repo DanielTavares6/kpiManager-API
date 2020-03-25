@@ -65,7 +65,6 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	}
 
 
-
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
