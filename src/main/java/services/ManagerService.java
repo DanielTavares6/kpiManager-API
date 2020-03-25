@@ -63,8 +63,8 @@ public class ManagerService {
 
 	public void sendGrid() throws IOException {
 
-		Email from = new Email("danieljosetavares@gmail.com");
-		Email to = new Email("filipebastias@hotmail.com"); // use your own email address here
+		Email from = new Email("kpimanager13@gmail.com");
+		Email to = new Email("danieljosetavares@gmail.com"); // use your own email address here
 
 		String subject = "Sending email test";
 		Content content = new Content("text/html", "and <em>easy</em> to do anywhere with <strong>Java</strong>");
