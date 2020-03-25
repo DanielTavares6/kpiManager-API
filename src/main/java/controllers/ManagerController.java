@@ -25,9 +25,17 @@ public class ManagerController
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON) // "text/plain"
 	@Produces(MediaType.TEXT_PLAIN)
-	public String create(ManagerDTO obj) {
-		service.create(obj);
-		return "Criado com sucesso";
+
+	public Response create(ManagerDTO obj) {
+		try {
+
+			service.create(obj);
+			return Response.ok().entity("Success").build();
+
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Creation Failed").build();
+		}
+
 	}
 
 	@POST
@@ -38,10 +46,10 @@ public class ManagerController
 		try {
 			service.checkIfPasswordValid(obj, obj.getPassword());
 			return Response.ok().entity("Success").build();
-			
-		} catch(Exception e) { 
+
+		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity("Login Failed").build();
 		}
-		
+
 	}
 }
