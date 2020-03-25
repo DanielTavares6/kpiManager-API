@@ -9,8 +9,8 @@ public abstract class PersonRepository<T extends Person> extends EntityRepositor
 
 {
 
-	@PersistenceContext
-	protected EntityManager entityManager;
+//	@PersistenceContext
+//	protected EntityManager entityManager;
 
 
 }

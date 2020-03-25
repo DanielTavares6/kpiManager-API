@@ -6,8 +6,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = Manager.GET_ALL_MANAGERS_QUERY_NAME, query="SELECT c FROM Manager c"),
-@NamedQuery(name = Manager.GET_ALL_MANAGERS_IDS, query="SELECT c FROM Manager c")
+@NamedQuery(name = Manager.GET_ALL_MANAGERS_QUERY_NAME, query="SELECT m FROM Manager m"),
+@NamedQuery(name = Manager.GET_ALL_MANAGERS_IDS, query="SELECT m FROM Manager m")
 })
 public class Manager extends Person
 

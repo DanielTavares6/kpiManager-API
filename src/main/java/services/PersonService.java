@@ -11,8 +11,8 @@ public abstract class PersonService <R extends PersonRepository<E>, E extends Pe
 
 {
 
-	@Inject
-	protected R repository;
+//	@Inject
+//	protected R repository;
 	
 }
 

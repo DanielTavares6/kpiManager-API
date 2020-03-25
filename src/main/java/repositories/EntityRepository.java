@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import models.Entity_;
-import models.Manager;
 
 public abstract class EntityRepository<T extends Entity_>  {
 
@@ -20,6 +19,14 @@ public abstract class EntityRepository<T extends Entity_>  {
 	public abstract String getAllEntityQueryName();
 	
 	protected abstract String getAllIdsQueryName();
+	
+	
+	public T save(T entity)
+
+	{
+		return entityManager.merge(entity);
+	}
+	
 	
 	public T getObj(long id)
 

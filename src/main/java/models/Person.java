@@ -14,11 +14,12 @@ public abstract class Person extends Entity_
 	private String password;
 	private String name;
 	private String typeUser;
+	private String role;
 	
 	@ManyToOne
 	private Unit unit;
 	// Role will define the permissions
-	private String role;
+
 
 	
 	public String getUsername() {
