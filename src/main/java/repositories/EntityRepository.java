@@ -8,11 +8,17 @@ import javax.persistence.PersistenceContext;
 
 import models.Entity_;
 import models.Manager;
+import models.Person;
 
 public abstract class EntityRepository<T extends Entity_>  {
 
 	@PersistenceContext 
 	protected EntityManager entityManager;
+	
+	
+	public T create(T obj) {
+		return entityManager.merge(obj);
+	}
 	
 	
 	public abstract Class <T> getEntityClass();
@@ -45,6 +51,8 @@ public abstract class EntityRepository<T extends Entity_>  {
 				(getAllIdsQueryName(), Long.class)
 				.getResultList();
 	}
+	
+	
 	
 	
 }

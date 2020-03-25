@@ -24,6 +24,13 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	@Inject // Inject generic variable in runtime
 	protected S service;
 
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public E save(E entity) {
+		E current = service.create(entity);
+		return current;
+	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -42,7 +49,6 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.getAllKeys();
 	}
-
 
 
 	@GET
