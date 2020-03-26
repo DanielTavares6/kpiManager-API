@@ -8,12 +8,16 @@ import javax.persistence.PersistenceContext;
 
 import models.Director;
 import models.Entity_;
-import models.Manager;
 
 public abstract class EntityRepository<T extends Entity_>  {
 
 	@PersistenceContext 
 	protected EntityManager entityManager;
+	
+	
+	public T create(T obj) {
+		return entityManager.merge(obj);
+	}
 	
 	
 	public abstract Class <T> getEntityClass();
@@ -26,6 +30,14 @@ public abstract class EntityRepository<T extends Entity_>  {
 	protected abstract String getAllInteractionsQueryName();
 	protected abstract String getAllFilterQueryName();
 	protected abstract String getAllSearchQueryName();
+	
+	
+	public T save(T entity)
+
+	{
+		return entityManager.merge(entity);
+	}
+	
 	
 	public T getObj(long id)
 
@@ -97,5 +109,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 		return entityManager.createNamedQuery
 				(getAllSearchQueryName()).setParameter("search", search).getResultList();
 	}
+	
+	
 	
 }

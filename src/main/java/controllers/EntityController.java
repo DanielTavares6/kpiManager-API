@@ -25,6 +25,26 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	@Inject // Inject generic variable in runtime
 	protected S service;
 
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Response save(E object)
+ 
+	{
+		try {
+			E saveObject = service.save(object);
+			return Response.ok(saveObject).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+
+	}
+	
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -108,6 +128,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	
 	
 
+	
 	@GET
 	@Path("allIds")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -121,7 +142,6 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	
 
 
-
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -131,5 +151,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.getObject(id);
 	}
+	
+	
 
 }

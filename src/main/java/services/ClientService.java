@@ -11,7 +11,5 @@ public class ClientService extends EntityService<ClientRepository, Client>
 
 {
 
-	@Inject
-	protected ManagerService MANAGER_SERVICE;
 
 }

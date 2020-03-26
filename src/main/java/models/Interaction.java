@@ -11,6 +11,7 @@ public class Interaction extends Entity_ {
 	private static final long serialVersionUID = 1L;
 
 	private Date dateInteraction;
+	
 	@ManyToOne
 	private Person idPerson;
 	@ManyToOne
@@ -18,7 +19,7 @@ public class Interaction extends Entity_ {
 	@ManyToOne
 	private Client idClient;
 
-	private long idInteraction;
+
 
 	public Date getDateInteraction() 
 	
@@ -66,18 +67,6 @@ public class Interaction extends Entity_ {
 	
 	{
 		this.idClient = idClient;
-	}
-
-	public long getIdInteraction() 
-	
-	{
-		return idInteraction;
-	}
-
-	public void setIdInteraction(long idInteraction)
-	
-	{
-		this.idInteraction = idInteraction;
 	}
 
 }
