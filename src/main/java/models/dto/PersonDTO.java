@@ -1,12 +1,8 @@
 package models.dto;
 
-import javax.persistence.ManyToOne;
-
-import models.Manager;
 import models.Person;
-import models.Unit;
 
-public class ManagerDTO {
+public class PersonDTO {
 
 	private String username;
 	private String password;
@@ -38,7 +34,7 @@ public class ManagerDTO {
 		this.role = role;
 	}
 	
-	public ManagerDTO toDTO(Manager p,ManagerDTO pdto) {
+	public PersonDTO toDTO(Person p,PersonDTO pdto) {
 		
 		pdto.setUsername(p.getUsername());
 		pdto.setEmail(p.getEmail());
@@ -47,7 +43,7 @@ public class ManagerDTO {
 		return pdto;
 	}
 	
-	public Manager normalize(ManagerDTO pdto, Manager p, String salt, String hash) {
+	public Person normalize(PersonDTO pdto, Person p, String salt, String hash) {
 	
 		p.setUsername(pdto.getUsername());
 		p.setEmail(pdto.getEmail());
