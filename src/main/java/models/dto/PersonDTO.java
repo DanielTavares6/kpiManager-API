@@ -1,9 +1,6 @@
 package models.dto;
 
-import javax.persistence.ManyToOne;
-
 import models.Person;
-import models.Unit;
 
 public class PersonDTO {
 

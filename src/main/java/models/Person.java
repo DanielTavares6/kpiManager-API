@@ -2,17 +2,23 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
-public abstract class Person extends Entity_
+@NamedQueries({
+@NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
+@NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
+@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
+})
+public class Person extends Entity_
 
 {
 
-	@Override
-	public String toString() {
-		return "Person [username=" + username + ", hashcode=" + hashcode + ", salt=" + salt + ", name=" + name
-				+ ", email=" + email + ", typeUser=" + typeUser + ", unit=" + unit + ", role=" + role + "]";
-	}
+	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
+	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons" ;
+	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,14 +27,13 @@ public abstract class Person extends Entity_
 	private String salt;
 	private String name;
 	private String email;
-	private String typeUser;
-	
-	@ManyToOne
-	private Unit unit;
-	// Role will define the permissions
 	private String role;
-
 	
+	//@ManyToOne
+	//private Unit unit;
+	
+	// Role will define the permissions
+
 	public String getUsername() {
 		return username;
 	}
@@ -45,13 +50,6 @@ public abstract class Person extends Entity_
 		this.name = name;
 	}
 
-	public String getTypeUser() {
-		return typeUser;
-	}
-
-	public void setTypeUser(String typeUser) {
-		this.typeUser = typeUser;
-	}
 
 	public String getRole() {
 		return role;
@@ -61,14 +59,14 @@ public abstract class Person extends Entity_
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public Unit getUnit() {
-		return unit;
-	}
-
-	public void setUnit(Unit unit) {
-		this.unit = unit;
-	}
+//
+//	public Unit getUnit() {
+//		return unit;
+//	}
+//
+//	public void setUnit(Unit unit) {
+//		this.unit = unit;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -93,5 +91,18 @@ public abstract class Person extends Entity_
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "Person [username=" + username + ", hashcode=" + hashcode + ", salt=" + salt + ", name=" + name
+//				+ ", email=" + email + ", unit=" + unit + ", role=" + role + "]";
+//	}
 
 }
+
+
+
+
+
+
+
