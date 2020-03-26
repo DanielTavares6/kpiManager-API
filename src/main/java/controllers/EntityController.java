@@ -96,10 +96,11 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		return service.showAllFilter(filter);
 	}
 	
+	// A variável search é uma palavra que vai ser pesquisada em todas as colunas da base de dados
 	@GET
 	@Path("search/{search}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Collection<E> showAllSearch(@PathParam("search") String search) { // A variável search é uma palavra que vai ser pesquisada em todas as colunas da base de dados
+	public Collection<E> showAllSearch(@PathParam("search") String search) { 
 		return service.showAllSearch(search);
 	}
 	
