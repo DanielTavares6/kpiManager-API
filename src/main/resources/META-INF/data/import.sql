@@ -17,8 +17,7 @@ INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'Cliente
 
 
 
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('a', '1','1', 'Joaquim', 'director');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('b', '2','1', 'Antonio', 'maganer');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('c', '3','1', 'Jose', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('d', '4','1', 'Paulo', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('e', '5','1', 'Joao', 'manager');
+INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('COO', 'VdIwn0sk','+0oE8xpcLqprkD16MGKm1Ocd9d04KHAoPBm4=', 'SuperUser', 'COO');
+INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerA', 'tmPfdYmE','hQFcM1z6ld3eYZPGKOFcdBSFNcGezFDonNbI0i3zwj7hJH/pxd6pJ3ZsufbjzRBDHhA=', 'ManagerA', 'manager');
+INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerB', 'iefgh2K9','RRK8yVxdZeuNzcwFJ1aDteMsbr7KwH9P8J+ng5BXhdgm+7Hj7YmrSwe2UcHLBxw44p8=', 'ManagerB', 'manager');
+INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerC', 'RdM3ro6P','1KOSGjIv5gfAHy8kjJLP6eNVNoMNoAtciqd/GMTox2nWPgdYRznruGy8bxkQz3TPInY=', 'ManagerC', 'manager');

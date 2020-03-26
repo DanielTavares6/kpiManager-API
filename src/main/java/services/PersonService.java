@@ -71,7 +71,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		Mail mail = new Mail();
 		Email from = new Email("kpimanager13@gmail.com");
-		Email to = new Email("danieljosetavares@gmail.com"); // use your own email address here
+		Email to = new Email("pedrogabrielbeirao@live.com.pt"); // use your own email address here
 		mail.setFrom(from);
 		mail.setTemplateId("d-d2707774fecd4221b757231424f79fc2");
 
