@@ -60,6 +60,12 @@ public class ClientRepository extends EntityRepository <Client>
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	protected String getAllSearchQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

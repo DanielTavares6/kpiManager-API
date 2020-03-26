@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import models.Director;
 import models.Entity_;
 
 public abstract class EntityRepository<T extends Entity_>  {
@@ -22,6 +20,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	public abstract Class <T> getEntityClass();
 	public abstract String getAllEntityQueryName();
+	
 	protected abstract String getAllIdsQueryName();
 	protected abstract String getAllWeeksQueryName();
 	protected abstract String getAllClientsQueryName();

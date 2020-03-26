@@ -10,17 +10,17 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
 @NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
-@NamedQuery(name = Person.GET_ALL_WEEKS, query="SELECT DISTINCT d.semana FROM Person d ORDER BY d.semana"),
-@NamedQuery(name = Person.GET_ALL_UNITIES, query="SELECT DISTINCT d.unidade FROM Person d ORDER BY d.unidade"),
-@NamedQuery(name = Person.GET_ALL_B_MANAGERS, query="SELECT DISTINCT d.bManager FROM Person d ORDER BY d.bManager"),
-@NamedQuery(name = Person.GET_ALL_CLIENTS, query="SELECT DISTINCT d.cliente FROM Person d ORDER BY d.cliente"),
-@NamedQuery(name = Person.GET_ALL_INTERACTIONS, query="SELECT DISTINCT d.interacao FROM Person d ORDER BY d.interacao"),
-@NamedQuery(name = Person.GET_ALL_FILTER, query="SELECT d FROM Person d WHERE :filter ORDER BY d.semana"),
-@NamedQuery(name = Person.GET_ALL_SEARCH, query="SELECT d FROM Person d WHERE d.semana LIKE :search"
+//@NamedQuery(name = Person.GET_ALL_WEEKS, query="SELECT DISTINCT d.semana FROM Person d ORDER BY d.semana"),
+@NamedQuery(name = Person.GET_ALL_UNITIES, query="SELECT DISTINCT d.unit FROM Person d ORDER BY d.unit"),
+//@NamedQuery(name = Person.GET_ALL_B_MANAGERS, query="SELECT DISTINCT d.bManager FROM Person d ORDER BY d.bManager"),
+//@NamedQuery(name = Person.GET_ALL_CLIENTS, query="SELECT DISTINCT d.cliente FROM Person d ORDER BY d.cliente"),
+//@NamedQuery(name = Person.GET_ALL_INTERACTIONS, query="SELECT DISTINCT d.interacao FROM Person d ORDER BY d.interacao"),
+//@NamedQuery(name = Person.GET_ALL_FILTER, query="SELECT d FROM Person d WHERE :filter ORDER BY d.semana"),
+/*@NamedQuery(name = Person.GET_ALL_SEARCH, query="SELECT d FROM Person d WHERE d.semana LIKE :search"
 		+ "OR d.unidade LIKE :search"
 		+ "OR d.bManager LIKE :search"
 		+ "OR d.cliente LIKE :search"
-		+ "OR d.interacao LIKE :search ORDER BY d.semana")
+		+ "OR d.interacao LIKE :search ORDER BY d.semana")*/
 })
 public class Person extends Entity_
 
@@ -46,8 +46,8 @@ public class Person extends Entity_
 	private String email;
 	private String role;
 	
-	//@ManyToOne
-	//private Unit unit;
+	@ManyToOne
+	private Unit unit;
 	
 	// Role will define the permissions
 
