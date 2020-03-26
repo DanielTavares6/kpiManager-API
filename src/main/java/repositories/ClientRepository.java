@@ -56,6 +56,12 @@ public class ClientRepository extends EntityRepository <Client>
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	protected String getAllFilterQueryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

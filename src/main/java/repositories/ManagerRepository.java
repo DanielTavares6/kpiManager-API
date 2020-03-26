@@ -52,6 +52,13 @@ public class ManagerRepository extends PersonRepository <Manager>
 		// TODO Auto-generated method stub
 		return Director.GET_ALL_INTERACTIONS;
 	}
+
+	@Override
+	protected String getAllFilterQueryName() {
+		// TODO Auto-generated method stub
+		return Director.GET_ALL_FILTER;
+	}
+	
 	
 	
 	// O manager é uma person, o client é uma entity.

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import models.Director;
 import models.Entity_;
 import models.Manager;
 
@@ -23,6 +24,8 @@ public abstract class EntityRepository<T extends Entity_>  {
 	protected abstract String getAllBManagersQueryName();
 	protected abstract String getAllUnitiesQueryName();
 	protected abstract String getAllInteractionsQueryName();
+	protected abstract String getAllFilterQueryName();
+	protected abstract String getAllSearchQueryName();
 	
 	public T getObj(long id)
 
@@ -83,6 +86,16 @@ public abstract class EntityRepository<T extends Entity_>  {
 				(getAllUnitiesQueryName(), String.class)
 				.getResultList();
 	}
+
+	public Collection<T> showAllFilter(String filter) {
+		return entityManager.createNamedQuery
+				(getAllFilterQueryName(), getEntityClass()).setParameter("filter", filter)
+				.getResultList();
+	}
 	
+	public Collection<T> showAllSearch(String search) {
+		return entityManager.createNamedQuery
+				(getAllSearchQueryName()).setParameter("search", search).getResultList();
+	}
 	
 }

@@ -52,6 +52,13 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return repository.showAllInteractions();
 	}
 
+	public Collection<E> showAllFilter(String filter) {
+		return repository.showAllFilter(filter);
+	}
+
+	public Collection<E> showAllSearch(String search) {
+		return repository.showAllSearch(search);
+	}
 
 	
 	
