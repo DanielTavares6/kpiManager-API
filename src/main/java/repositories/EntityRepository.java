@@ -106,7 +106,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	public Collection<T> showAllSearch(String search) {
 		return entityManager.createNamedQuery
-				(getAllSearchQueryName()).setParameter("search", search).getResultList();
+				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
 	
 	
