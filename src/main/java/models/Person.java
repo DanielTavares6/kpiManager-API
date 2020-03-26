@@ -29,8 +29,8 @@ public class Person extends Entity_
 	private String email;
 	private String role;
 	
-	//@ManyToOne
-	//private Unit unit;
+	@ManyToOne
+	private Unit unit;
 	
 	// Role will define the permissions
 

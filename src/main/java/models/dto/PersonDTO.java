@@ -38,7 +38,7 @@ public class PersonDTO {
 		
 		pdto.setUsername(p.getUsername());
 		pdto.setEmail(p.getEmail());
-		pdto.setPassword(p.getEmail());
+		pdto.setPassword(p.getHashcode());
 		
 		return pdto;
 	}
