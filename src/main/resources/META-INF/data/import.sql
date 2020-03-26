@@ -22,3 +22,5 @@ INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('b', '2','1', '
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('c', '3','1', 'Jose', 'manager');
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('d', '4','1', 'Paulo', 'manager');
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('e', '5','1', 'Joao', 'manager');
+
+

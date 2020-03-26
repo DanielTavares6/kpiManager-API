@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
 @NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
 })
+
 public class Person extends Entity_
 
 {

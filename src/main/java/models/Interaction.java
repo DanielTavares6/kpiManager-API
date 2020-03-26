@@ -9,16 +9,11 @@ import javax.persistence.ManyToOne;
 public class Interaction extends Entity_ {
 
 	private static final long serialVersionUID = 1L;
-
 	private Date dateInteraction;
-	
-	@ManyToOne
 	private Person idPerson;
-	@ManyToOne
 	private Unit idUnit;
-	@ManyToOne
 	private Client idClient;
-
+	private long interactionType;
 
 
 	public Date getDateInteraction() 
@@ -68,5 +63,19 @@ public class Interaction extends Entity_ {
 	{
 		this.idClient = idClient;
 	}
+
+	public long getInteractionType()
+	
+	{
+		return interactionType;
+	}
+
+	public void setInteractionType(long interactionType) 
+	
+	{
+		this.interactionType = interactionType;
+	}
+	
+	
 
 }

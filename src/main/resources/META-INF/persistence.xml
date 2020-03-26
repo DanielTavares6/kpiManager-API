@@ -27,8 +27,6 @@
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
 
-			<!--hibernate.hbm2ddl.auto sets .auto=update , import.sql only works with 
-				this line active -->
 
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />

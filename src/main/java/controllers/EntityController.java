@@ -42,7 +42,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		}
 
 	}
-	
+		
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
