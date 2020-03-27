@@ -24,16 +24,16 @@ public class InteractionController extends EntityController<InteractionService, 
 
 ///////////// STATISTICS-MODULE /////////////////////////////////////////////////////////
 
-	@Context
-	private UriInfo context;
-	
-	@GET
-	@Path("healthCheck")
-	@Produces(MediaType.TEXT_PLAIN) // "text/plain"
-	public String healthCheck() {
-		return "URI " + context.getRequestUri().toString() + " is OK!";
-	}
-	
+//	@Context
+//	private UriInfo context;
+//	
+//	@GET
+//	@Path("healthCheck")
+//	@Produces(MediaType.TEXT_PLAIN) // "text/plain"
+//	public String healthCheck() {
+//		return "URI " + context.getRequestUri().toString() + " is OK!";
+//	}
+//	
 	@GET
 	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -50,6 +50,15 @@ public class InteractionController extends EntityController<InteractionService, 
 	public Collection<String> showAllWeeks() {
 
 		return I.showAllWeeks();
+	}
+	
+	@GET
+	@Path("allWeeksFilter/{filter}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllWeeksFilter(@PathParam("filter") String filter) {
+
+		return I.showAllWeeksFilter(filter);
 	}
 
 	@GET
@@ -71,15 +80,15 @@ public class InteractionController extends EntityController<InteractionService, 
 		return I.showAllBManagers();
 	}
 
-//	@GET
-//	@Path("allInteractions")
-//	@Produces(MediaType.APPLICATION_JSON)
-//
-//	public Collection<String> getAllInteractions()
-//
-//	{
-//		return I.showAllInteractions();
-//	}
+	@GET
+	@Path("allInteractions")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> getAllInteractions()
+
+	{
+		return I.showAllInteractions();
+	}
 
 	@GET
 	@Path("allUnities")
@@ -90,11 +99,21 @@ public class InteractionController extends EntityController<InteractionService, 
 	{
 		return I.showAllUnities();
 	}
+	
+	@GET
+	@Path("allUnitiesFilter/{filter}")
+	@Produces(MediaType.APPLICATION_JSON)
 
-// A variável filter tem que ser a coluna e o valor que se está a procurar
-// EX.: filter = "semana = 3"
-// Se for para aplicar vários filtros, tem que estar na variável também
-// EX.: filter = "semana = 3 AND manager = carlos" 
+	public Collection<String> getAllUnitiesFilter(@PathParam("filter") String filter)
+
+	{
+		return I.showAllUnitiesFilter(filter);
+	}
+
+//// A variável filter tem que ser a coluna e o valor que se está a procurar
+//// EX.: filter = "semana = 3"
+//// Se for para aplicar vários filtros, tem que estar na variável também
+//// EX.: filter = "semana = 3 AND manager = carlos" 
 //	@GET
 //	@Path("filter/{filter}")
 //	@Produces({ MediaType.APPLICATION_JSON })
