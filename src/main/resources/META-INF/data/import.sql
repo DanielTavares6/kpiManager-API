@@ -17,10 +17,22 @@ INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'Cliente
 
 
 
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('a', '1','1', 'Joaquim', 'director');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('b', '2','1', 'Antonio', 'maganer');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('c', '3','1', 'Jose', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('d', '4','1', 'Paulo', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('e', '5','1', 'Joao', 'manager');
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Joaquim', 'director', 'salt1' ,'Joaq', 1);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Antonio', 'maganer','salt2', 'Anto',2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Jose', 'manager','salt3','Jose', 3);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Paulo', 'manager','salt4','Paul', 2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Joao', 'manager' ,'salt5','Joao', 1);
 
+
+
+INSERT INTO InteractionType(interactionType) VALUES ('Visita');
+INSERT INTO InteractionType(interactionType) VALUES ('Contrato');
+INSERT INTO InteractionType(interactionType) VALUES ('CV');
+
+
+
+
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1990', 1, 1, 1, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2010', 2, 2, 2, 2);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2020', 3, 3, 3, 3);
 

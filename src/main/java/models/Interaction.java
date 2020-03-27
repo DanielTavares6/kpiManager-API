@@ -1,81 +1,94 @@
 package models;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 
 @Entity
-public class Interaction extends Entity_ {
+public class Interaction extends Entity_
+
+{
 
 	private static final long serialVersionUID = 1L;
-	private Date dateInteraction;
-	private Person idPerson;
-	private Unit idUnit;
-	private Client idClient;
-	private long interactionType;
-
-
-	public Date getDateInteraction() 
+	private String dateInteraction;
+	
+	@OneToOne
+	@JoinColumn(name = "person_id", referencedColumnName = "id") // It's going to make a reference to each individual table
+	private Person person;
+	@OneToOne
+	@JoinColumn(name = "unit_id", referencedColumnName = "id")
+	private Unit unit;
+	@OneToOne
+	@JoinColumn(name = "client_id", referencedColumnName = "id")
+	private Client client;
+	@OneToOne
+	@JoinColumn(name = "interactionType_id", referencedColumnName = "id")
+	private InteractionType interactionType;
+	
+	
+	public String getDateInteraction()
 	
 	{
 		return dateInteraction;
 	}
-
-	public void setDateInteraction(Date dateInteraction) 
+	
+	public void setDateInteraction(String dateInteraction) 
 	
 	{
 		this.dateInteraction = dateInteraction;
 	}
-
-	public Person getIdPerson()
+	
+	public Person getPerson() 
 	
 	{
-		return idPerson;
+		return person;
 	}
-
-	public void setIdPerson(Person idPerson) 
+	
+	public void setPerson(Person person) 
 	
 	{
-		this.idPerson = idPerson;
+		this.person = person;
 	}
-
-	public Unit getIdUnit() 
+	
+	public Unit getUnit() 
 	
 	{
-		return idUnit;
+		return unit;
 	}
-
-	public void setIdUnit(Unit idUnit) 
+	
+	public void setUnit(Unit unit)
 	
 	{
-		this.idUnit = idUnit;
+		this.unit = unit;
 	}
-
-	public Client getIdClient()
+	
+	public Client getClient() 
 	
 	{
-		return idClient;
+		return client;
 	}
-
-	public void setIdClient(Client idClient)
+	
+	public void setClient(Client client) 
 	
 	{
-		this.idClient = idClient;
+		this.client = client;
 	}
-
-	public long getInteractionType()
+	
+	public InteractionType getInteractionType() 
 	
 	{
 		return interactionType;
 	}
-
-	public void setInteractionType(long interactionType) 
+	
+	public void setInteractionType(InteractionType interactionType) 
 	
 	{
 		this.interactionType = interactionType;
 	}
 	
+	
+
 	
 
 }

@@ -14,16 +14,10 @@ import repositories.PersonRepository;
 import services.PersonService;
 
 
-// Isto vai ter um path ('users')
-
-// e vai deixar de ser abstracto
-
 @Path("users")
 public class PersonController extends EntityController <PersonService,PersonRepository,Person>  
 
 {
-
-
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON) // "text/plain"
 	@Produces(MediaType.TEXT_PLAIN)
@@ -46,6 +40,5 @@ public class PersonController extends EntityController <PersonService,PersonRepo
 		}
 		
 	}
-	
 	
 }

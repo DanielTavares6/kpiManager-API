@@ -20,7 +20,9 @@ import models.Entity_;
 import repositories.EntityRepository;
 import services.EntityService;
 
-public abstract class EntityController<S extends EntityService<R, E>, R extends EntityRepository<E>, E extends Entity_> {
+public abstract class EntityController<S extends EntityService<R, E>, R extends EntityRepository<E>, E extends Entity_> 
+
+{
 
 	@Inject // Inject generic variable in runtime
 	protected S service;
@@ -109,6 +111,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	// EX.: filter = "semana = 3"
 	// Se for para aplicar vários filtros, tem que estar na variável também
 	// EX.: filter = "semana = 3 AND manager = carlos" 
+	
 	@GET
 	@Path("filter/{filter}")
 	@Produces({MediaType.APPLICATION_JSON})
