@@ -69,6 +69,16 @@ public class InteractionController extends EntityController<InteractionService, 
 
 		return I.showAllClients();
 	}
+	
+	@GET
+	@Path("allClientsFilter/{filter}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllClientsFilter(@PathParam("filter") String filter)
+
+	{
+		return I.showAllClientsFilter(filter);
+	}
 
 	@GET
 	@Path("allBManagers")
@@ -79,6 +89,16 @@ public class InteractionController extends EntityController<InteractionService, 
 	{
 		return I.showAllBManagers();
 	}
+	
+	@GET
+	@Path("allBManagersFilter/{filter}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllBManagersFilter(@PathParam("filter") String filter)
+
+	{
+		return I.showAllBManagersFilter(filter);
+	}
 
 	@GET
 	@Path("allInteractions")
@@ -88,6 +108,15 @@ public class InteractionController extends EntityController<InteractionService, 
 
 	{
 		return I.showAllInteractions();
+	}
+	@GET
+	@Path("allInteractionsFilter/{filter}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<String> showAllInteractionsFilter(@PathParam("filter") String filter)
+
+	{
+		return I.showAllInteractionsFilter(filter);
 	}
 
 	@GET
@@ -109,6 +138,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	{
 		return I.showAllUnitiesFilter(filter);
 	}
+
 
 //// A variável filter tem que ser a coluna e o valor que se está a procurar
 //// EX.: filter = "semana = 3"

@@ -17,8 +17,16 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	protected String getAllClientsQueryName() {
 		return Interaction.GET_ALL_CLIENTS;
 	}
+	protected String getAllClientsFilterQueryName() {
+		return Interaction.GET_ALL_CLIENTS_FILTER;
+	}
+	
 	protected String getAllBManagersQueryName() {
 		return Interaction.GET_ALL_B_MANAGERS;
+	}
+	
+	protected String getAllBManagersFilterQueryName() {
+		return Interaction.GET_ALL_B_MANAGERS_FILTER;
 	}
 	protected String getAllUnitiesQueryName() {
 		return Interaction.GET_ALL_UNITIES;
@@ -28,6 +36,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	}
 	protected String getAllInteractionsQueryName() {
 		return Interaction.GET_ALL_INTERACTIONS;
+	}
+	protected String getAllInteractionsFilterQueryName() {
+		return Interaction.GET_ALL_INTERACTIONS_FILTER;
 	}
 //	protected String getAllFilterQueryName() {
 //		return Interaction.GET_ALL_FILTER;
@@ -72,7 +83,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public Collection<String> showAllWeeksFilter(String filter) {
 		
 		return entityManager.createNamedQuery
-				(getAllWeeksQueryName(), String.class).setParameter("filter", filter)
+				(getAllWeeksFilterQueryName(), String.class).setParameter("filter", filter)
 				.getResultList();
 	}
 	
@@ -83,10 +94,22 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
+	public Collection<String> showAllClientsFilter(String filter) {
+		return entityManager.createNamedQuery
+				(getAllClientsFilterQueryName(), String.class).setParameter("filter", filter)
+				.getResultList();
+	}
+	
 	public Collection<String> showAllBManagers() {
 		
 		return entityManager.createNamedQuery
 				(getAllBManagersQueryName(), String.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllBManagersFilter(String filter) {
+		return entityManager.createNamedQuery
+				(getAllBManagersFilterQueryName(), String.class).setParameter("filter", filter)
 				.getResultList();
 	}
 
@@ -94,6 +117,12 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		
 		return entityManager.createNamedQuery
 				(getAllInteractionsQueryName(), String.class)
+				.getResultList();
+	}
+	
+	public Collection<String> showAllInteractionsFilter(String filter) {
+		return entityManager.createNamedQuery
+				(getAllInteractionsFilterQueryName(), String.class).setParameter("filter", filter)
 				.getResultList();
 	}
 
@@ -121,5 +150,11 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return entityManager.createNamedQuery
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
+
+	
+
+	
+
+	
 
 }

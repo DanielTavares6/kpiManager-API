@@ -30,6 +30,10 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllClients();
 	}
 	
+	public Collection<String> showAllClientsFilter(String filter) {
+		return I.showAllClientsFilter(filter);
+	}
+	
 	public Collection<String> showAllUnities() {
 		return I.showAllUnities();
 	}
@@ -42,8 +46,18 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllBManagers();
 	}
 	
+	public Collection<String> showAllBManagersFilter(String filter) {
+		return I.showAllBManagersFilter(filter);
+
+	}
+	
 	public Collection<String> showAllInteractions() {
 		return I.showAllInteractions();
+	}
+	
+	public Collection<String> showAllInteractionsFilter(String filter) {
+		return I.showAllInteractionsFilter(filter);
+
 	}
 
 //	public Collection<Interaction> showAllFilter(String filter) {
@@ -53,5 +67,11 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	public Collection<Interaction> showAllSearch(String search) {
 		return I.showAllSearch(search);
 	}
+
+	
+
+	
+
+	
 	
 }

@@ -14,9 +14,14 @@ import javax.persistence.OneToOne;
 	@NamedQuery(name = Interaction.GET_ALL_UNITIES, query="SELECT DISTINCT i.unit FROM Interaction i ORDER BY i.unit"),
 	@NamedQuery(name = Interaction.GET_ALL_UNITIES_FILTER, query="SELECT i.unit FROM Interaction i WHERE i.unit = :filter ORDER BY i.unit"),
 	@NamedQuery(name = Interaction.GET_ALL_B_MANAGERS, query="SELECT DISTINCT i.person FROM Interaction i ORDER BY i.person"),
+	@NamedQuery(name = Interaction.GET_ALL_B_MANAGERS_FILTER, query="SELECT DISTINCT i.person FROM Interaction i WHERE i.person = :filter ORDER BY i.person"),
 	@NamedQuery(name = Interaction.GET_ALL_CLIENTS, query="SELECT DISTINCT i.client FROM Interaction i ORDER BY i.client"),
+	@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query="SELECT DISTINCT i.client FROM Interaction i WHERE i.client = :filter ORDER BY i.client"),
 	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query="SELECT DISTINCT i.interactionType FROM Interaction i ORDER BY i.interactionType"),
+	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query="SELECT DISTINCT i.interactionType FROM Interaction i WHERE i.interactionType = :filter ORDER BY i.interactionType"),
+
 //	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
+	
 	@NamedQuery(name = Interaction.GET_ALL_SEARCH, query="SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
 			+ " OR i.unit LIKE :search"
 			+ " OR i.person LIKE :search"
@@ -29,8 +34,11 @@ public class Interaction extends Entity_ {
 	public static final String GET_ALL_UNITIES = "Interaction.getAllUnities";
 	public static final String GET_ALL_UNITIES_FILTER = "Interaction.getAllUnitiesFilter";
 	public static final String GET_ALL_B_MANAGERS = "Interaction.getAllBManagers";
+	public static final String GET_ALL_B_MANAGERS_FILTER = "Interaction.getAllBManagersFilter";
 	public static final String GET_ALL_CLIENTS = "Interaction.getAllClients";
+	public static final String GET_ALL_CLIENTS_FILTER = "Interaction.getAllClientsFilter";
 	public static final String GET_ALL_INTERACTIONS = "Interaction.getAllInteractions";
+	public static final String GET_ALL_INTERACTIONS_FILTER = "Interaction.getAllInteractionsFilter";
 //	public static final String GET_ALL_FILTER = "Interaction.getAllFilter";
 	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
 	public static final String GET_ALL = "Interaction.getAll";
