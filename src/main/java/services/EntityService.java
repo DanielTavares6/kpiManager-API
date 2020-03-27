@@ -42,7 +42,34 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 	{
 		return repository.getAllKeys();
 	}
+	
+	public Collection<String> showAllWeeks() {
+		return repository.showAllWeeks();
+	}
+	
+	public Collection<String> showAllClients() {
+		return repository.showAllClients();
+	}
+	
+	public Collection<String> showAllUnities() {
+		return repository.showAllUnities();
+	}
+	
+	public Collection<String> showAllBManagers() {
+		return repository.showAllBManagers();
+	}
+	
+	public Collection<String> showAllInteractions() {
+		return repository.showAllInteractions();
+	}
 
+	public Collection<E> showAllFilter(String filter) {
+		return repository.showAllFilter(filter);
+	}
+
+	public Collection<E> showAllSearch(String search) {
+		return repository.showAllSearch(search);
+	}
 
 	
 	

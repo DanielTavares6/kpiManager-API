@@ -10,17 +10,34 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
 @NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
+@NamedQuery(name = Person.GET_ALL_WEEKS, query="SELECT DISTINCT p.semana FROM Person d ORDER BY d.semana"),
+@NamedQuery(name = Person.GET_ALL_UNITIES, query="SELECT DISTINCT p.unit FROM Person d ORDER BY d.unit"),
+@NamedQuery(name = Person.GET_ALL_B_MANAGERS, query="SELECT DISTINCT p.bManager FROM Person d ORDER BY d.bManager"),
+@NamedQuery(name = Person.GET_ALL_CLIENTS, query="SELECT DISTINCT p.cliente FROM Person d ORDER BY d.cliente"),
+@NamedQuery(name = Person.GET_ALL_INTERACTIONS, query="SELECT DISTINCT d.interacao FROM Person d ORDER BY d.interacao"),
+@NamedQuery(name = Person.GET_ALL_FILTER, query="SELECT p FROM Person p WHERE :filter ORDER BY p.semana"),
+@NamedQuery(name = Person.GET_ALL_SEARCH, query="SELECT p FROM Person p WHERE p.semana LIKE :search"
+		+ "OR p.unidade LIKE :search"
+		+ "OR p.bManager LIKE :search"
+		+ "OR p.cliente LIKE :search"
+		+ "OR p.interacao LIKE :search ORDER BY d.semana")
 })
 public class Person extends Entity_
 
 {
 
+	private static final long serialVersionUID = 1L;
+
 	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
 	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons" ;
 	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";
-	
-
-	private static final long serialVersionUID = 1L;
+	public static final String GET_ALL_WEEKS = "Person.getAllWeeks";
+	public static final String GET_ALL_UNITIES = "Person.getAllUnities";
+	public static final String GET_ALL_B_MANAGERS = "Person.getAllBManagers";
+	public static final String GET_ALL_CLIENTS = "Person.getAllClients";
+	public static final String GET_ALL_INTERACTIONS = "Person.getAllInteractions";
+	public static final String GET_ALL_FILTER = "Person.getAllFilter";
+	public static final String GET_ALL_SEARCH = "Person.getAllSearch";
 
 	private String username;
 	private String hashcode;
