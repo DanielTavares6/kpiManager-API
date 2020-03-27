@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
 @NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
-@NamedQuery(name = Person.GET_ALL_WEEKS, query="SELECT DISTINCT p.semana FROM Person d ORDER BY d.semana"),
+/*@NamedQuery(name = Person.GET_ALL_WEEKS, query="SELECT DISTINCT p.semana FROM Person d ORDER BY d.semana"),
 @NamedQuery(name = Person.GET_ALL_UNITIES, query="SELECT DISTINCT p.unit FROM Person d ORDER BY d.unit"),
 @NamedQuery(name = Person.GET_ALL_B_MANAGERS, query="SELECT DISTINCT p.bManager FROM Person d ORDER BY d.bManager"),
 @NamedQuery(name = Person.GET_ALL_CLIENTS, query="SELECT DISTINCT p.cliente FROM Person d ORDER BY d.cliente"),
@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
 		+ "OR p.unidade LIKE :search"
 		+ "OR p.bManager LIKE :search"
 		+ "OR p.cliente LIKE :search"
-		+ "OR p.interacao LIKE :search ORDER BY d.semana")
+		+ "OR p.interacao LIKE :search ORDER BY d.semana")*/
 })
 public class Person extends Entity_
 
