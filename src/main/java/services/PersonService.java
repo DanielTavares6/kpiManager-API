@@ -77,6 +77,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		Personalization personalization = new Personalization();
 		personalization.addDynamicTemplateData("username", entity.getUsername());
+		personalization.addDynamicTemplateData("password", entity.getPassword());
 		personalization.addTo(to);
 		mail.addPersonalization(personalization);
 
