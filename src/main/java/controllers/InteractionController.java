@@ -56,7 +56,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("allWeeksFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public Collection<String> showAllWeeksFilter(@PathParam("filter") String filter) {
+	public Collection<Interaction> showAllWeeksFilter(@PathParam("filter") String filter) {
 
 		return I.showAllWeeksFilter(filter);
 	}
@@ -74,7 +74,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("allClientsFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public Collection<String> showAllClientsFilter(@PathParam("filter") String filter)
+	public Collection<Interaction> showAllClientsFilter(@PathParam("filter") String filter)
 
 	{
 		return I.showAllClientsFilter(filter);
@@ -94,7 +94,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("allBManagersFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public Collection<String> showAllBManagersFilter(@PathParam("filter") String filter)
+	public Collection<Interaction> showAllBManagersFilter(@PathParam("filter") String filter)
 
 	{
 		return I.showAllBManagersFilter(filter);
@@ -113,7 +113,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("allInteractionsFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public Collection<String> showAllInteractionsFilter(@PathParam("filter") String filter)
+	public Collection<Interaction> showAllInteractionsFilter(@PathParam("filter") String filter)
 
 	{
 		return I.showAllInteractionsFilter(filter);
@@ -133,7 +133,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("allUnitiesFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public Collection<String> getAllUnitiesFilter(@PathParam("filter") String filter)
+	public Collection<Interaction> getAllUnitiesFilter(@PathParam("filter") String filter)
 
 	{
 		return I.showAllUnitiesFilter(filter);

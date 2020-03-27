@@ -80,10 +80,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllWeeksFilter(String filter) {
+	public Collection<Interaction> showAllWeeksFilter(String filter) {
 		
 		return entityManager.createNamedQuery
-				(getAllWeeksFilterQueryName(), String.class).setParameter("filter", filter)
+				(getAllWeeksFilterQueryName()).setParameter("filter", filter)
 				.getResultList();
 	}
 	
@@ -94,9 +94,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllClientsFilter(String filter) {
+	public Collection<Interaction> showAllClientsFilter(String filter) {
 		return entityManager.createNamedQuery
-				(getAllClientsFilterQueryName(), String.class).setParameter("filter", filter)
+				(getAllClientsFilterQueryName()).setParameter("filter", filter)
 				.getResultList();
 	}
 	
@@ -107,9 +107,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllBManagersFilter(String filter) {
+	public Collection<Interaction> showAllBManagersFilter(String filter) {
 		return entityManager.createNamedQuery
-				(getAllBManagersFilterQueryName(), String.class).setParameter("filter", filter)
+				(getAllBManagersFilterQueryName()).setParameter("filter", filter)
 				.getResultList();
 	}
 
@@ -120,9 +120,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllInteractionsFilter(String filter) {
+	public Collection<Interaction> showAllInteractionsFilter(String filter) {
 		return entityManager.createNamedQuery
-				(getAllInteractionsFilterQueryName(), String.class).setParameter("filter", filter)
+				(getAllInteractionsFilterQueryName()).setParameter("filter", filter)
 				.getResultList();
 	}
 
@@ -133,10 +133,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllUnitiesFilter(String filter) {
+	public Collection<Interaction> showAllUnitiesFilter(String filter) {
 		
 		return entityManager.createNamedQuery
-				(getAllUnitiesFilterQueryName(), String.class).setParameter("filter", filter)
+				(getAllUnitiesFilterQueryName()).setParameter("filter", filter)
 				.getResultList();
 	}
 
