@@ -18,12 +18,12 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	protected String getAllUnitiesQueryName() {
 		return Interaction.GET_ALL_UNITIES;
 	}
-	protected String getAllInteractionsQueryName() {
-		return Interaction.GET_ALL_INTERACTIONS;
-	}
-	protected String getAllFilterQueryName() {
-		return Interaction.GET_ALL_FILTER;
-	}
+//	protected String getAllInteractionsQueryName() {
+//		return Interaction.GET_ALL_INTERACTIONS;
+//	}
+//	protected String getAllFilterQueryName() {
+//		return Interaction.GET_ALL_FILTER;
+//	}
 	protected String getAllSearchQueryName() {
 		return Interaction.GET_ALL_SEARCH;
 	}
@@ -75,12 +75,12 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 	
-	public Collection<String> showAllInteractions() {
-		
-		return entityManager.createNamedQuery
-				(getAllInteractionsQueryName(), String.class)
-				.getResultList();
-	}
+//	public Collection<String> showAllInteractions() {
+//		
+//		return entityManager.createNamedQuery
+//				(getAllInteractionsQueryName(), String.class)
+//				.getResultList();
+//	}
 
 	public Collection<String> showAllUnities() {
 		
@@ -89,11 +89,11 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				.getResultList();
 	}
 
-	public Collection<Interaction> showAllFilter(String filter) {
-		return entityManager.createNamedQuery
-				(getAllFilterQueryName(), getEntityClass()).setParameter("filter", filter)
-				.getResultList();
-	}
+//	public Collection<Interaction> showAllFilter(String filter) {
+//		return entityManager.createNamedQuery
+//				(getAllFilterQueryName(), getEntityClass()).setParameter("filter", filter)
+//				.getResultList();
+//	}
 	
 	public Collection<Interaction> showAllSearch(String search) {
 		return entityManager.createNamedQuery

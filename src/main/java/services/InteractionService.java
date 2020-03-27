@@ -34,13 +34,13 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllBManagers();
 	}
 	
-	public Collection<String> showAllInteractions() {
-		return I.showAllInteractions();
-	}
+//	public Collection<String> showAllInteractions() {
+//		return I.showAllInteractions();
+//	}
 
-	public Collection<Interaction> showAllFilter(String filter) {
-		return I.showAllFilter(filter);
-	}
+//	public Collection<Interaction> showAllFilter(String filter) {
+//		return I.showAllFilter(filter);
+//	}
 
 	public Collection<Interaction> showAllSearch(String search) {
 		return I.showAllSearch(search);
