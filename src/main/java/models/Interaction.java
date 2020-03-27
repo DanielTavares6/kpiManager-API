@@ -6,8 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
+@NamedQueries({
+//	@NamedQuery(name = Interaction.GET_ALL, query="SELECT * FROM Interaction ORDER BY i.dateInteraction"),
+//	@NamedQuery(name = Interaction.GET_ALL_WEEKS, query="SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
+//	@NamedQuery(name = Interaction.GET_ALL_UNITIES, query="SELECT DISTINCT i.idUnit FROM Interaction i ORDER BY i.idUnit"),
+//	@NamedQuery(name = Interaction.GET_ALL_B_MANAGERS, query="SELECT DISTINCT i.idPerson FROM Interaction i ORDER BY i.idPerson"),
+//	@NamedQuery(name = Interaction.GET_ALL_CLIENTS, query="SELECT DISTINCT i.idClient FROM Interaction i ORDER BY i.idClient"),
+//	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query="SELECT DISTINCT p.interacao FROM Interaction i ORDER BY p.interacao"),
+//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
+//	@NamedQuery(name = Interaction.GET_ALL_SEARCH, query="SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
+//			+ "OR i.idUnit LIKE :search"
+//			+ "OR i.idPerson LIKE :search"
+//			+ "OR i.idClient LIKE :search"
+//			+ "OR i.interacao LIKE :search ORDER BY i.semana")
+})
 public class Interaction extends Entity_ {
 
+//	public static final String GET_ALL_WEEKS = "Interaction.getAllWeeks";
+//	public static final String GET_ALL_UNITIES = "Interaction.getAllUnities";
+//	public static final String GET_ALL_B_MANAGERS = "Interaction.getAllBManagers";
+//	public static final String GET_ALL_CLIENTS = "Interaction.getAllClients";
+//	public static final String GET_ALL_INTERACTIONS = "Interaction.getAllInteractions";
+//	public static final String GET_ALL_FILTER = "Interaction.getAllFilter";
+//	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
+//	public static final String GET_ALL = "Interaction.getAllSearch";
+//	
 	private static final long serialVersionUID = 1L;
 
 	private Date dateInteraction;

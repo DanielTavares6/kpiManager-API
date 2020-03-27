@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.sendgrid.Content;
 import com.sendgrid.Email;
 import com.sendgrid.Mail;
@@ -47,15 +49,26 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		return repository.create(m);
 	}
 
-	public void checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception
+	
+	public String checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception
 
 	{
+		// create JWT (Signed) -->JWS
+		Algorithm algorithm = Algorithm.HMAC256("secret");
+        String token = JWT.create()
+        .withIssuer("Pedro")
+        .sign(algorithm);
+        System.out.println(token);
+		
 		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
 		String key = myUser.getHashcode();
 		String salt = myUser.getSalt();
-		if (!PasswordUtils.verifyPassword(password, key, salt))
+		if (!PasswordUtils.verifyPassword(password, key, salt)) {
 
 			throw new BadRequestException("Invalid Password");
+		}
+		return token;
+
 	}
 
 	public String[] passwordToHashcode(String password)
