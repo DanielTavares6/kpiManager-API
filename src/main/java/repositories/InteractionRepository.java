@@ -47,8 +47,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 
 		return null;
 	}
-<<<<<<< Updated upstream
-=======
+
 	
 //	public Collection<Interaction> showAll() {
 //		return entityManager.createNamedQuery(getAllQueryName()).getResultList();
@@ -99,6 +98,5 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 //		return entityManager.createNamedQuery
 //				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 //	}
->>>>>>> Stashed changes
 
 }

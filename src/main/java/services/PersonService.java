@@ -68,7 +68,6 @@ public class PersonService extends EntityService<PersonRepository, Person>
 			throw new BadRequestException("Invalid Password");
 		}
 		return token;
-
 	}
 
 	public String[] passwordToHashcode(String password)

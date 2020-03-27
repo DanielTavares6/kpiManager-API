@@ -86,6 +86,6 @@ public class InteractionController extends EntityController<InteractionService, 
 //	@Produces({ MediaType.APPLICATION_JSON })
 //	public Collection<Interaction> showAllSearch(@PathParam("search") String search) {
 //		return I.showAllSearch(search);
-//	}
+	}
 
 

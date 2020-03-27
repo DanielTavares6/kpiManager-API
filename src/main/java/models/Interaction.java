@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-@NamedQueries({
+//@NamedQueries({
 //	@NamedQuery(name = Interaction.GET_ALL, query="SELECT * FROM Interaction ORDER BY i.dateInteraction"),
 //	@NamedQuery(name = Interaction.GET_ALL_WEEKS, query="SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
 //	@NamedQuery(name = Interaction.GET_ALL_UNITIES, query="SELECT DISTINCT i.idUnit FROM Interaction i ORDER BY i.idUnit"),
@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 //			+ "OR i.idPerson LIKE :search"
 //			+ "OR i.idClient LIKE :search"
 //			+ "OR i.interacao LIKE :search ORDER BY i.semana")
-})
+//})
 public class Interaction extends Entity_ {
 
 //	public static final String GET_ALL_WEEKS = "Interaction.getAllWeeks";

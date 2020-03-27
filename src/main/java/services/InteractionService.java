@@ -1,6 +1,8 @@
 package services;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
 import models.Interaction;
 import repositories.InteractionRepository;
 

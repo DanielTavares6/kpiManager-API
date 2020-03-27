@@ -36,13 +36,12 @@ public class PersonController extends EntityController <PersonService,PersonRepo
 	@Path("/auth")
 	@Consumes(MediaType.APPLICATION_JSON) // "text/plain"
 	@Produces(MediaType.TEXT_PLAIN)
-	public  String login(PersonDTO obj) {
-		try {
-
-			return service.checkIfPasswordValid(obj, obj.getPassword());
+	public Response login(PersonDTO obj) {
+		try { 
+			return Response.ok().entity(service.checkIfPasswordValid(obj, obj.getPassword())).build();
 		
 		} catch(Exception e) { 
-			return "Login Failed";
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Login Failed").build();
 		}
 		
 	}
