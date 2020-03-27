@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
 			+ "OR i.idUnit LIKE :search"
 			+ "OR i.idPerson LIKE :search"
 			+ "OR i.idClient LIKE :search"
-			+ "OR p.interacao LIKE :search ORDER BY p.semana")
+			+ "OR i.interacao LIKE :search ORDER BY i.semana")
 })
 public class Interaction extends Entity_ {
 
