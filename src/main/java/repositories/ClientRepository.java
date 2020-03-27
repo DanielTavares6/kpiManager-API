@@ -11,17 +11,23 @@ public class ClientRepository extends EntityRepository <Client>
 
 	
 	@Override
-	public Class<Client> getEntityClass() {
+	public Class<Client> getEntityClass() 
+	
+	{
 		return Client.class;
 	}
 
 	@Override
-	public String getAllEntityQueryName() {
+	public String getAllEntityQueryName() 
+	
+	{
 		return Client.GET_ALL_CLIENTS_QUERY_NAME;
 	}
 
 	@Override
-	protected String getAllIdsQueryName() {
+	protected String getAllIdsQueryName() 
+	
+	{
 		return Client.GET_ALL_CLIENTS_IDS;
 	}
 
