@@ -1,6 +1,7 @@
 package services;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -100,5 +101,46 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		}
 
 	}
+	
+	
+	public Collection <Person> showAllEntitiesByUnit(long unitId)
+	
+	{
+		return repository.showAllEntitiesByUnit(unitId);
+	}
+	
+	public Collection <Person> showAllManagers()
+	
+	{
+		return repository.showAllManagers();
+	}
 
+	public Collection <Person> showAllDirectors()
+	
+	{
+		return repository.showAllDirectors();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

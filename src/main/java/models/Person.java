@@ -9,7 +9,10 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 @NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
-@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username")
+@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
+@NamedQuery(name = Person.GET_MANAGERS_BY_UNIT, query="SELECT c FROM Person c WHERE c.unit.id =:unit AND c.role = 'manager' "),
+@NamedQuery(name = Person.GET_MANAGERS, query="SELECT c FROM Person c WHERE c.role = 'manager' "),
+@NamedQuery(name = Person.GET_DIRECTORS, query="SELECT c FROM Person c WHERE c.role = 'director' ")
 })
 
 public class Person extends Entity_
@@ -18,6 +21,9 @@ public class Person extends Entity_
 
 	private static final long serialVersionUID = 1L;
 
+	public static final String GET_MANAGERS = "Person.getManagers";
+	public static final String GET_DIRECTORS = "Person.getDirectors";
+	public static final String GET_MANAGERS_BY_UNIT = "Person.getManagersByUnit";
 	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
 	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons" ;
 	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";

@@ -1,9 +1,12 @@
 package controllers;
 
-import javax.inject.Inject;
+import java.util.Collection;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,4 +44,66 @@ public class PersonController extends EntityController <PersonService,PersonRepo
 		
 	}
 	
+	
+	@GET
+	@Path("{unitId}/managers")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<Person> showAllEntitiesByUnit(@PathParam("unitId") long unitId)
+
+	{
+		return service.showAllEntitiesByUnit(unitId);
+	}
+	
+	
+	@GET
+	@Path("managers")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<Person> showAllManagers()
+
+	{
+		return service.showAllManagers();
+	}
+	
+	
+	@GET
+	@Path("directors")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<Person> showAllDirectors()
+
+	{
+		return service.showAllDirectors();
+	}
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
