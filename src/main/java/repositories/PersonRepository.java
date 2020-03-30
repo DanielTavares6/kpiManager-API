@@ -30,6 +30,8 @@ public class PersonRepository extends EntityRepository <Person>
 		protected String getAllIdsQueryName() {
 			return Person.GET_ALL_PERSON_IDS;
 		}
+		
+		
 }
 
 

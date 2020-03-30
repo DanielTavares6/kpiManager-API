@@ -35,7 +35,6 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	public Person create(PersonDTO entity)
 
 	{
-
 		Person m = new Person();
 
 		String password = entity.getPassword();
@@ -79,6 +78,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		return result;
 	}
 
+	//send email when SuperUser creates a new manager.CHANGE EMAIL
 	public void sendGrid(PersonDTO entity) throws IOException {
 
 		Mail mail = new Mail();

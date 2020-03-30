@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
 @NamedQueries({
 @NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
 @NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
@@ -22,12 +25,14 @@ public class Person extends Entity_
 
 	private static final long serialVersionUID = 1L;
 
+  
 	private String username;
 	private String hashcode;
 	private String salt;
 	private String name;
 	private String email;
 	private String role;
+	private String token;
 	
 	@ManyToOne
 	private Unit unit;
