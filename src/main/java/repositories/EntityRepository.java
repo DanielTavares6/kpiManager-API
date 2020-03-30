@@ -22,13 +22,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 	public abstract String getAllEntityQueryName();
 	
 	protected abstract String getAllIdsQueryName();
-	protected abstract String getAllWeeksQueryName();
-	protected abstract String getAllClientsQueryName();
-	protected abstract String getAllBManagersQueryName();
-	protected abstract String getAllUnitiesQueryName();
-	protected abstract String getAllInteractionsQueryName();
-	protected abstract String getAllFilterQueryName();
-	protected abstract String getAllSearchQueryName();
+	
 	
 	
 	public T save(T entity)
@@ -63,51 +57,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 				.getResultList();
 	}
 	
-	public Collection<String> showAllWeeks() {
-		
-		return entityManager.createNamedQuery
-				(getAllWeeksQueryName(), String.class)
-				.getResultList();
-	}
 	
-	public Collection<String> showAllClients() {
-		
-		return entityManager.createNamedQuery
-				(getAllClientsQueryName(), String.class)
-				.getResultList();
-	}
-	
-	public Collection<String> showAllBManagers() {
-		
-		return entityManager.createNamedQuery
-				(getAllBManagersQueryName(), String.class)
-				.getResultList();
-	}
-	
-	public Collection<String> showAllInteractions() {
-		
-		return entityManager.createNamedQuery
-				(getAllInteractionsQueryName(), String.class)
-				.getResultList();
-	}
-
-	public Collection<String> showAllUnities() {
-		
-		return entityManager.createNamedQuery
-				(getAllUnitiesQueryName(), String.class)
-				.getResultList();
-	}
-
-	public Collection<T> showAllFilter(String filter) {
-		return entityManager.createNamedQuery
-				(getAllFilterQueryName(), getEntityClass()).setParameter("filter", filter)
-				.getResultList();
-	}
-	
-	public Collection<T> showAllSearch(String search) {
-		return entityManager.createNamedQuery
-				(getAllSearchQueryName()).setParameter("search", search).getResultList();
-	}
 	
 	
 	

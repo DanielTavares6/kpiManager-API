@@ -2,15 +2,50 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-
 @Entity
-public class Interaction extends Entity_
+@NamedQueries({
+	@NamedQuery(name = Interaction.GET_ALL, query="SELECT i FROM Interaction i ORDER BY i.dateInteraction"),
+	@NamedQuery(name = Interaction.GET_ALL_WEEKS, query="SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
+	@NamedQuery(name = Interaction.GET_ALL_WEEKS_FILTER, query="SELECT i FROM Interaction i WHERE i.dateInteraction = :filter ORDER BY i.dateInteraction"),
+	@NamedQuery(name = Interaction.GET_ALL_UNITIES, query="SELECT DISTINCT i.unit.nameUnit FROM Interaction i ORDER BY i.unit.nameUnit"),
+	@NamedQuery(name = Interaction.GET_ALL_UNITIES_FILTER, query="SELECT i FROM Interaction i WHERE i.unit.nameUnit = :filter ORDER BY i.unit.nameUnit"),
+	@NamedQuery(name = Interaction.GET_ALL_B_MANAGERS, query="SELECT DISTINCT i.person.name FROM Interaction i ORDER BY i.person.name"),
+	@NamedQuery(name = Interaction.GET_ALL_B_MANAGERS_FILTER, query="SELECT i FROM Interaction i WHERE i.person.name = :filter ORDER BY i.person.name"),
+	@NamedQuery(name = Interaction.GET_ALL_CLIENTS, query="SELECT DISTINCT i.client.name FROM Interaction i ORDER BY i.client.name"),
+	@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query="SELECT i FROM Interaction i WHERE i.client.name = :filter ORDER BY i.client.name"),
+	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query="SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
+	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query="SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
 
-{
+//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
+	
+	@NamedQuery(name = Interaction.GET_ALL_SEARCH, query="SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
+			+ " OR i.unit.nameUnit LIKE :search"
+			+ " OR i.person.name LIKE :search"
+			+ " OR i.interactionType.interactionType LIKE :search"
+			+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction")
+})
+public class Interaction extends Entity_ {
 
+	public static final String GET_ALL_WEEKS = "Interaction.getAllWeeks";
+	public static final String GET_ALL_WEEKS_FILTER = "Interaction.getAllWeeksFilter";
+	public static final String GET_ALL_UNITIES = "Interaction.getAllUnities";
+	public static final String GET_ALL_UNITIES_FILTER = "Interaction.getAllUnitiesFilter";
+	public static final String GET_ALL_B_MANAGERS = "Interaction.getAllBManagers";
+	public static final String GET_ALL_B_MANAGERS_FILTER = "Interaction.getAllBManagersFilter";
+	public static final String GET_ALL_CLIENTS = "Interaction.getAllClients";
+	public static final String GET_ALL_CLIENTS_FILTER = "Interaction.getAllClientsFilter";
+	public static final String GET_ALL_INTERACTIONS = "Interaction.getAllInteractions";
+	public static final String GET_ALL_INTERACTIONS_FILTER = "Interaction.getAllInteractionsFilter";
+//	public static final String GET_ALL_FILTER = "Interaction.getAllFilter";
+	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
+	public static final String GET_ALL = "Interaction.getAll";
+	
 	private static final long serialVersionUID = 1L;
+
 	private String dateInteraction;
 	
 	// These are the child entities (check Person, Unit, Client and InteractionType to see parent entites and its annotations
