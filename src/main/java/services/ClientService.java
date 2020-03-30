@@ -1,7 +1,6 @@
 package services;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 
 import models.Client;
 import repositories.ClientRepository;
