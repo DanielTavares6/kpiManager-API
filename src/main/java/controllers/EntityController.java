@@ -29,9 +29,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Response save(E object)
- 
 	{
 		try {
 			E saveObject = service.save(object);
@@ -46,9 +44,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<E> showAllEntities()
-
 	{
 		return service.showAllEntities();
 	}

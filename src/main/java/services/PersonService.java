@@ -1,6 +1,7 @@
 package services;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -9,7 +10,6 @@ import javax.ws.rs.BadRequestException;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.sendgrid.Content;
 import com.sendgrid.Email;
 import com.sendgrid.Mail;
 import com.sendgrid.Method;
@@ -32,8 +32,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	protected ClientService CLIENT_SERVICE;
 
 	@Transactional
-	public Person create(PersonDTO entity)
-
+	public Person create(PersonDTO entity) throws SQLIntegrityConstraintViolationException
 	{
 		Person m = new Person();
 

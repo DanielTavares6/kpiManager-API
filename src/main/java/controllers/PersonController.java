@@ -1,5 +1,7 @@
 package controllers;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -30,7 +32,7 @@ public class PersonController extends EntityController <PersonService,PersonRepo
 		service.create(obj);
 		return Response.status(Response.Status.ACCEPTED).encoding("added new manager to Database").build();
 	
-		} catch (Exception e) {
+		} catch (SQLIntegrityConstraintViolationException e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity("user already exists in database").build();
 		}
 	}
