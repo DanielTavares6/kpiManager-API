@@ -13,8 +13,12 @@ public class Interaction extends Entity_
 	private static final long serialVersionUID = 1L;
 	private String dateInteraction;
 	
+	// These are the child entities (check Person, Unit, Client and InteractionType to see parent entites and its annotations
+	
+	// Not sure if implemented as for example:  https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
+	
 	@OneToOne
-	@JoinColumn(name = "person_id", referencedColumnName = "id") // It's going to make a reference to each individual table
+	@JoinColumn(name = "person_id", referencedColumnName = "id") // It's going to make a reference to each individual table of person, unit, client
 	private Person person;
 	@OneToOne
 	@JoinColumn(name = "unit_id", referencedColumnName = "id")
