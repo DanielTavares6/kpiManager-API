@@ -8,16 +8,22 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
+@Table(uniqueConstraints={ 
+		 @UniqueConstraint (columnNames = "username"),
+		 @UniqueConstraint (columnNames = "email")
+		}
+)
+
 @NamedQueries({
-@NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
-@NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c"),
+@NamedQuery(name = Person.GET_PERSON_BY_EMAIL, query="SELECT c FROM Person c WHERE c.email =:email"),
 @NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
+@NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
+@NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c")
 })
 public class Person extends Entity_
 
 {
-
+	public static final String GET_PERSON_BY_EMAIL = "Person.getPersonByEmail";
 	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
 	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons" ;
 	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";

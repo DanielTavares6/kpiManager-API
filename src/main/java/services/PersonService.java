@@ -1,10 +1,12 @@
 package services;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 
@@ -31,20 +33,32 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	@Inject
 	protected ClientService CLIENT_SERVICE;
 
+	
 	@Transactional
-	public Person create(PersonDTO entity) throws SQLIntegrityConstraintViolationException
+	public Person create(PersonDTO entity) throws Exception
 	{
-		Person m = new Person();
-
-		String password = entity.getPassword();
-		String[] hashcode = passwordToHashcode(password);
-		m = entity.normalize(entity, m, hashcode[1], hashcode[0]);
-		try {
-			sendGrid(entity);
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		if(checkUserExists(entity.getUsername()) == true) {
+			
+			throw new Exception("Username already exists in database!");
+			
+		}else if(checkEmailExists(entity.getEmail()) == true) {
+			
+			throw new Exception("Email already exists in database!");
 		}
-		return repository.create(m);
+		else {
+			Person m = new Person();
+
+			String password = entity.getPassword();
+			String[] hashcode = passwordToHashcode(password);
+			m = entity.normalize(entity, m, hashcode[1], hashcode[0]);
+			try {
+				sendGrid(entity);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return repository.create(m);
+		}
 	}
 
 	
@@ -52,13 +66,14 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 	{
 		// create JWT (Signed) -->JWS
-		Algorithm algorithm = Algorithm.HMAC256("secret");
+		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
+		Algorithm algorithm = Algorithm.HMAC256(myUser.getSalt() + myUser.getHashcode());
         String token = JWT.create()
-        .withIssuer("Pedro")
+        .withClaim("username", userDTO.getUsername())
+        .withClaim("role", myUser.getRole())
         .sign(algorithm);
         System.out.println(token);
 		
-		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
 		String key = myUser.getHashcode();
 		String salt = myUser.getSalt();
 		if (!PasswordUtils.verifyPassword(password, key, salt)) {
@@ -112,4 +127,38 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 	}
 
+	public Boolean checkUserExists(String username) {
+		boolean flag = false;
+		try {
+		Person check = repository.getManagerByUsername(username);
+		System.out.println("username: try"+ check.getUsername());
+		if(check.getUsername().length() != 0) {
+			System.out.println("username igual"+ check.getUsername());
+			flag = true;
+		} 
+		}catch(NoResultException nre) {
+			flag = false;
+		}
+		return flag ;
+	}
+	
+	public Boolean checkEmailExists(String email) {
+		boolean flag = false;
+		try {
+		Person check = repository.getManagerByEmail(email);
+		System.out.println("mail try:"+ check.getEmail());
+		if(check.getEmail().length() != 0) {
+			System.out.println("mail try equal:"+ check.getEmail());
+			flag = true;
+		} 
+		} catch(NoResultException nre) {
+			System.out.println( nre);
+			flag = false;
+		}
+		return flag;
+	}
 }
+
+	
+
+
