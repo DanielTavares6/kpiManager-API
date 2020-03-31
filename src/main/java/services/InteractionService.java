@@ -68,10 +68,59 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllSearch(search);
 	}
 
+	 /**************************
+	 * Dashboard Module Starts *
+	 **************************/
 	
-
+	/**
+	 * Gets all cvs sent per manager per week
+	 * @param manager manager name
+	 * @param week week of cv sent
+	 * @return a collection containing all cvs sent by week
+	 */
+	public Collection<Interaction> getAllCvsPerWeekPerManager(String manager, String week) {
+		return I.getAllCvsPerWeekPerManager(manager, week);
+	}
 	
-
+	/**
+	 * Counts all cvs sent per manager per week
+	 * @param manager manager name
+	 * @param week week of cv sent
+	 * @return the count of all cvs set per manager per week
+	 */
+	public long countAllCvsPerWeekPerManager(String manager, String week) {
+		return I.countAllCvsPerWeekPerManager(manager, week);
+	}
 	
+	/**
+	 * Counts all interactions per business unit
+	 * @param unit business unit
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerUnit(String unit) {
+		return I.countAllInteractionsPerUnit(unit);
+	}
+	
+	/**
+	 * Counts all interactions per interaction type
+	 * @param interactionType interaction type
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerInteractionType(String interactionType) {
+		return I.countAllInteractionsPerInteractionType(interactionType);
+	}
+	
+	/**
+	 * Counts all interactions per client
+	 * @param clientName client name
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerClient(String clientName) {
+		return I.countAllInteractionsPerClient(clientName);
+	}
+	
+	/************************
+	* Dashboard Module Ends *
+	************************/
 	
 }
