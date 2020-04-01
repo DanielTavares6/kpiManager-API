@@ -40,7 +40,6 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 //		}
 //	}
 	
-	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<E> showAllEntities()
@@ -48,7 +47,6 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		return service.showAllEntities();
 	}
 
-	
 	@GET
 	@Path("allIds")
 	@Produces(MediaType.APPLICATION_JSON)

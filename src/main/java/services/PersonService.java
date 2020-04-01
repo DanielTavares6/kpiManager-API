@@ -61,11 +61,9 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		}
 	}
 
-	
-	public String checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception
-
-	{
-		// create JWT (Signed) -->JWS
+		// Issue token to the client when login is valid and Return token
+	public String checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception {
+		
 		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
 		Algorithm algorithm = Algorithm.HMAC256(myUser.getSalt() + myUser.getHashcode());
         String token = JWT.create()
