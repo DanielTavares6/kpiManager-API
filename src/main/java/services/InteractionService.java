@@ -70,7 +70,10 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 
 	
 
-	
+
+	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
+		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	}
 
 	
 	

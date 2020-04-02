@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -157,6 +158,19 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Collection<Interaction> showAllSearch(@PathParam("search") String search) {
 		return I.showAllSearch(search);
+	}
+	
+	@GET
+	@Path("filtro")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
+			@QueryParam("sel1") String myselectUnidade,
+			@QueryParam("sel2") String myselectCliente,
+			@QueryParam("sel3") String myselectBM,
+			@QueryParam("sel4") String myselectInteration			
+			) {
+		System.out.println("sel0 = " + myselectSemana);
+		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////

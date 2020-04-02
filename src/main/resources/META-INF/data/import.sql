@@ -23,12 +23,19 @@ INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES 
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Jose', 'manager','salt3','Jose', 3);
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Paulo', 'manager','salt4','Paul', 2);
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Joao', 'manager' ,'salt5','Joao', 1);
-
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Daiana', 'manager', 'salt1' ,'Joaq', 3);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Flavio', 'maganer','salt2', 'Anto',2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Ana', 'manager','salt3','Jose', 3);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Amanda', 'manager','salt4','Paul', 2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Pedro', 'manager' ,'salt5','Joao', 1);
 
 
 INSERT INTO InteractionType(interactionType) VALUES ('Visita');
 INSERT INTO InteractionType(interactionType) VALUES ('Contrato');
 INSERT INTO InteractionType(interactionType) VALUES ('CV');
+INSERT INTO InteractionType(interactionType) VALUES ('Entrevista');
+INSERT INTO InteractionType(interactionType) VALUES ('Reunioes Cliente');
+INSERT INTO InteractionType(interactionType) VALUES ('Pedido');
 
 
 
@@ -36,4 +43,8 @@ INSERT INTO InteractionType(interactionType) VALUES ('CV');
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1990', 1, 1, 1, 1);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2010', 2, 2, 2, 2);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2020', 3, 3, 3, 3);
-
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2000', 1, 1, 1, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2000', 1, 4, 3, 4);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2020', 2, 3, 4, 3);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1995', 1, 4, 3, 4);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1996', 2, 3, 4, 3);
