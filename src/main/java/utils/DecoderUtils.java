@@ -22,10 +22,13 @@ public class DecoderUtils {
         String body = new String(base64Url.decode(base64EncodedBody));
         System.out.println("JWT Body : "+body);
         
-        return body;
+    
+        String role =   body.substring(9, body.indexOf(',')-1);
+        System.out.println(role);
+        return role;
+        
     }
-  	
- 	
+
 }
 
 

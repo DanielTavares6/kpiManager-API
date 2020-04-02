@@ -8,30 +8,22 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints={ 
-		 @UniqueConstraint (columnNames = "username"),
-		 @UniqueConstraint (columnNames = "email")
-		}
-)
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email") }) 
 
-@NamedQueries({
-@NamedQuery(name = Person.GET_PERSON_BY_EMAIL, query="SELECT c FROM Person c WHERE c.email =:email"),
-@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query="SELECT c FROM Person c WHERE c.username =:username"),
-@NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query="SELECT c FROM Person c"),
-@NamedQuery(name = Person.GET_ALL_PERSON_IDS, query="SELECT c.id FROM Person c")
-})
-public class Person extends Entity_
+@NamedQueries({ @NamedQuery(name = Person.GET_PERSON_BY_EMAIL, query = "SELECT c FROM Person c WHERE c.email =:email"),
+		@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query = "SELECT c FROM Person c WHERE c.username =:username"),
+		@NamedQuery(name = Person.GET_ALL_PERSON_QUERY_NAME, query = "SELECT c FROM Person c"),
+		@NamedQuery(name = Person.GET_ALL_PERSON_IDS, query = "SELECT c.id FROM Person c") })
 
-{
+public class Person extends Entity_ {
+
 	public static final String GET_PERSON_BY_EMAIL = "Person.getPersonByEmail";
 	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
-	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons" ;
+	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons";
 	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";
-	
 
 	private static final long serialVersionUID = 1L;
 
-  
 	private String username;
 	private String hashcode;
 	private String salt;
@@ -39,10 +31,10 @@ public class Person extends Entity_
 	private String email;
 	private String role;
 	private String token;
-	
+
 	@ManyToOne
 	private Unit unit;
-	
+
 	// Role will define the permissions
 
 	public String getUsername() {
@@ -61,11 +53,9 @@ public class Person extends Entity_
 		this.name = name;
 	}
 
-
 	public String getRole() {
 		return role;
 	}
-
 
 	public void setRole(String role) {
 		this.role = role;
@@ -102,7 +92,7 @@ public class Person extends Entity_
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	
+
 //	@Override
 //	public String toString() {
 //		return "Person [username=" + username + ", hashcode=" + hashcode + ", salt=" + salt + ", name=" + name
@@ -110,10 +100,3 @@ public class Person extends Entity_
 //	}
 
 }
-
-
-
-
-
-
-

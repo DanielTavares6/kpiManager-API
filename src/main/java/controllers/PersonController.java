@@ -4,7 +4,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.security.Principal;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -12,20 +16,37 @@ import javax.ws.rs.NameBinding;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 import models.Person;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import services.PersonService;
-import utils.DecoderUtils;
 
+
+/***************************************************** 
+ * 
+ * Use the following annotations to secure endpoints:
+ * 
+ * @PermitAll
+ * @DenyAll
+ * @RolesALlowed(value = {"role to give Permission" }
+ * Authentication is required for non-annotated methods
+ * For more information on the subject refer to AuthorizationFilter.Java
+ * 
+ * @author UpAcademy 13
+ *
+ *******************************************************/
+
+
+@PermitAll
 @Path("/users")
 public class PersonController extends EntityController<PersonService, PersonRepository, Person>
 
 {
-	
 	//secure annotation to implement authentication filter
 	@NameBinding
 	@Retention(value = RetentionPolicy.RUNTIME)
@@ -33,14 +54,15 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	public @interface Secured{
 	}
 	
-	DecoderUtils decoder = new DecoderUtils();
-
-	/**********************************************AUTHENTICATION**************************************************/
+	@Context
+	SecurityContext securityContext;
 	
+	/**********************************************AUTHENTICATION*************************************************************************/
 	/**** http://localhost:8080/kpiManager/api/users/auth ****/
 	@POST
+	@PermitAll
 	@Path("/auth")
-	@Consumes(MediaType.APPLICATION_JSON) // "text/plain"
+	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response login(PersonDTO obj) {
 		try {
@@ -53,20 +75,20 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 		}
 	}
 	
-	/***********************************************MANAGER CREATION- ROLE->"SUPER USER"*********************************/
+	/***********************************************MANAGER CREATION---Permission Granted to "SUPER USER"  *******************************/
 	/**** http://localhost:8080/kpiManager/api/users ****/
 	@POST
 	@Secured
+	@RolesAllowed(value = { "SuperUser" })
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response create(PersonDTO obj) {
-
+	public Response create(PersonDTO obj){
 		try {
 			service.create(obj);
 			return Response.ok().entity("sucesso").build();
-
 		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
 }
+
