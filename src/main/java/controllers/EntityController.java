@@ -12,33 +12,44 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import models.Entity_;
 import repositories.EntityRepository;
 import services.EntityService;
 
-public abstract class EntityController<S extends EntityService<R, E>, R extends EntityRepository<E>, E extends Entity_> {
+public abstract class EntityController<S extends EntityService<R, E>, R extends EntityRepository<E>, E extends Entity_> 
+
+{
 
 	@Inject // Inject generic variable in runtime
 	protected S service;
+	
+	
 
 	
 	
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response save(E object)
-//	{
-//		try {
-//			E saveObject = service.save(object);
-//			return Response.ok(saveObject).build();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-//		}
-//	}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Response save(E object)
+ 
+	{
+		try {
+			E saveObject = service.save(object);
+			return Response.ok(saveObject).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+
+	}
+		
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -46,7 +57,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.showAllEntities();
 	}
-
+	
 	@GET
 	@Path("allIds")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,6 +67,8 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	{
 		return service.getAllKeys();
 	}
+	
+	
 
 
 	@GET

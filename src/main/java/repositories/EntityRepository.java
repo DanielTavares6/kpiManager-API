@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import models.Entity_;
 
 public abstract class EntityRepository<T extends Entity_>  {
@@ -20,10 +19,10 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	
 	public abstract Class <T> getEntityClass();
-	
 	public abstract String getAllEntityQueryName();
 	
 	protected abstract String getAllIdsQueryName();
+	
 	
 	
 	public T save(T entity)
@@ -57,6 +56,7 @@ public abstract class EntityRepository<T extends Entity_>  {
 				(getAllIdsQueryName(), Long.class)
 				.getResultList();
 	}
+	
 	
 	
 	

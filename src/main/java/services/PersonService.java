@@ -3,6 +3,7 @@ package services;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -128,6 +129,19 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		}
 
 	}
+	
+	
+	public Collection <Person> showAllEntitiesByUnit(long unitId)
+	
+	{
+		return repository.showAllEntitiesByUnit(unitId);
+	}
+	
+	public Collection <Person> showAllManagers()
+	
+	{
+		return repository.showAllManagers();
+	}
 
 	/******* logic to avoid duplicated values at DB on creation **************/
 	public Boolean checkUserExists(String username) {
@@ -160,4 +174,32 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		}
 		return flag;
 	}
+	public Collection <Person> showAllDirectors()
+	
+	{
+		return repository.showAllDirectors();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
