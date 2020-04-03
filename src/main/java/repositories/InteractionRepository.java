@@ -1,8 +1,20 @@
 package repositories;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import models.Client;
 import models.Interaction;
+import models.InteractionType;
+import models.Person;
+import models.Unit;
 
 public class InteractionRepository extends EntityRepository <Interaction>{
 
@@ -149,6 +161,50 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public Collection<Interaction> showAllSearch(String search) {
 		return entityManager.createNamedQuery
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
+	}
+	
+	public Collection<Interaction> filtro(String myselectSemana,
+			String myselectUnidade,
+			String myselectCliente,
+			String myselectBM,
+			String myselectInteration) {
+
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Interaction> q = cb.createQuery(Interaction.class);
+		Root<Interaction> root = q.from(Interaction.class);
+		q.select(root);
+		
+		List<Predicate> listPredicate = new ArrayList<Predicate>();
+		
+		if (!myselectSemana.equals("null")) {
+			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectSemana));
+		}
+		
+		if (!myselectUnidade.equals("null")) {
+			Join<Interaction, Unit> join = root.join("unit"); 
+			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnidade));
+		}
+		
+		if (!myselectCliente.equals("null")) {
+			Join<Interaction, Client> join = root.join("client"); 
+			listPredicate.add(cb.equal((join.get("name")), myselectCliente));
+		}
+		
+		if (!myselectBM.equals("null")) {
+			Join<Interaction, Person> join = root.join("person"); 
+			listPredicate.add(cb.equal((join.get("name")), myselectBM));
+		}
+		
+		if (!myselectInteration.equals("null")) {
+			Join<Interaction, InteractionType> join = root.join("interactionType"); 
+			listPredicate.add(cb.equal((join.get("interactionType")), myselectInteration));
+		}
+		
+		q.where(listPredicate.toArray(new Predicate[0]));
+		
+		q.select(root);
+		
+		return entityManager.createQuery(q).getResultList();
 	}
 
 	
