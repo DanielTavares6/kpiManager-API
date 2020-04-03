@@ -47,7 +47,7 @@ import services.PersonService;
 public class PersonController extends EntityController<PersonService, PersonRepository, Person>
 
 {
-	//secure annotation to implement authentication filter
+	// new secure annotation to implement authentication filter
 	@NameBinding
 	@Retention(value = RetentionPolicy.RUNTIME)
 	@Target({ElementType.TYPE,ElementType.METHOD})

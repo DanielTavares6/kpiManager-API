@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email") }) 
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email") }) // unique values in DB
 
 @NamedQueries({ @NamedQuery(name = Person.GET_PERSON_BY_EMAIL, query = "SELECT c FROM Person c WHERE c.email =:email"),
 		@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query = "SELECT c FROM Person c WHERE c.username =:username"),
@@ -29,13 +29,10 @@ public class Person extends Entity_ {
 	private String salt;
 	private String name;
 	private String email;
-	private String role;
-	private String token;
+	private String role;  // this define the permissions at endpoints;
 
 	@ManyToOne
 	private Unit unit;
-
-	// Role will define the permissions
 
 	public String getUsername() {
 		return username;
@@ -60,14 +57,14 @@ public class Person extends Entity_ {
 	public void setRole(String role) {
 		this.role = role;
 	}
-//
-//	public Unit getUnit() {
-//		return unit;
-//	}
-//
-//	public void setUnit(Unit unit) {
-//		this.unit = unit;
-//	}
+
+	public Unit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(Unit unit) {
+		this.unit = unit;
+	}
 
 	public String getEmail() {
 		return email;
@@ -93,10 +90,12 @@ public class Person extends Entity_ {
 		this.salt = salt;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Person [username=" + username + ", hashcode=" + hashcode + ", salt=" + salt + ", name=" + name
-//				+ ", email=" + email + ", unit=" + unit + ", role=" + role + "]";
-//	}
+	
+	@Override
+	public String toString() {
+		return "Person [username=" + username + ", hashcode=" + hashcode + ", salt=" + salt + ", name=" + name
+				+ ", email=" + email + ", role=" + role + ", unit=" + unit + "]";
+	}
+
 
 }
