@@ -40,11 +40,11 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		if (checkUserExists(entity.getUsername()) == true) {
 
-			throw new Exception("Username already exists in database!");
+			throw new Exception("  Username já existe!  ");
 
 		} else if (checkEmailExists(entity.getEmail()) == true) {
 
-			throw new Exception("Email already exists in database!");
+			throw new Exception("  Email já existe!  ");
 		} else {
 			Person m = new Person();
 

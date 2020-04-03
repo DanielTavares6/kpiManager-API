@@ -78,7 +78,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	/***********************************************MANAGER CREATION---Permission Granted to "SUPER USER"  *******************************/
 	/**** http://localhost:8080/kpiManager/api/users ****/
 	@POST
-	@Secured
+	@Secured 
 	@RolesAllowed(value = { "SuperUser" })
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.TEXT_PLAIN)
