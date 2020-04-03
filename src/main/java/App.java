@@ -1,7 +1,5 @@
 
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 

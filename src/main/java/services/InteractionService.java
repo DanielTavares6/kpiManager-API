@@ -118,9 +118,47 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	public long countAllInteractionsPerClient(String clientName) {
 		return I.countAllInteractionsPerClient(clientName);
 	}
+
+
+	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
+		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	}
+
 	
 	/************************
 	* Dashboard Module Ends *
 	************************/
 	
+//	public Collection<Interaction> showAll() {
+//		return I.showAll();
+//	}
+//	
+//	public Collection<String> showAllWeeks() {
+//		return I.showAllWeeks();
+//	}
+//	
+//	public Collection<String> showAllClients() {
+//		return I.showAllClients();
+//	}
+//	
+//	public Collection<String> showAllUnities() {
+//		return I.showAllUnities();
+//	}
+//	
+//	public Collection<String> showAllBManagers() {
+//		return I.showAllBManagers();
+//	}
+//	
+//	public Collection<String> showAllInteractions() {
+//		return I.showAllInteractions();
+//	}
+//
+//	public Collection<Interaction> showAllFilter(String filter) {
+//		return I.showAllFilter(filter);
+//	}
+//
+//	public Collection<Interaction> showAllSearch(String search) {
+//		return I.showAllSearch(search);
+//	}
+//	
 }

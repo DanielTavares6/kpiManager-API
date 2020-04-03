@@ -8,7 +8,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
 @NamedQuery(name = Client.GET_ALL_CLIENTS_QUERY_NAME, query="SELECT c FROM Client c"),
-@NamedQuery(name = Client.GET_ALL_CLIENTS_IDS, query="SELECT c FROM Client c")
+@NamedQuery(name = Client.GET_ALL_CLIENTS_IDS, query="SELECT c.id FROM Client c")
 })
 
 public class Client extends Entity_

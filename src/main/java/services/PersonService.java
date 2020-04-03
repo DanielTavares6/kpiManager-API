@@ -1,13 +1,20 @@
 package services;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 
-import com.sendgrid.Content;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.sendgrid.Email;
 import com.sendgrid.Mail;
 import com.sendgrid.Method;
@@ -30,32 +37,53 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	protected ClientService CLIENT_SERVICE;
 
 	@Transactional
-	public Person create(PersonDTO entity)
+	public Person create(PersonDTO entity) throws Exception {
 
-	{
+		if (checkUserExists(entity.getUsername()) == true) {
 
-		Person m = new Person();
+			throw new Exception("  Username já existe!  ");
 
-		String password = entity.getPassword();
-		String[] hashcode = passwordToHashcode(password);
-		m = entity.normalize(entity, m, hashcode[1], hashcode[0]);
-		try {
-			sendGrid(entity);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} else if (checkEmailExists(entity.getEmail()) == true) {
+
+			throw new Exception("  Email já existe!  ");
+		} else {
+			Person m = new Person();
+
+			String password = entity.getPassword();
+			String[] hashcode = passwordToHashcode(password);
+			m = entity.normalize(entity, m, hashcode[1], hashcode[0]);
+			try {
+				sendGrid(entity);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return repository.create(m);
 		}
-		return repository.create(m);
 	}
 
-	public void checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception
+	// Issue token to the client when login is valid and Return token
+	public String checkIfPasswordValid(PersonDTO userDTO, String password) throws Exception {
 
-	{
 		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
+		Algorithm algorithm = Algorithm.HMAC256(myUser.getSalt() + myUser.getHashcode());
+		String token = JWT.create().withIssuer(userDTO.getUsername()).withClaim("role", myUser.getRole())
+				.sign(algorithm);
+		System.out.println(token);
+
 		String key = myUser.getHashcode();
 		String salt = myUser.getSalt();
-		if (!PasswordUtils.verifyPassword(password, key, salt))
+		if (!PasswordUtils.verifyPassword(password, key, salt)) {
 
 			throw new BadRequestException("Invalid Password");
+		}
+		try {
+			DecodedJWT jwt = JWT.decode(token);
+			String iss = jwt.getIssuer();
+			System.out.println(iss + "      --->>>>>>im here");
+		} catch (JWTDecodeException exception) {
+			// Invalid token
+		}
+		return token;
 	}
 
 	public String[] passwordToHashcode(String password)
@@ -67,11 +95,12 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		return result;
 	}
 
+	// send email when SuperUser creates a new manager.CHANGE EMAIL
 	public void sendGrid(PersonDTO entity) throws IOException {
 
 		Mail mail = new Mail();
 		Email from = new Email("kpimanager13@gmail.com");
-		Email to = new Email("pedrogabrielbeirao@live.com.pt"); // use your own email address here
+		Email to = new Email(entity.getEmail()); // use your own email address here
 		mail.setFrom(from);
 		mail.setTemplateId("d-d2707774fecd4221b757231424f79fc2");
 
@@ -100,5 +129,77 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		}
 
 	}
+	
+	
+	public Collection <Person> showAllEntitiesByUnit(long unitId)
+	
+	{
+		return repository.showAllEntitiesByUnit(unitId);
+	}
+	
+	public Collection <Person> showAllManagers()
+	
+	{
+		return repository.showAllManagers();
+	}
 
+	/******* logic to avoid duplicated values at DB on creation **************/
+	public Boolean checkUserExists(String username) {
+		boolean flag = false;
+		try {
+			Person check = repository.getManagerByUsername(username);
+			System.out.println("username: try" + check.getUsername());
+			if (check.getUsername().length() != 0) {
+				System.out.println("username igual" + check.getUsername());
+				flag = true;
+			}
+		} catch (NoResultException nre) {
+			flag = false;
+		}
+		return flag;
+	}
+
+	public Boolean checkEmailExists(String email) {
+		boolean flag = false;
+		try {
+			Person check = repository.getManagerByEmail(email);
+			System.out.println("mail try:" + check.getEmail());
+			if (check.getEmail().length() != 0) {
+				System.out.println("mail try equal:" + check.getEmail());
+				flag = true;
+			}
+		} catch (NoResultException nre) {
+			System.out.println(nre);
+			flag = false;
+		}
+		return flag;
+	}
+	public Collection <Person> showAllDirectors()
+	
+	{
+		return repository.showAllDirectors();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

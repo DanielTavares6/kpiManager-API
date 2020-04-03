@@ -53,9 +53,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<E> showAllEntities()
-
 	{
 		return service.showAllEntities();
 	}
