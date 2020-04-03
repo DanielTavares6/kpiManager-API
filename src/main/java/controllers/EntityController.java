@@ -3,6 +3,7 @@ package controllers;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -34,6 +35,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	
 	
 	@POST
+	@PermitAll
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -52,6 +54,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 		
 	
 	@GET
+	@PermitAll
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<E> showAllEntities()
 	{
@@ -59,6 +62,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	}
 	
 	@GET
+	@PermitAll
 	@Path("allIds")
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -72,6 +76,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 
 
 	@GET
+	@PermitAll
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 

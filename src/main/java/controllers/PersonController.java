@@ -93,10 +93,11 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
-}
+
 
 	
 	@GET
+	@PermitAll
 	@Path("{unitId}/managers")
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -108,6 +109,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	
 	
 	@GET
+	@PermitAll
 	@Path("managers")
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -119,6 +121,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	
 	
 	@GET
+	@PermitAll
 	@Path("directors")
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -126,11 +129,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 
 	{
 		return service.showAllDirectors();
-	}
-	
-	
-	
-	
+	}	
 }
 
 
