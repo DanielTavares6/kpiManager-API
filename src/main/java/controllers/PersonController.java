@@ -93,7 +93,6 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
-}
 
 	
 	@GET
