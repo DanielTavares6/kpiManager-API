@@ -189,6 +189,16 @@ public class InteractionController extends EntityController<InteractionService, 
 
 		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
+	
+	@GET
+	@PermitAll
+	@Path("all/between")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> filtro(@QueryParam("startIndex") Long startIndex,
+			@QueryParam("quantity") Long quantity) {
+		quantity += startIndex;
+		return I.showAllBetween(startIndex, quantity);
+	}
 
 	 /*************************
 	 * Dashboard Module Starts*

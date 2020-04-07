@@ -19,7 +19,8 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query = "SELECT i FROM Interaction i WHERE i.client.name = :filter ORDER BY i.client.name"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query = "SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query = "SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
-//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
+		@NamedQuery(name = Interaction.GET_ALL_BETWEEN, query = "SELECT i FROM Interaction i WHERE i.id >= :startIndex AND i.id < :quantity ORDER BY i.dateInteraction"),
+		//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_SEARCH, query = "SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
 				+ " OR i.unit.nameUnit LIKE :search" + " OR i.person.name LIKE :search"
 				+ " OR i.interactionType.interactionType LIKE :search"
@@ -47,6 +48,7 @@ public class Interaction extends Entity_ {
 //	public static final String GET_ALL_FILTER = "Interaction.getAllFilter";
 	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
 	public static final String GET_ALL = "Interaction.getAll";
+	public static final String GET_ALL_BETWEEN = "Interaction.getAllBetween";
 
 	// Dashboard Module Starts
 	public static final String GET_ALL_CVS_PER_MANAGER_PER_WEEK = "Interaction.getAllCvsPerManagerPerWeek";

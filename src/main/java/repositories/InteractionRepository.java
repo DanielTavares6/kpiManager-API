@@ -63,6 +63,17 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.GET_ALL;
 	}
 	
+	protected String getAllBetweenQueryName() {
+		return Interaction.GET_ALL_BETWEEN;
+	}
+	
+	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
+		return entityManager.createNamedQuery(getAllBetweenQueryName())
+				.setParameter("startIndex", startIndex)
+				.setParameter("quantity", quantity)
+				.getResultList();
+	}
+	
 	 /**************************
 	 * Dashboard Module Starts *
 	 **************************/
