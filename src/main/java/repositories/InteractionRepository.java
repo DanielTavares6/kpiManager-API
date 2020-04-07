@@ -91,6 +91,11 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	 * Dashboard Module Ends *
 	 ************************/
 	
+	protected String getAllInteractionsByUserId() {
+		return Interaction.GET_ALL_INTERACTIONS_BY_USER_ID;
+	}
+	
+	
 	@Override
 	public Class<Interaction> getEntityClass() {
 
@@ -289,4 +294,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	/************************
 	* Dashboard Module Ends *
 	************************/
+	
+	
+	
+	public Collection<Interaction> getInteractionsByUserId(long personId) {
+		return entityManager.createNamedQuery(getAllInteractionsByUserId(), getEntityClass()).setParameter("personId" , personId).getResultList();
+	}
 }

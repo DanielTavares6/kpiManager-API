@@ -129,6 +129,17 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	* Dashboard Module Ends *
 	************************/
 	
+	
+	public Collection<Interaction> showAllInteractionsByUser(long personId)
+	
+	{
+		
+		return I.getInteractionsByUserId(personId);
+		
+	}
+	
+	
+	
 //	public Collection<Interaction> showAll() {
 //		return I.showAll();
 //	}

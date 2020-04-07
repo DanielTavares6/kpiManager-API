@@ -57,6 +57,14 @@ public abstract class EntityRepository<T extends Entity_>  {
 				.getResultList();
 	}
 	
+	public void deleteEntity(long removeId) {
+		
+		T entity = entityManager.find(getEntityClass(), removeId);
+	//	entityManager.
+		entityManager.remove(entity);
+		
+	}
+	
 	
 	
 	

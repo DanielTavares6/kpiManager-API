@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.GET_ALL_CLIENTS, query = "SELECT DISTINCT i.client.name FROM Interaction i ORDER BY i.client.name"),
 		@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query = "SELECT i FROM Interaction i WHERE i.client.name = :filter ORDER BY i.client.name"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query = "SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
+		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_BY_USER_ID, query = "SELECT i FROM Interaction i WHERE i.person.id =: personId"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query = "SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
 //	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_SEARCH, query = "SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
@@ -55,6 +56,8 @@ public class Interaction extends Entity_ {
 	public static final String COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE = "Interaction.countAllInteractionsPerInteractionType";
 	public static final String COUNT_ALL_INTERACTIONS_PER_CLIENT = "Interaction.countAllInteractionsPerClient";
 	// DashBoard Module Ends
+	
+	public static final String GET_ALL_INTERACTIONS_BY_USER_ID = "Interaction.getAllInteractionsByUserId";
 
 	private static final long serialVersionUID = 1L;
 

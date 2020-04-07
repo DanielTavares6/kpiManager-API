@@ -43,6 +43,10 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return repository.getAllKeys();
 	}
 	
+	public void delete(long id) throws Exception {
+		repository.deleteEntity(id);
+	}
+	
 	
 
 	
