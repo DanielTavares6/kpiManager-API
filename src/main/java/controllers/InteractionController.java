@@ -20,6 +20,7 @@ import models.Interaction;
 import repositories.InteractionRepository;
 import services.InteractionService;
 
+@PermitAll
 @Path("interactions")
 public class InteractionController extends EntityController<InteractionService, InteractionRepository, Interaction> {
 
@@ -177,16 +178,16 @@ public class InteractionController extends EntityController<InteractionService, 
 	
 	@GET
 	@PermitAll
-	@Path("filtro")
+	@Path("filter")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
-			@QueryParam("sel1") String myselectUnidade,
-			@QueryParam("sel2") String myselectCliente,
-			@QueryParam("sel3") String myselectBM,
-			@QueryParam("sel4") String myselectInteration			
+	public Collection<Interaction> filtrer(@QueryParam("week") String myselectWeek,
+			@QueryParam("unity") String myselectUnity,
+			@QueryParam("client") String myselectClient,
+			@QueryParam("businessManagers") String myselectBM,
+			@QueryParam("interaction") String myselectInteration			
 			) {
-		System.out.println("sel0 = " + myselectSemana);
-		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+
+		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 
 	 /*************************

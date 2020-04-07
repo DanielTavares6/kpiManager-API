@@ -191,9 +191,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
 	
-	public Collection<Interaction> filtro(String myselectSemana,
-			String myselectUnidade,
-			String myselectCliente,
+	public Collection<Interaction> filtrer(String myselectWeek,
+			String myselectUnity,
+			String myselectClient,
 			String myselectBM,
 			String myselectInteration) {
 
@@ -204,18 +204,18 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		
 		List<Predicate> listPredicate = new ArrayList<Predicate>();
 		
-		if (!myselectSemana.equals("null")) {
-			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectSemana));
+		if (!myselectWeek.equals("null")) {
+			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectWeek));
 		}
 		
-		if (!myselectUnidade.equals("null")) {
+		if (!myselectUnity.equals("null")) {
 			Join<Interaction, Unit> join = root.join("unit"); 
-			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnidade));
+			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnity));
 		}
 		
-		if (!myselectCliente.equals("null")) {
+		if (!myselectClient.equals("null")) {
 			Join<Interaction, Client> join = root.join("client"); 
-			listPredicate.add(cb.equal((join.get("name")), myselectCliente));
+			listPredicate.add(cb.equal((join.get("name")), myselectClient));
 		}
 		
 		if (!myselectBM.equals("null")) {

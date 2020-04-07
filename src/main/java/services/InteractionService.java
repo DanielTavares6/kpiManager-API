@@ -120,8 +120,8 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	}
 
 
-	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
-		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
+		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 
 	
