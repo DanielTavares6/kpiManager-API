@@ -4,7 +4,10 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+
+import models.Client;
 import models.Entity_;
 
 public abstract class EntityRepository<T extends Entity_>  {
@@ -20,16 +23,14 @@ public abstract class EntityRepository<T extends Entity_>  {
 	
 	public abstract Class <T> getEntityClass();
 	public abstract String getAllEntityQueryName();
-	
 	protected abstract String getAllIdsQueryName();
 	
 	
-	
-	public T save(T entity)
-
-	{
-		return entityManager.merge(entity);
-	}
+//	public T save(T entity)
+//
+//	{
+//		return entityManager.merge(entity);
+//	}
 	
 	
 	public T getObj(long id)
@@ -56,9 +57,12 @@ public abstract class EntityRepository<T extends Entity_>  {
 				(getAllIdsQueryName(), Long.class)
 				.getResultList();
 	}
-	
-	
-	
-	
+
+
+	public T getObj(String name) {
+		return entityManager.find(getEntityClass(), name);
+	}
+
+
 	
 }

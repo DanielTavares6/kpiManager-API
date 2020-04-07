@@ -12,10 +12,7 @@
 		
 		 <!--MySqlDS is the Datasource defined in wildfly applicational server -->
 
-
-
 		<properties>
-
 			<property
 				name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />
@@ -23,7 +20,6 @@
 			<!-- comment if dabatase reset is not wanted -->
 
 
-			
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />

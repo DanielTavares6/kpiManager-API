@@ -1,15 +1,18 @@
 package repositories;
 
+import java.util.Collection;
+
 import javax.faces.bean.ApplicationScoped;
+import javax.persistence.NoResultException;
 
 import models.Client;
+import models.Person;
 
 @ApplicationScoped
 public class ClientRepository extends EntityRepository <Client>
 
 {
 
-	
 	@Override
 	public Class<Client> getEntityClass() 
 	
@@ -21,7 +24,7 @@ public class ClientRepository extends EntityRepository <Client>
 	public String getAllEntityQueryName() 
 	
 	{
-		return Client.GET_ALL_CLIENTS_QUERY_NAME;
+		return Client.GET_ALL_CLIENTS;
 	}
 
 	@Override
@@ -32,7 +35,20 @@ public class ClientRepository extends EntityRepository <Client>
 	}
 
 
+
+	public Client getClientByName(String name) throws NoResultException {
+		
+		return entityManager.createNamedQuery(Client.GET_CLIENT_BY_NAME, Client.class)
+				.setParameter("name", name)
+				.getSingleResult();
+	}
 	
-	
-	
-}
+	public Client getClientByNipc(int nipc) throws NoResultException {
+		
+		return entityManager.createNamedQuery(Client.GET_CLIENT_BY_NIPC, Client.class)
+				.setParameter("nipc", nipc)
+				.getSingleResult();
+	}
+	}
+
+

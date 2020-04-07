@@ -1,71 +1,89 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@NamedQueries({
-@NamedQuery(name = Client.GET_ALL_CLIENTS_QUERY_NAME, query="SELECT c FROM Client c"),
-@NamedQuery(name = Client.GET_ALL_CLIENTS_IDS, query="SELECT c.id FROM Client c")
-})
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "nipc") }) // unique values in DB
+@NamedQueries({ @NamedQuery(name = Client.GET_ALL_CLIENTS, query = "SELECT c FROM Client c"),
+		@NamedQuery(name = Client.GET_ALL_CLIENTS_IDS, query = "SELECT c.id FROM Client c"),
+		@NamedQuery(name = Client.GET_CLIENT_BY_NAME, query = "SELECT c FROM Client c WHERE c.name =:name"),
+		@NamedQuery(name= Client.GET_CLIENT_BY_NIPC, query = "SELECT c FROM Client c WHERE c.nipc =:nipc"),
+		})
 
 public class Client extends Entity_
 
-{ 
-	
-	public static final String GET_ALL_CLIENTS_QUERY_NAME = "Product.getAllClients" ;
-	public static final String GET_ALL_CLIENTS_IDS = "Product.getAllClientsIds";
-	
-	private static final long serialVersionUID = 1L;
-	private String name;
-	private long nipc;
-	private long potentialRevenue;
-	
-	public Client() 
-	
-	{
+{
+	public static final String GET_ALL_CLIENTS = "Client.getAllClients";
+	public static final String GET_ALL_CLIENTS_IDS = "Client.getAllClientsIds";
+	public static final String GET_CLIENT_BY_NAME = "Client.getClientByName";
+	public static final String GET_CLIENT_BY_NIPC = "Client.getClientByNipc";
 
+	private static final long serialVersionUID = 1L;
+
+	private String name;
+	private int nipc;
+	private int potentialRevenue;
+	private int unitId;
+
+	public Client() {
 	}
 
-	public String getName() 
-	
+	public String getName()
+
 	{
 		return name;
 	}
 
-	public void setName(String name) 
-	
+	public void setName(String name)
+
 	{
 		this.name = name;
 	}
 
-	public long getNipc() 
-	
+	public int getNipc()
+
 	{
 		return nipc;
 	}
 
-	public void setNipc(long nipc) 
-	
+	public void setNipc(int nipc)
 	{
 		this.nipc = nipc;
 	}
-
-	public long getPotentialRevenue() 
 	
+	
+
+	public int getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(int unitId) {
+		this.unitId = unitId;
+	}
+
+	public int getPotentialRevenue()
+
 	{
 		return potentialRevenue;
 	}
 
-	public void setPotentialRevenue(long potentialRevenue) 
-	
+	public void setPotentialRevenue(int potentialRevenue)
 	{
 		this.potentialRevenue = potentialRevenue;
 	}
-
 	
-}
+
+	@Override
+	public String toString() {
+		return "Client [name=" + name + ", nipc=" + nipc + ", potentialRevenue=" + potentialRevenue + ", unitId="
+				+ unitId + "]";
+	}
+
+	}
 
 

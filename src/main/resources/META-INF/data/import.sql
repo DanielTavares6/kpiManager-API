@@ -7,14 +7,11 @@ INSERT INTO Unit (nameUnit) VALUES ('Unidade F');
 INSERT INTO Unit (nameUnit) VALUES ('Lisboa');
 INSERT INTO Unit (nameUnit) VALUES ('Porto');
 
-
-
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000001, 100, 'Cliente Um');
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000002, 200, 'Cliente Dois');
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000003, 300, 'Cliente Tres');
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000004, 400, 'Cliente Quatro');
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'Cliente Cinco');
-
+INSERT INTO Client (nipc, potentialRevenue, name, unitId) VALUES (0000001, 100, 'Continente',0);
+INSERT INTO Client (nipc, potentialRevenue, name,unitId ) VALUES (0000002, 200, 'Microsoft',0);
+INSERT INTO Client (nipc, potentialRevenue, name,unitId) VALUES (0000003, 300, 'Apple',0);
+INSERT INTO Client (nipc, potentialRevenue, name,unitId) VALUES (0000004, 400, 'Visionbox',0);
+INSERT INTO Client (nipc, potentialRevenue, name,unitId) VALUES (5000, 500, 'teste',0);
 
 
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser');
@@ -27,11 +24,9 @@ INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES 
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Jose', 'manager','salt3','Jose', 3);
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Paulo', 'manager','salt4','Paul', 2);
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Joao', 'manager' ,'salt5','Joao', 1);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Daiana', 'manager', 'salt1' ,'Joaq', 3);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Flavio', 'maganer','salt2', 'Anto',2);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Ana', 'manager','salt3','Jose', 3);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Amanda', 'manager','salt4','Paul', 2);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Pedro', 'manager' ,'salt5','Joao', 1);
+
+
+
 
 
 INSERT INTO InteractionType(interactionType) VALUES ('Visita');

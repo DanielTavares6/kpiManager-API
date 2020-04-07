@@ -65,7 +65,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 			System.out.println(username + "  decodedTokenBearer");
 
 			String currentRole = decoder.decodeJWT(token);
-			System.out.println(currentRole);
+
 			final SecurityContext currentSecurityContext = requestContext.getSecurityContext();
 			requestContext.setSecurityContext(new SecurityContext() {
 
@@ -76,7 +76,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
 				@Override
 				public boolean isUserInRole(String role) {
-					System.out.println(jwt.getClaim("role"));
+
 					if (currentRole.equals(role)) {
 						return true;
 					} else {

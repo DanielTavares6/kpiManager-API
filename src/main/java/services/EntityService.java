@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import models.Client;
 import models.Entity_;
 import repositories.EntityRepository;
 
@@ -15,15 +16,15 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 	@Inject // It's going to be injected in runtime by CDI
 	protected R repository;
 	
-	public E create (E entity) {
+	public E create (E entity) throws Exception {
 		return repository.create(entity);
 	}
 	
-	public E save(E object) throws Exception
-
-	{
-		return repository.save(object);
-	}
+//	public E save(E object) throws Exception
+//
+//	{
+//		return repository.save(object);
+//	}
 	
 	public Collection<E> showAllEntities() 
 	
@@ -43,11 +44,10 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return repository.getAllKeys();
 	}
 	
-	
+	public E getObject(String name)
+	{
+		return repository.getObj(name);
+	}
 
-	
-	
-	
-	
 	
 }

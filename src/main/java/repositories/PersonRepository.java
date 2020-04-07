@@ -17,7 +17,6 @@ public class PersonRepository extends EntityRepository <Person>
 			return entityManager.createNamedQuery(Person.GET_PERSON_BY_USERNAME,Person.class)
 					.setParameter("username", username)
 					.getSingleResult();
-		
 		}
 		
 		public Person getManagerByEmail(String email) throws NoResultException {
@@ -27,7 +26,6 @@ public class PersonRepository extends EntityRepository <Person>
 					.getSingleResult();
 		
 		}
-		
 		
 		public Collection<Person> showAllEntitiesByUnit(long unitId)
 		
