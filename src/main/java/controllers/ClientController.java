@@ -41,7 +41,7 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	@Secured 
 	@PermitAll //change to director
 	@Consumes(MediaType.APPLICATION_JSON) 
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response create(Client client){
 		try {
 			service.create(client);
