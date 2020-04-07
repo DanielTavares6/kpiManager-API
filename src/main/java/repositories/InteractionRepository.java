@@ -203,7 +203,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	}
 	
 	public Collection<Interaction> filtrer(String myselectWeek,
-			String myselectUnity,
+			String myselectUnit,
 			String myselectClient,
 			String myselectBM,
 			String myselectInteration) {
@@ -219,9 +219,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectWeek));
 		}
 		
-		if (!myselectUnity.equals("null")) {
+		if (!myselectUnit.equals("null")) {
 			Join<Interaction, Unit> join = root.join("unit"); 
-			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnity));
+			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnit));
 		}
 		
 		if (!myselectClient.equals("null")) {

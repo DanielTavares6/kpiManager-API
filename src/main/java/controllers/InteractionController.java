@@ -181,7 +181,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Path("filter")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Collection<Interaction> filtrer(@QueryParam("week") String myselectWeek,
-			@QueryParam("unity") String myselectUnity,
+			@QueryParam("unit") String myselectUnity,
 			@QueryParam("client") String myselectClient,
 			@QueryParam("businessManagers") String myselectBM,
 			@QueryParam("interaction") String myselectInteration			
