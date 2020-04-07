@@ -6,6 +6,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import models.Unit;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "nipc") }) // unique values in DB
@@ -28,7 +29,9 @@ public class Client extends Entity_
 	private String name;
 	private int nipc;
 	private int potentialRevenue;
-	private int unitId;
+	
+	@ManyToOne
+	private Unit unit;
 
 	public Client() {
 	}
@@ -56,14 +59,12 @@ public class Client extends Entity_
 		this.nipc = nipc;
 	}
 	
-	
-
-	public int getUnitId() {
-		return unitId;
+	public Unit getUnit() {
+		return unit;
 	}
 
-	public void setUnitId(int unitId) {
-		this.unitId = unitId;
+	public void setUnit(Unit unit) {
+		this.unit = unit;
 	}
 
 	public int getPotentialRevenue()
@@ -76,14 +77,13 @@ public class Client extends Entity_
 	{
 		this.potentialRevenue = potentialRevenue;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Client [name=" + name + ", nipc=" + nipc + ", potentialRevenue=" + potentialRevenue + ", unitId="
-				+ unitId + "]";
+		return "Client [name=" + name + ", nipc=" + nipc + ", potentialRevenue=" + potentialRevenue + ", unit=" + unit
+				+ "]";
 	}
-
+	
 	}
 
 

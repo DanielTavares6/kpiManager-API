@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import models.Client;
 import models.Person;
+import models.Unit;
 import repositories.ClientRepository;
 
 @RequestScoped // Avoid circular dependency between services
@@ -31,11 +32,11 @@ public class ClientService extends EntityService<ClientRepository, Client>
 			String name = entity.getName();
 			int nipc = entity.getNipc();
 			int potentialRevenue = entity.getPotentialRevenue();
-			int unit = entity.getUnitId();
+			Unit unit = entity.getUnit();
 			c.setName(name);
 			c.setNipc(nipc);
 			c.setPotentialRevenue(potentialRevenue);
-			c.setUnitId(unit);
+			c.setUnit(unit);
 			return repository.create(c);
 		}
 	}
