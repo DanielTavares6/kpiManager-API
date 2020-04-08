@@ -6,13 +6,13 @@ INSERT INTO Unit (nameUnit) VALUES ('Unidade E');
 INSERT INTO Unit (nameUnit) VALUES ('Unidade F');
 INSERT INTO Unit (nameUnit) VALUES ('Lisboa');
 INSERT INTO Unit (nameUnit) VALUES ('Porto');
-INSERT INTO Unit (nameUnit) VALUES ('editar');
+INSERT INTO Unit (nameUnit) VALUES ('Faro');
 
 INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (0000001, 100, 'Continente',1);
 INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (0000002, 200, 'Microsoft', 1);
 INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (0000003, 300, 'Apple', 1);
 INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (0000004, 400, 'Visionbox', 1);
-INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (5000, 500, 'teste', 9);
+INSERT INTO Client (nipc, potentialRevenue, name, unit_id) VALUES (5000, 500, 'UpAcademy', 9);
 
 
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser');
