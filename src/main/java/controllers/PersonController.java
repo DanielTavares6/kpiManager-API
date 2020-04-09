@@ -140,7 +140,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response editClient(Person manager,@PathParam("id") int id){
+	public Response editManager(Person manager,@PathParam("id") int id){
 		try {
 			String newName = manager.getName();
 			Unit newUnit = manager.getUnit();
@@ -150,7 +150,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 			setManager.setUnit(newUnit);
 			
 			service.edit(setManager,id);
-			return Response.ok().entity("cliente editado com sucesso").build();
+			return Response.ok().entity("manager editado com sucesso").build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
