@@ -64,5 +64,11 @@ public abstract class EntityRepository<T extends Entity_>  {
 	}
 
 
+	public T edit(T obj, long id) {
+		obj.setId(entityManager.find(getEntityClass(), id).getId()); 
+		return entityManager.merge(obj);
+	}
+
+
 	
 }

@@ -14,7 +14,8 @@ import models.Unit;
 		@NamedQuery(name = Client.GET_ALL_CLIENTS_IDS, query = "SELECT c.id FROM Client c"),
 		@NamedQuery(name = Client.GET_CLIENT_BY_NAME, query = "SELECT c FROM Client c WHERE c.name =:name"),
 		@NamedQuery(name= Client.GET_CLIENT_BY_NIPC, query = "SELECT c FROM Client c WHERE c.nipc =:nipc"),
-		})
+		
+})
 
 public class Client extends Entity_
 
@@ -30,9 +31,6 @@ public class Client extends Entity_
 	private int nipc;
 	private int potentialRevenue;
 	
-	@ManyToOne
-	private Unit unit;
-
 	public Client() {
 	}
 
@@ -59,14 +57,6 @@ public class Client extends Entity_
 		this.nipc = nipc;
 	}
 	
-	public Unit getUnit() {
-		return unit;
-	}
-
-	public void setUnit(Unit unit) {
-		this.unit = unit;
-	}
-
 	public int getPotentialRevenue()
 
 	{
@@ -80,8 +70,7 @@ public class Client extends Entity_
 
 	@Override
 	public String toString() {
-		return "Client [name=" + name + ", nipc=" + nipc + ", potentialRevenue=" + potentialRevenue + ", unit=" + unit
-				+ "]";
+		return "Client [name=" + name + ", nipc=" + nipc + ", potentialRevenue=" + potentialRevenue +"]";
 	}
 	
 	}

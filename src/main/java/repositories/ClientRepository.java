@@ -49,6 +49,11 @@ public class ClientRepository extends EntityRepository <Client>
 				.setParameter("nipc", nipc)
 				.getSingleResult();
 	}
+
+	public void edit(Client client, int id) {
+
+		
+	}
 	}
 
 

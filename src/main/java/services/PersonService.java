@@ -180,6 +180,16 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		return repository.showAllDirectors();
 	}
 	
+
+	
+	@Override
+	public Person  getObj(long id) {
+		
+	 return repository.getObj(id);
+	 
+	}
+
+	
 }
 
 

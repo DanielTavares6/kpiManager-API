@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import models.Client;
 import models.Entity_;
+import models.Person;
 import repositories.EntityRepository;
 
 @Transactional
@@ -48,6 +49,16 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 	{
 		return repository.getObj(name);
 	}
-
 	
-}
+	public void  edit(E obj, long id) throws Exception{
+		repository.edit(obj,id);
+	}
+
+	public Person getObj(long id) {
+		return null;
+	}
+
+
+	}
+
+

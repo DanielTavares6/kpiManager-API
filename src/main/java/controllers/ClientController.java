@@ -9,6 +9,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -75,5 +76,20 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	{
 		return service.getClientByNipc(obj.getNipc());
 	}
-	
+/************************************************Edit Client***********************************/
+	/**** http://localhost:8080/kpiManager/api/clients/{id} ****/
+	@PUT
+	@Secured 
+	@PermitAll //change to director
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response editClient(Client client,@PathParam("id") int id){
+		try {
+			service.edit(client,id);
+			return Response.ok().entity("cliente editado com sucesso").build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
+	}
 }

@@ -16,6 +16,7 @@ import javax.ws.rs.NameBinding;
 import java.util.Collection;
 
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,7 +25,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import controllers.PersonController.Secured;
+import models.Client;
 import models.Person;
+import models.Unit;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import services.PersonService;
@@ -127,9 +131,31 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 		return service.showAllDirectors();
 	}
 	
-	
-	
-	
+/************************************************Edit Manager***********************************/
+/**** http://localhost:8080/kpiManager/api/users/{id} ****/
+
+	@PUT
+	@Secured 
+	@PermitAll //change to director
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response editClient(Person manager,@PathParam("id") int id){
+		try {
+			String newName = manager.getName();
+			Unit newUnit = manager.getUnit();
+			
+			Person setManager = service.getObj(id);
+			setManager.setName(newName);
+			setManager.setUnit(newUnit);
+			
+			service.edit(setManager,id);
+			return Response.ok().entity("cliente editado com sucesso").build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
+	}
+
 }
 
 

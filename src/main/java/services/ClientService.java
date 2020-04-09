@@ -32,11 +32,9 @@ public class ClientService extends EntityService<ClientRepository, Client>
 			String name = entity.getName();
 			int nipc = entity.getNipc();
 			int potentialRevenue = entity.getPotentialRevenue();
-			Unit unit = entity.getUnit();
 			c.setName(name);
 			c.setNipc(nipc);
 			c.setPotentialRevenue(potentialRevenue);
-			c.setUnit(unit);
 			return repository.create(c);
 		}
 	}
@@ -82,4 +80,15 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		return flag;
 	}
 	
+	
+	@Override
+	public void edit(Client obj, long id) throws Exception {
+		
+		repository.edit(obj,id);
+	}
+	
+
+
 }
+	
+
