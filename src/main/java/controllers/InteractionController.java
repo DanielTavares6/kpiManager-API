@@ -194,9 +194,9 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("all/between")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> filtro(@QueryParam("startIndex") Long startIndex,
-			@QueryParam("quantity") Long quantity) {
-		quantity += startIndex;
+	public Collection<Interaction> filtro(@QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity) {
+//		quantity += startIndex;
 		return I.showAllBetween(startIndex, quantity);
 	}
 

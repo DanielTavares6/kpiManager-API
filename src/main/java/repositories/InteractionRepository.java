@@ -67,12 +67,12 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.GET_ALL_BETWEEN;
 	}
 	
-	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
-		return entityManager.createNamedQuery(getAllBetweenQueryName())
-				.setParameter("startIndex", startIndex)
-				.setParameter("quantity", quantity)
-				.getResultList();
-	}
+//	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
+//		return entityManager.createNamedQuery(getAllBetweenQueryName())
+//				.setParameter("startIndex", startIndex)
+//				.setParameter("quantity", quantity)
+//				.getResultList();
+//	}
 	
 	 /**************************
 	 * Dashboard Module Starts *
@@ -123,6 +123,11 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public Collection<Interaction> showAll() {
 		return entityManager.createNamedQuery(getAllQueryName()).getResultList();
 	}
+	
+	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
+		return entityManager.createNamedQuery(getAllQueryName()).setFirstResult(startIndex).setMaxResults(quantity).getResultList();
+	}
+
 
 	public Collection<String> showAllWeeks() {
 		

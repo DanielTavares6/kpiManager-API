@@ -68,7 +68,7 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllSearch(search);
 	}
 	
-	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
+	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
 		return I.showAllBetween(startIndex, quantity);
 	}
 
