@@ -98,8 +98,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	
 	@Override
 	public Class<Interaction> getEntityClass() {
-
-		return null;
+		return Interaction.class;
 	}
 
 	@Override
