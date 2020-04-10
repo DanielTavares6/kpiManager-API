@@ -19,7 +19,8 @@ import javax.persistence.OneToOne;
 	@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query="SELECT i FROM Interaction i WHERE i.client.name = :filter ORDER BY i.client.name"),
 	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query="SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
 	@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query="SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
-
+	@NamedQuery(name=  Interaction.GET_INTERACTION_BY_CLIENTID , query=" SELECT i FROM Interaction i WHERE i.client.id = :clientId ORDER BY i.client.name"),
+	
 //	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
 	
 	@NamedQuery(name = Interaction.GET_ALL_SEARCH, query="SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
@@ -28,6 +29,7 @@ import javax.persistence.OneToOne;
 			+ " OR i.interactionType.interactionType LIKE :search"
 			+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction")
 })
+
 public class Interaction extends Entity_ {
 
 	public static final String GET_ALL_WEEKS = "Interaction.getAllWeeks";
@@ -44,7 +46,13 @@ public class Interaction extends Entity_ {
 	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
 	public static final String GET_ALL = "Interaction.getAll";
 	
+	/********************************/
+	public static final String GET_INTERACTION_BY_CLIENTID = "Interaction.getInteractionsByClientId";
+	/********************************/
+	
+	
 	private static final long serialVersionUID = 1L;
+	
 
 	private String dateInteraction;
 	

@@ -10,6 +10,7 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.NameBinding;
@@ -155,6 +156,22 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
+	
+/************************************************Delete Manager***********************************/
+/**** http://localhost:8080/kpiManager/api/users/{id} ****/
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String delete(@PathParam("id") long id) {
+		try {
+			service.remove(id);
+			return "Removido";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Id nao existe";
+		}
+	}
+	
 
 }
 

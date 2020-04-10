@@ -2,7 +2,10 @@ package controllers;
 
 import java.util.Collection;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -10,8 +13,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import controllers.PersonController.Secured;
 import models.Interaction;
 import repositories.InteractionRepository;
 import services.InteractionService;
@@ -173,6 +178,21 @@ public class InteractionController extends EntityController<InteractionService, 
 		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////
+
+	/***********Get Interactions by client id ****************/
+	/**** http://localhost:8080/kpiManager/api/interactions/interactionbyclientid/{clientid} ****/
+
+	@GET
+	@Secured
+	@PermitAll //mudar 
+	@Path("/interactionbyclientid/{clientId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> getInteractionsByClientId(@PathParam("clientId") long clientId ){
+		return I.getInteractionByClientId(clientId);
+	}
+	
+	
+	
+
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import models.Client;
 import models.Interaction;
@@ -207,13 +208,6 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return entityManager.createQuery(q).getResultList();
 	}
 
-	
-
-	
-
-	
-
-	
 //	public Collection<Interaction> showAll() {
 //		return entityManager.createNamedQuery(getAllQueryName()).getResultList();
 //	}
@@ -264,4 +258,14 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 //				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 //	}
 
+	
+	/*********************query to be able to delete interactions****************/
+	public Collection<Interaction> getInteractionsByClientId(long clientId)
+	{
+		return entityManager.createNamedQuery(Interaction.GET_INTERACTION_BY_CLIENTID,Interaction.class)
+				.setParameter("clientId", clientId) 
+				.getResultList();	
+	}
+	
+	
 }

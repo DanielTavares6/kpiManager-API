@@ -68,7 +68,11 @@ public abstract class EntityRepository<T extends Entity_>  {
 		obj.setId(entityManager.find(getEntityClass(), id).getId()); 
 		return entityManager.merge(obj);
 	}
-
+	
+	public void remove(long id) {
+		T obj = entityManager.find(getEntityClass(), id);
+		entityManager.remove(obj);
+	}
 
 	
 }

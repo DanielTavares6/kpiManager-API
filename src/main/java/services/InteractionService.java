@@ -1,11 +1,13 @@
 package services;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import models.Interaction;
+import models.Person;
 import repositories.InteractionRepository;
 
 @RequestScoped // Avoid circular dependency between services
@@ -69,8 +71,6 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	}
 
 	
-
-
 	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
 		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
 	}
@@ -109,4 +109,15 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 //		return I.showAllSearch(search);
 //	}
 //	
+	
+	
+	/****my query***/
+	
+public Collection <Interaction> getInteractionByClientId(long clientId)
+
+	{
+		return repository.getInteractionsByClientId(clientId);
+	}
+
+
 }

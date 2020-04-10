@@ -6,6 +6,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.persistence.NoResultException;
 
 import models.Client;
+import models.Interaction;
 import models.Person;
 
 @ApplicationScoped
@@ -52,8 +53,16 @@ public class ClientRepository extends EntityRepository <Client>
 
 	public void edit(Client client, int id) {
 
-		
 	}
+
+	public void clearInteractionByClientId (long clientId )
+		{
+				entityManager.createNamedQuery(Client.CLEAR_INTERACTION_BY_CLIENTID)
+					.setParameter("clientId", clientId) 
+					.executeUpdate();
+				
+		}
 	}
+	
 
 

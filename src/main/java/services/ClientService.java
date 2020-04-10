@@ -87,7 +87,20 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		repository.edit(obj,id);
 	}
 	
+	
+	public void clearInteractionByClientId (long clientId ){
+		
+		   repository.clearInteractionByClientId(clientId);
+		   repository.remove(clientId);
+	}
+	
+	
+	
+	public void deleteClient(long clientId) {
+		
 
+		
+	}
 
 }
 	

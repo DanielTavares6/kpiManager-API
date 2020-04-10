@@ -58,7 +58,9 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return null;
 	}
 
-
+	public void remove(long id) throws Exception {
+		repository.remove(id);
 	}
 
+	}
 
