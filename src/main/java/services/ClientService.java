@@ -1,6 +1,7 @@
 package services;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.NoResultException;
@@ -15,18 +16,16 @@ import repositories.ClientRepository;
 public class ClientService extends EntityService<ClientRepository, Client>
 
 {
-	
+
 	@Transactional
 	public Client create(Client entity) throws Exception {
 
-		if(checkClientExists(entity.getName()) ==true) {
-			
+		if (checkClientExists(entity.getName()) == true) {
+
 			throw new Exception(" Client already exists!  ");
-		}
-		else if( checkNipcExists(entity.getNipc()) == true) {
-			throw new Exception ("Nipc already exists!");
-		}
-		else {
+		} else if (checkNipcExists(entity.getNipc()) == true) {
+			throw new Exception("Nipc already exists!");
+		} else {
 
 			Client c = new Client();
 			String name = entity.getName();
@@ -38,23 +37,23 @@ public class ClientService extends EntityService<ClientRepository, Client>
 			return repository.create(c);
 		}
 	}
-	public Client getClientByName(String name) throws NoResultException  {
-		
+
+	public Client getClientByName(String name) throws NoResultException {
+
 		return repository.getClientByName(name);
 	}
 
 	public Client getClientByNipc(int nipc) throws NoResultException {
-		
+
 		return repository.getClientByNipc(nipc);
 	}
-	
-	
+
 	/******* logic to avoid duplicated values at DB on creation **************/
 	public Boolean checkClientExists(String name) {
 		boolean flag = false;
 		try {
 			Client check = repository.getClientByName(name);
-	
+
 			if (check.getName().length() != 0) {
 
 				flag = true;
@@ -69,7 +68,7 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		boolean flag = false;
 		try {
 			Client check = repository.getClientByNipc(nipc);
-		
+
 			if (check.getNipc() == nipc) {
 				flag = true;
 			}
@@ -79,29 +78,23 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		}
 		return flag;
 	}
-	
-	
+
 	@Override
 	public void edit(Client obj, long id) throws Exception {
-		
-		repository.edit(obj,id);
-	}
-	
-	
-	public void clearInteractionByClientId (long clientId ){
-		
-		   repository.clearInteractionByClientId(clientId);
-		   repository.remove(clientId);
-	}
-	
-	
-	
-	public void deleteClient(long clientId) {
-		
 
-		
+		repository.edit(obj, id);
+	}
+
+	public void clearInteractionByClientId(long clientId) {
+
+		repository.clearInteractionByClientId(clientId);
+		repository.remove(clientId);
+	}
+
+	public List<Long> getCount() {
+
+		return repository.getCount();
+
 	}
 
 }
-	
-

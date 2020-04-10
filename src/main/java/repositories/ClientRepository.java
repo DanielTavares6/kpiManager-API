@@ -1,6 +1,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.persistence.NoResultException;
@@ -62,6 +63,12 @@ public class ClientRepository extends EntityRepository <Client>
 					.executeUpdate();
 				
 		}
+	
+	public List<Long> getCount() {
+		List<Long> num = entityManager.createNamedQuery(Client.GET_COUNT_INTERACTIONS, Long.class)
+				.getResultList();
+		return num;
+	}
 	}
 	
 

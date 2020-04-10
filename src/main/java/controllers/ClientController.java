@@ -3,6 +3,7 @@ package controllers;
 
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -122,10 +123,10 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	@DELETE
 	@Secured
 	@RolesAllowed (value = { "director"})
-	@Path("/{clientId}")
+	@Path("dir/{clientId}")
 	public Response deleteNoInterClient(@PathParam("clientId") long clientId ){
 		try {
-			 service.deleteClient(clientId);
+			 service.remove(clientId);
 			return Response.ok().entity("sucesso").build();
 		} catch (Exception e) {
 			e.printStackTrace();			
@@ -133,6 +134,21 @@ public class ClientController extends EntityController <ClientService, ClientRep
 		}
 	}
 	
-		
+/************************************************Get Interaction Count***********************************/
+/**** http://localhost:8080/kpiManager/api/clients/count/{id} ****/
+	@GET
+	@Secured 
+	@RolesAllowed (value = { "director"})
+	@Path("/count")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCount(){
+		try {
+			List<Long> num = service.getCount();
+			
+			return Response.ok().entity(num).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
+	}
 	
 }

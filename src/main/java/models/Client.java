@@ -15,6 +15,7 @@ import models.Unit;
 		@NamedQuery(name = Client.GET_CLIENT_BY_NAME, query = "SELECT c FROM Client c WHERE c.name =:name"),
 		@NamedQuery(name= Client.GET_CLIENT_BY_NIPC, query = "SELECT c FROM Client c WHERE c.nipc =:nipc"),
 		@NamedQuery(name=  Client.CLEAR_INTERACTION_BY_CLIENTID , query=" DELETE FROM Interaction i WHERE i.client.id = :clientId"),
+		@NamedQuery(name = Client.GET_COUNT_INTERACTIONS, query = "SELECT i FROM Interaction i")
 })
 
 public class Client extends Entity_
@@ -25,6 +26,7 @@ public class Client extends Entity_
 	public static final String GET_CLIENT_BY_NAME = "Client.getClientByName";
 	public static final String GET_CLIENT_BY_NIPC = "Client.getClientByNipc";
 	public static final String CLEAR_INTERACTION_BY_CLIENTID = "Client.clearInteractionByClientId";
+	public static final String GET_COUNT_INTERACTIONS = "Client.getCountInteraction";
 
 	private static final long serialVersionUID = 1L;
 
