@@ -62,7 +62,7 @@ public class Interaction extends Entity_ {
 	private static final long serialVersionUID = 1L;
 
 	private String dateInteraction;
-	
+	private Long potentialRevenue;
 	// These are the child entities (check Person, Unit, Client and InteractionType to see parent entites and its annotations
 	
 	// Not sure if implemented as for example:  https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
@@ -80,6 +80,15 @@ public class Interaction extends Entity_ {
 	@JoinColumn(name = "interactionType_id", referencedColumnName = "id")
 	private InteractionType interactionType;
 
+	
+	public Long getPotentialRevenue() {
+		return potentialRevenue;
+	}
+
+	public void setPotentialRevenue(Long potentialRevenue) {
+		this.potentialRevenue = potentialRevenue;
+	}
+	
 	public String getDateInteraction()
 
 	{
