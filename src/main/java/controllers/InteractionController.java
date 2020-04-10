@@ -17,6 +17,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
 import models.Interaction;
+import models.dto.Paginate;
 import repositories.InteractionRepository;
 import services.InteractionService;
 
@@ -180,14 +181,30 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("filter")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> filtrer(@QueryParam("week") String myselectWeek,
+	public Response filtrer(@QueryParam("week") String myselectWeek,
 			@QueryParam("unit") String myselectUnity,
 			@QueryParam("client") String myselectClient,
 			@QueryParam("businessManagers") String myselectBM,
-			@QueryParam("interaction") String myselectInteration			
+			@QueryParam("interaction") String myselectInteration,
+			@QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity
 			) {
 
-		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+		return Response.ok().entity(I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration, startIndex, quantity)).build();
+	}
+	
+	@GET
+	@PermitAll
+	@Path("filter/count")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Long filterCount(@QueryParam("week") String myselectWeek,
+			@QueryParam("unit") String myselectUnity,
+			@QueryParam("client") String myselectClient,
+			@QueryParam("businessManagers") String myselectBM,
+			@QueryParam("interaction") String myselectInteration
+			) {
+
+		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 	
 	@GET
@@ -196,7 +213,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Collection<Interaction> filtro(@QueryParam("startIndex") int startIndex,
 			@QueryParam("quantity") int quantity) {
-//		quantity += startIndex;
+		startIndex *= quantity;
 		return I.showAllBetween(startIndex, quantity);
 	}
 

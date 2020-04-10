@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import models.Interaction;
+import models.dto.Paginate;
 import repositories.InteractionRepository;
 
 @RequestScoped // Avoid circular dependency between services
@@ -124,10 +125,17 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	}
 
 
-	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
-		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	public Paginate filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration, int startIndex, int quantity) {
+		Collection<Interaction> interactions = I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration, startIndex, quantity ); 
+		Long count = filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+		Paginate p = new Paginate (interactions, count);
+		System.out.println("AqUI" + p);
+		return p;
 	}
 
+	public Long filterCount(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
+		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
 	
 	/************************
 	* Dashboard Module Ends *
