@@ -15,7 +15,7 @@ import models.Unit;
 		@NamedQuery(name = Client.GET_CLIENT_BY_NAME, query = "SELECT c FROM Client c WHERE c.name =:name"),
 		@NamedQuery(name= Client.GET_CLIENT_BY_NIPC, query = "SELECT c FROM Client c WHERE c.nipc =:nipc"),
 		@NamedQuery(name=  Client.CLEAR_INTERACTION_BY_CLIENTID , query=" DELETE FROM Interaction i WHERE i.client.id = :clientId"),
-		@NamedQuery(name = Client.GET_COUNT_INTERACTIONS, query = "SELECT i FROM Interaction i")
+		@NamedQuery(name = Client.GET_COUNT_INTERACTIONS, query = "SELECT m, COUNT(i.client.id) FROM Client m LEFT JOIN Interaction i ON m.id = i.client.id GROUP BY m.id ")
 })
 
 public class Client extends Entity_

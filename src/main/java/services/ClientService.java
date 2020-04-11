@@ -1,6 +1,7 @@
 package services;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -91,7 +92,7 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		repository.remove(clientId);
 	}
 
-	public List<Long> getCount() {
+	public List<?> getCount() {
 
 		return repository.getCount();
 

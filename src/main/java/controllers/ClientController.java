@@ -135,15 +135,15 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	}
 	
 /************************************************Get Interaction Count***********************************/
-/**** http://localhost:8080/kpiManager/api/clients/count/{id} ****/
+/**** http://localhost:8080/kpiManager/api/clients/count ****/
 	@GET
 	@Secured 
-	@RolesAllowed (value = { "director"})
+	@PermitAll
 	@Path("/count")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCount(){
 		try {
-			List<Long> num = service.getCount();
+			List<?> num = service.getCount();
 			
 			return Response.ok().entity(num).build();
 		} catch (Exception e) {
