@@ -9,6 +9,7 @@ import java.security.Principal;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -157,10 +158,31 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 		}
 	}
 	
+	
+	/************************************************Delete Client and Interactions --> permission granted to SuperUser***********************************/
+	/**** http://localhost:8080/kpiManager/api/users/{id} ****/
+	@Transactional
+	@DELETE
+	@Secured
+	@RolesAllowed (value = { "SuperUser"})
+	@Path("/{userId}")
+	public Response clearInteractionsByClientId(@PathParam("userId") long id ){
+		try {
+			 service.clearInteractionByUserId(id);
+			return Response.ok().entity("sucesso").build();
+		} catch (Exception e) {
+			e.printStackTrace();			
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
+	}	
+	
+	
+	
+	
 /************************************************Delete Manager***********************************/
 /**** http://localhost:8080/kpiManager/api/users/{id} ****/
 	@DELETE
-	@Path("/{id}")
+	@Path("dir/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String delete(@PathParam("id") long id) {
 		try {

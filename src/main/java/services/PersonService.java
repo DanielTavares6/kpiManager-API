@@ -189,7 +189,11 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	 
 	}
 
-	
+	public void clearInteractionByUserId(long id) {
+
+		repository.clearInteractionByUserId(id);
+		repository.remove(id);
+	}
 }
 
 

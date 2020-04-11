@@ -106,7 +106,7 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	@Transactional
 	@DELETE
 	@Secured
-	@RolesAllowed (value = { "SuperUser"})
+	@RolesAllowed (value = { "SuperUser", "director"})
 	@Path("/{clientId}")
 	public Response clearInteractionsByClientId(@PathParam("clientId") long clientId ){
 		try {
@@ -117,22 +117,22 @@ public class ClientController extends EntityController <ClientService, ClientRep
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
-/************************************************Delete Client and Interactions***********************************/
+/************************************************Delete Client***********************************/
 /**** http://localhost:8080/kpiManager/api/clients/{id} ****/
-	@Transactional
-	@DELETE
-	@Secured
-	@RolesAllowed (value = { "director"})
-	@Path("dir/{clientId}")
-	public Response deleteNoInterClient(@PathParam("clientId") long clientId ){
-		try {
-			 service.remove(clientId);
-			return Response.ok().entity("sucesso").build();
-		} catch (Exception e) {
-			e.printStackTrace();			
-			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
-		}
-	}
+//	@Transactional
+//	@DELETE
+//	@Secured
+//	@RolesAllowed (value = { "director"})
+//	@Path("dir/{clientId}")
+//	public Response deleteNoInterClient(@PathParam("clientId") long clientId ){
+//		try {
+//			 service.remove(clientId);
+//			return Response.ok().entity("sucesso").build();
+//		} catch (Exception e) {
+//			e.printStackTrace();			
+//			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+//		}
+//	}
 	
 /************************************************Get Interaction Count***********************************/
 /**** http://localhost:8080/kpiManager/api/clients/count ****/

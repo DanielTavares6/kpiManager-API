@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.NoResultException;
 
+import models.Client;
 import models.Person;
 
 @ApplicationScoped
@@ -71,6 +72,14 @@ public class PersonRepository extends EntityRepository <Person>
 		@Override
 		protected String getAllIdsQueryName() {
 			return Person.GET_ALL_PERSON_IDS;
+		}
+		
+		public void clearInteractionByUserId (long id )
+		{
+				entityManager.createNamedQuery(Person.CLEAR_INTERACTION_BY_USERID)
+					.setParameter("userId", id) 
+					.executeUpdate();
+				
 		}
 
 }

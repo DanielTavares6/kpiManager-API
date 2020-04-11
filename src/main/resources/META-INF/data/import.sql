@@ -15,10 +15,10 @@ INSERT INTO Client (nipc, potentialRevenue, name) VALUES (505350173, 400, 'Visio
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (509815316, 500, 'HRB';
 
 
-INSERT INTO Person(username, hashcode, salt, name, role, unit_id) VALUES ('COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser',7);
-INSERT INTO Person(username, hashcode, salt, name, role, unit_id) VALUES ('managerA', 'tmPfdYmE','hQFcM1z6ld3eYZPGKOFcdBSFNcGezFDonNbI0i3zwj7hJH/pxd6pJ3ZsufbjzRBDHhA=', 'ManagerA', 'manager',7);
-INSERT INTO Person(username, hashcode, salt, name, role, unit_id) VALUES ('managerB', 'iefgh2K9','RRK8yVxdZeuNzcwFJ1aDteMsbr7KwH9P8J+ng5BXhdgm+7Hj7YmrSwe2UcHLBxw44p8=', 'ManagerB', 'manager',8);
-INSERT INTO Person(username, hashcode, salt, name, role, unit_id) VALUES ('managerC', 'RdM3ro6P','1KOSGjIv5gfAHy8kjJLP6eNVNoMNoAtciqd/GMTox2nWPgdYRznruGy8bxkQz3TPInY=', 'ManagerC', 'manager',9);
+INSERT INTO Person(email,username, hashcode, salt, name, role, unit_id) VALUES ('coo@coo.com','COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser',7);
+INSERT INTO Person(email,username, hashcode, salt, name, role, unit_id) VALUES ('managerA@a.com','managerA', 'tmPfdYmE','hQFcM1z6ld3eYZPGKOFcdBSFNcGezFDonNbI0i3zwj7hJH/pxd6pJ3ZsufbjzRBDHhA=', 'ManagerA', 'manager',7);
+INSERT INTO Person(email,username, hashcode, salt, name, role, unit_id) VALUES ('managerB@b.com','managerB', 'iefgh2K9','RRK8yVxdZeuNzcwFJ1aDteMsbr7KwH9P8J+ng5BXhdgm+7Hj7YmrSwe2UcHLBxw44p8=', 'ManagerB', 'manager',8);
+INSERT INTO Person(email,username, hashcode, salt, name, role, unit_id) VALUES ('managerC@c.com','managerC', 'RdM3ro6P','1KOSGjIv5gfAHy8kjJLP6eNVNoMNoAtciqd/GMTox2nWPgdYRznruGy8bxkQz3TPInY=', 'ManagerC', 'manager',9);
 
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Joaquim@aubay.com', '1gfhf', 'Joaquim Marques', 'director', 'salt1' ,'Joaq', 1);
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('AntonioDuarte@gmail.com', '2fghfgh', 'Antonio Duarte', 'manager','salt2', 'Anto',2);
