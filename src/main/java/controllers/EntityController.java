@@ -3,6 +3,7 @@ package controllers;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,27 +30,66 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	@Inject // Inject generic variable in runtime
 	protected S service;
 	
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//
-//	public Response save(E object)
-// 
-//	{
-//		try {
-//			E saveObject = service.save(object);
-//			return Response.ok(saveObject).build();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-//		}
-//
-//	}
 	
 	
+	@POST
+	@PermitAll
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Response save(E object)
+ 
+	{
+		try {
+			E saveObject = service.save(object);
+			return Response.ok(saveObject).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+
+	}
 		
+
+	@PUT
+	@PermitAll
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Response update(@PathParam ("id") long id, E object)
+ 
+	{
+		try {
+			E saveObject = service.save(object);
+			return Response.ok(saveObject).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+	}
+	
+	@DELETE
+	@PermitAll
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+
+	public Response delete(@PathParam ("id") long id)
+ 
+	{
+		try {
+			service.delete(id);
+			return Response.ok().build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+	}
+	
 	
 	@GET
+	@PermitAll
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<E> showAllEntities()
 	{
@@ -57,6 +97,7 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	}
 	
 	@GET
+	@PermitAll
 	@Path("allIds")
 	@Produces(MediaType.APPLICATION_JSON)
 
@@ -67,15 +108,19 @@ public abstract class EntityController<S extends EntityService<R, E>, R extends 
 	}
 	
 	
-//	@GET
-//	@Path("{id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public E getEntity(@PathParam("id") long id)
-//
-//	{
-//		return service.getObject(id);
-//	}
-//	
 
+
+	@GET
+	@PermitAll
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public E getEntity(@PathParam("id") long id)
+
+	{
+		return service.getObject(id);
+	}
+	
+	
 
 }

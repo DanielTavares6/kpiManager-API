@@ -36,6 +36,8 @@ public abstract class EntityRepository<T extends Entity_>  {
 	public T getObj(long id)
 
 	{
+		System.out.println(getEntityClass());
+		
 		return entityManager.find
 				(getEntityClass(), id) ;
 	}
@@ -74,5 +76,20 @@ public abstract class EntityRepository<T extends Entity_>  {
 		entityManager.remove(obj);
 	}
 
+	public void deleteEntity(long removeId) {
+		
+		System.out.println(removeId);
+		
+		T entity = entityManager.find(getEntityClass(), removeId);
+		
+		System.out.println(entity);
+		
+		entityManager.remove(entity);
+		
+	}
+	
+	
+	
+	
 	
 }

@@ -10,6 +10,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import javax.ws.rs.QueryParam;
 
 import models.Client;
 import models.Interaction;
@@ -64,10 +65,61 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.GET_ALL;
 	}
 	
+	protected String getAllBetweenQueryName() {
+		return Interaction.GET_ALL_BETWEEN;
+	}
+	
+//	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
+//		return entityManager.createNamedQuery(getAllBetweenQueryName())
+//				.setParameter("startIndex", startIndex)
+//				.setParameter("quantity", quantity)
+//				.getResultList();
+//	}
+	
+	 /**************************
+	 * Dashboard Module Starts *
+	 **************************/
+	
+	protected String getAllCvsByManagerPerWeekQueryName() {
+		return Interaction.GET_ALL_CVS_PER_MANAGER_PER_WEEK;
+	}
+	
+	protected String countAllCvsPerWeekPerManagerQueryName() {
+		return Interaction.COUNT_ALL_CVS_PER_WEEK_PER_MANAGER;
+	}
+	
+	protected String countAllInteractionsPerUnitQueryName() {
+		return Interaction.COUNT_ALL_INTERACTIONS_PER_UNIT;
+	}
+	
+	protected String countAllInteractionsPerInteractionTypeQueryName() {
+		return Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE;
+	}
+	
+	protected String countAllInteractionsPerClientQueryName() {
+		return Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT;
+	}
+	
+	protected String countAllContractsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
+	}
+	
+	protected String countAllInterviewsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK;
+	}
+	
+	 /************************
+	 * Dashboard Module Ends *
+	 ************************/
+	
+	protected String getAllInteractionsByUserId() {
+		return Interaction.GET_ALL_INTERACTIONS_BY_USER_ID;
+	}
+	
+	
 	@Override
 	public Class<Interaction> getEntityClass() {
-
-		return null;
+		return Interaction.class;
 	}
 
 	@Override
@@ -85,6 +137,11 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public Collection<Interaction> showAll() {
 		return entityManager.createNamedQuery(getAllQueryName()).getResultList();
 	}
+	
+	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
+		return entityManager.createNamedQuery(getAllQueryName()).setFirstResult(startIndex).setMaxResults(quantity).getResultList();
+	}
+
 
 	public Collection<String> showAllWeeks() {
 		
@@ -164,9 +221,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
 	
-	public Collection<Interaction> filtro(String myselectSemana,
-			String myselectUnidade,
-			String myselectCliente,
+	public Collection<Interaction> filtrer(String myselectWeek,
+			String myselectUnit,
+			String myselectClient,
 			String myselectBM,
 			String myselectInteration) {
 
@@ -177,18 +234,18 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		
 		List<Predicate> listPredicate = new ArrayList<Predicate>();
 		
-		if (!myselectSemana.equals("null")) {
-			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectSemana));
+		if (!myselectWeek.equals("null")) {
+			listPredicate.add(cb.equal((root.get("dateInteraction")), myselectWeek));
 		}
 		
-		if (!myselectUnidade.equals("null")) {
+		if (!myselectUnit.equals("null")) {
 			Join<Interaction, Unit> join = root.join("unit"); 
-			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnidade));
+			listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnit));
 		}
 		
-		if (!myselectCliente.equals("null")) {
+		if (!myselectClient.equals("null")) {
 			Join<Interaction, Client> join = root.join("client"); 
-			listPredicate.add(cb.equal((join.get("name")), myselectCliente));
+			listPredicate.add(cb.equal((join.get("name")), myselectClient));
 		}
 		
 		if (!myselectBM.equals("null")) {
@@ -208,64 +265,82 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return entityManager.createQuery(q).getResultList();
 	}
 
-//	public Collection<Interaction> showAll() {
-//		return entityManager.createNamedQuery(getAllQueryName()).getResultList();
-//	}
-//
-//	public Collection<String> showAllWeeks() {
-//		
-//		return entityManager.createNamedQuery
-//				(getAllWeeksQueryName(), String.class)
-//				.getResultList();
-//	}
-//	
-//	public Collection<String> showAllClients() {
-//		
-//		return entityManager.createNamedQuery
-//				(getAllClientsQueryName(), String.class)
-//				.getResultList();
-//	}
-//	
-//	public Collection<String> showAllBManagers() {
-//		
-//		return entityManager.createNamedQuery
-//				(getAllBManagersQueryName(), String.class)
-//				.getResultList();
-//	}
-//	
-//	public Collection<String> showAllInteractions() {
-//		
-//		return entityManager.createNamedQuery
-//				(getAllInteractionsQueryName(), String.class)
-//				.getResultList();
-//	}
-//
-//	public Collection<String> showAllUnities() {
-//		
-//		return entityManager.createNamedQuery
-//				(getAllUnitiesQueryName(), String.class)
-//				.getResultList();
-//	}
-//
-//	public Collection<Interaction> showAllFilter(String filter) {
-//		return entityManager.createNamedQuery
-//				(getAllFilterQueryName(), getEntityClass()).setParameter("filter", filter)
-//				.getResultList();
-//	}
-//	
-//	public Collection<Interaction> showAllSearch(String search) {
-//		return entityManager.createNamedQuery
-//				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
-//	}
+	 /**************************
+	 * Dashboard Module Starts *
+	 **************************/
 
-	
-	/*********************query to be able to delete interactions****************/
-	public Collection<Interaction> getInteractionsByClientId(long clientId)
-	{
-		return entityManager.createNamedQuery(Interaction.GET_INTERACTION_BY_CLIENTID,Interaction.class)
-				.setParameter("clientId", clientId) 
-				.getResultList();	
+	/**
+	 * Gets all cvs sent per week
+	 * @param week week of cv sent
+	 * @return a collection containing all cvs sent by week
+	 */
+	@SuppressWarnings("unchecked")
+	public Collection<Interaction> getAllCvsPerWeekPerManager(String manager, String week) {
+		return entityManager.createNamedQuery(getAllCvsByManagerPerWeekQueryName()).setParameter("week", week).setParameter("manager", manager).getResultList();
 	}
 	
+	/**
+	 * Counts all cvs sent per manager per week
+	 * @param manager manager name
+	 * @param week week of cv sent
+	 * @return the count of all cvs set per manager per week
+	 */
+	public long countAllCvsPerWeekPerManager(String manager, String week) {
+		return entityManager.createNamedQuery(countAllCvsPerWeekPerManagerQueryName(), Long.class).setParameter("manager", manager).setParameter("week", week).getSingleResult();
+	}
 	
+	/**
+	 * Counts all interactions per business unit
+	 * @param unit business unit
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerUnit(String unit) {
+		return entityManager.createNamedQuery(countAllInteractionsPerUnitQueryName(), Long.class).setParameter("unit", unit).getSingleResult();
+	}
+	
+	/**
+	 * Counts all interactions per interaction type
+	 * @param interactionType interaction type
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerInteractionType(String interactionType) {
+		return entityManager.createNamedQuery(countAllInteractionsPerInteractionTypeQueryName(), Long.class).setParameter("interactionType", interactionType).getSingleResult();
+	}
+	
+	/**
+	 * Counts all interactions per client name
+	 * @param clientName client name
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerClient(String clientName) {
+		return entityManager.createNamedQuery(countAllInteractionsPerClientQueryName(), Long.class).setParameter("clientName", clientName).getSingleResult();
+	}
+	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return entityManager.createNamedQuery(countAllInterviewsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+	
+	/************************
+	* Dashboard Module Ends *
+	************************/
+	
+	
+	
+	public Collection<Interaction> getInteractionsByUserId(long personId) {
+		return entityManager.createNamedQuery(getAllInteractionsByUserId(), getEntityClass()).setParameter("personId" , personId).getResultList();
+	}
 }

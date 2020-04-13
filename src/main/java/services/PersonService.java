@@ -68,7 +68,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		Person myUser = repository.getManagerByUsername(userDTO.getUsername());
 		Algorithm algorithm = Algorithm.HMAC256(myUser.getSalt() + myUser.getHashcode());
-		String token = JWT.create().withIssuer(userDTO.getUsername()).withClaim("role", myUser.getRole())
+		String token = JWT.create().withIssuer(userDTO.getUsername()).withClaim("role", myUser.getRole()).withClaim("id", myUser.getId())
 				.sign(algorithm);
 		System.out.println(token);
 
@@ -81,7 +81,6 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		try {
 			DecodedJWT jwt = JWT.decode(token);
 			String iss = jwt.getIssuer();
-			System.out.println(iss + "      --->>>>>>im here");
 		} catch (JWTDecodeException exception) {
 			// Invalid token
 		}
@@ -122,9 +121,6 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 			Response response = sg.api(request);
 
-			System.out.println(response.getStatusCode());
-			System.out.println(response.getHeaders());
-			System.out.println(response.getBody());
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			throw ex;
@@ -150,9 +146,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		boolean flag = false;
 		try {
 			Person check = repository.getManagerByUsername(username);
-			System.out.println("username: try" + check.getUsername());
 			if (check.getUsername().length() != 0) {
-				System.out.println("username igual" + check.getUsername());
 				flag = true;
 			}
 		} catch (NoResultException nre) {
@@ -162,20 +156,23 @@ public class PersonService extends EntityService<PersonRepository, Person>
 	}
 
 	public Boolean checkEmailExists(String email) {
+
 		boolean flag = false;
 		try {
 			Person check = repository.getManagerByEmail(email);
-			System.out.println("mail try:" + check.getEmail());
+	
 			if (check.getEmail().length() != 0) {
-				System.out.println("mail try equal:" + check.getEmail());
+			
 				flag = true;
 			}
 		} catch (NoResultException nre) {
-			System.out.println(nre);
+
 			flag = false;
 		}
 		return flag;
 	}
+	
+	
 	public Collection <Person> showAllDirectors()
 	
 	{

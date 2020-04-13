@@ -16,7 +16,10 @@ import models.Unit;
 		@NamedQuery(name= Client.GET_CLIENT_BY_NIPC, query = "SELECT c FROM Client c WHERE c.nipc =:nipc"),
 		@NamedQuery(name=  Client.CLEAR_INTERACTION_BY_CLIENTID , query=" DELETE FROM Interaction i WHERE i.client.id = :clientId"),
 		@NamedQuery(name = Client.GET_COUNT_INTERACTIONS, query = "SELECT m, COUNT(i.client.id) FROM Client m LEFT JOIN Interaction i ON m.id = i.client.id GROUP BY m.id "),
-		@NamedQuery(name = Client.COUNT, query = "SELECT COUNT(c.id) FROM Client c")
+		@NamedQuery(name = Client.COUNT, query = "SELECT COUNT(c.id) FROM Client c"),
+@NamedQuery(name = Client.GET_ALL_CLIENTS_QUERY_NAME, query="SELECT c FROM Client c"),
+@NamedQuery(name = Client.UPDATE_POTENTIAL_REVENUE, query = "UPDATE Client c SET c.potentialRevenue = c.potentialRevenue + :value WHERE c.id =:id"),
+@NamedQuery(name = Client.UPDATE_DECREASE_POTENTIAL_REVENUE, query = "UPDATE Client c SET c.potentialRevenue = c.potentialRevenue - :value WHERE c.id =:id")
 })
 
 public class Client extends Entity_
@@ -28,7 +31,11 @@ public class Client extends Entity_
 	public static final String GET_CLIENT_BY_NIPC = "Client.getClientByNipc";
 	public static final String CLEAR_INTERACTION_BY_CLIENTID = "Client.clearInteractionByClientId";
 	public static final String GET_COUNT_INTERACTIONS = "Client.getCountInteraction";
-	public static final String COUNT = "Client.Count";
+	public static final String COUNT = "Client.Count";	
+	public static final String GET_ALL_CLIENTS_QUERY_NAME = "Product.getAllClients" ;
+	public static final String UPDATE_POTENTIAL_REVENUE = "Client.updateRevenue";
+	public static final String UPDATE_DECREASE_POTENTIAL_REVENUE = "Client.updateDecreaseRevenue";
+	
 	private static final long serialVersionUID = 1L;
 
 	private String name;

@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 
 import models.Interaction;
 import models.Person;
@@ -13,8 +14,11 @@ import repositories.InteractionRepository;
 @RequestScoped // Avoid circular dependency between services
 public class InteractionService extends EntityService<InteractionRepository, Interaction>{
 
+
 	@Inject // Inject generic variable in runtime
 	protected InteractionRepository I;
+	@Inject
+	protected ClientService CS;
 	
 	public Collection<Interaction> showAll() {
 		return I.showAll();
@@ -69,12 +73,120 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	public Collection<Interaction> showAllSearch(String search) {
 		return I.showAllSearch(search);
 	}
-
 	
-	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
-		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
+		return I.showAllBetween(startIndex, quantity);
 	}
 
+	 /**************************
+	 * Dashboard Module Starts *
+	 **************************/
+	
+	/**
+	 * Gets all cvs sent per manager per week
+	 * @param manager manager name
+	 * @param week week of cv sent
+	 * @return a collection containing all cvs sent by week
+	 */
+	public Collection<Interaction> getAllCvsPerWeekPerManager(String manager, String week) {
+		return I.getAllCvsPerWeekPerManager(manager, week);
+	}
+	
+	/**
+	 * Counts all cvs sent per manager per week
+	 * @param manager manager name
+	 * @param week week of cv sent
+	 * @return the count of all cvs set per manager per week
+	 */
+	public long countAllCvsPerWeekPerManager(String manager, String week) {
+		return I.countAllCvsPerWeekPerManager(manager, week);
+	}
+	
+	/**
+	 * Counts all interactions per business unit
+	 * @param unit business unit
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerUnit(String unit) {
+		return I.countAllInteractionsPerUnit(unit);
+	}
+	
+	/**
+	 * Counts all interactions per interaction type
+	 * @param interactionType interaction type
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerInteractionType(String interactionType) {
+		return I.countAllInteractionsPerInteractionType(interactionType);
+	}
+	
+	/**
+	 * Counts all interactions per client
+	 * @param clientName client name
+	 * @return the count of all interactions
+	 */
+	public long countAllInteractionsPerClient(String clientName) {
+		return I.countAllInteractionsPerClient(clientName);
+	}
+
+
+	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
+		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
+	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return I.countAllContractsPerWeek(week);
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
+	}
+
+	
+	/************************
+	* Dashboard Module Ends *
+	************************/
+	
+	
+	public Collection<Interaction> showAllInteractionsByUser(long personId)
+	
+	{
+		
+		return I.getInteractionsByUserId(personId);
+		
+	}
+
+
+	@Override
+	public Interaction save(Interaction object) throws Exception {
+		// TODO Auto-generated method stub
+		if(object.getInteractionType().getId()==2) {
+			CS.updateRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		return I.save(object);
+	}
+
+	@Override
+	public void delete(long id) throws Exception {
+		// TODO Auto-generated method stub
+		Interaction object = I.getObj(id);
+		if(object.getInteractionType().getId()==2) {
+			CS.updateDecreaseRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		super.delete(id);
+	}
+	
+	
 	
 	
 //	public Collection<Interaction> showAll() {

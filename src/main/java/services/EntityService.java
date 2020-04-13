@@ -21,11 +21,11 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return repository.create(entity);
 	}
 	
-//	public E save(E object) throws Exception
-//
-//	{
-//		return repository.save(object);
-//	}
+	public E save(E object) throws Exception
+
+	{
+		return repository.save(object);
+	}
 	
 	public Collection<E> showAllEntities() 
 	
@@ -45,18 +45,15 @@ public abstract class EntityService<R extends EntityRepository<E>, E extends Ent
 		return repository.getAllKeys();
 	}
 	
-	public E getObject(String name)
-	{
-		return repository.getObj(name);
+	public void delete(long id) throws Exception {
+		repository.deleteEntity(id);
 	}
+	
 	
 	public void  edit(E obj, long id) throws Exception{
 		repository.edit(obj,id);
 	}
 
-	public Person getObj(long id) {
-		return null;
-	}
 
 	public void remove(long id) throws Exception {
 		repository.remove(id);
