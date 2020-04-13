@@ -8,8 +8,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = Interaction.GET_ALL, query = "SELECT i FROM Interaction i ORDER BY i.dateInteraction"),
-		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
+		@NamedQuery(name = Interaction.GET_ALL, query = "SELECT i FROM Interaction i ORDER BY i.dateInteraction + 0"),
+		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction + 0"),
 		@NamedQuery(name = Interaction.GET_ALL_WEEKS_FILTER, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES, query = "SELECT DISTINCT i.unit.nameUnit FROM Interaction i ORDER BY i.unit.nameUnit"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES_FILTER, query = "SELECT i FROM Interaction i WHERE i.unit.nameUnit = :filter ORDER BY i.unit.nameUnit"),
@@ -20,7 +20,8 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query = "SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_BY_USER_ID, query = "SELECT i FROM Interaction i WHERE i.person.id =: personId"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query = "SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
-//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
+		@NamedQuery(name = Interaction.GET_ALL_BETWEEN, query = "SELECT i FROM Interaction i WHERE i.id >= :startIndex AND i.id < :quantity ORDER BY i.dateInteraction + 0"),
+		//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_SEARCH, query = "SELECT i FROM Interaction i WHERE i.dateInteraction LIKE :search"
 				+ " OR i.unit.nameUnit LIKE :search" + " OR i.person.name LIKE :search"
 				+ " OR i.interactionType.interactionType LIKE :search"
@@ -31,6 +32,8 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_UNIT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.unit.nameUnit = :unit"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.interactionType.interactionType = :interactionType"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
+		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Contrato' AND i.dateInteraction = :week"),
+		@NamedQuery(name = Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Entrevista' AND i.dateInteraction = :week"),
 		// Dashboard Module Ends
 		
 })
@@ -49,6 +52,7 @@ public class Interaction extends Entity_ {
 //	public static final String GET_ALL_FILTER = "Interaction.getAllFilter";
 	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
 	public static final String GET_ALL = "Interaction.getAll";
+	public static final String GET_ALL_BETWEEN = "Interaction.getAllBetween";
 
 	// Dashboard Module Starts
 	public static final String GET_ALL_CVS_PER_MANAGER_PER_WEEK = "Interaction.getAllCvsPerManagerPerWeek";
@@ -56,6 +60,8 @@ public class Interaction extends Entity_ {
 	public static final String COUNT_ALL_INTERACTIONS_PER_UNIT = "Interaction.countAllInteractionsPerUnit";
 	public static final String COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE = "Interaction.countAllInteractionsPerInteractionType";
 	public static final String COUNT_ALL_INTERACTIONS_PER_CLIENT = "Interaction.countAllInteractionsPerClient";
+	public static final String COUNT_ALL_CONTRACTS_PER_WEEK = "Interaction.countAllContractsPerWeek";
+	public static final String COUNT_ALL_INTERVIEWS_PER_WEEK = "Interaction.countAllInterviewsPerWeek";
 	// DashBoard Module Ends
 	
 	public static final String GET_ALL_INTERACTIONS_BY_USER_ID = "Interaction.getAllInteractionsByUserId";

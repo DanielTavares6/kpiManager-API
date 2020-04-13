@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 
 import models.Interaction;
 import repositories.InteractionRepository;
@@ -70,6 +71,10 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	public Collection<Interaction> showAllSearch(String search) {
 		return I.showAllSearch(search);
 	}
+	
+	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
+		return I.showAllBetween(startIndex, quantity);
+	}
 
 	 /**************************
 	 * Dashboard Module Starts *
@@ -123,8 +128,26 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	}
 
 
-	public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
-		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
+		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
+	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return I.countAllContractsPerWeek(week);
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
 	}
 
 	
