@@ -32,6 +32,7 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.interactionType.interactionType = :interactionType"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
 		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Contrato' AND i.dateInteraction = :week"),
+		@NamedQuery(name = Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Entrevista' AND i.dateInteraction = :week"),
 		// Dashboard Module Ends
 })
 public class Interaction extends Entity_ {
@@ -58,6 +59,7 @@ public class Interaction extends Entity_ {
 	public static final String COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE = "Interaction.countAllInteractionsPerInteractionType";
 	public static final String COUNT_ALL_INTERACTIONS_PER_CLIENT = "Interaction.countAllInteractionsPerClient";
 	public static final String COUNT_ALL_CONTRACTS_PER_WEEK = "Interaction.countAllContractsPerWeek";
+	public static final String COUNT_ALL_INTERVIEWS_PER_WEEK = "Interaction.countAllInterviewsPerWeek";
 	// DashBoard Module Ends
 
 	private static final long serialVersionUID = 1L;

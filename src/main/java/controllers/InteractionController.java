@@ -175,21 +175,18 @@ public class InteractionController extends EntityController<InteractionService, 
 	public Collection<Interaction> showAllSearch(@PathParam("search") String search) {
 		return I.showAllSearch(search);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("filter")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Collection<Interaction> filtrer(@QueryParam("week") String myselectWeek,
-			@QueryParam("unit") String myselectUnity,
-			@QueryParam("client") String myselectClient,
-			@QueryParam("businessManagers") String myselectBM,
-			@QueryParam("interaction") String myselectInteration			
-			) {
+			@QueryParam("unit") String myselectUnity, @QueryParam("client") String myselectClient,
+			@QueryParam("businessManagers") String myselectBM, @QueryParam("interaction") String myselectInteration) {
 
 		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("all/between")
@@ -200,7 +197,7 @@ public class InteractionController extends EntityController<InteractionService, 
 		return I.showAllBetween(startIndex, quantity);
 	}
 
-	 /*************************
+	/*************************
 	 * Dashboard Module Starts*
 	 *************************/
 
@@ -212,7 +209,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			@NotNull @QueryParam("week") String week) {
 		return I.getAllCvsPerWeekPerManager(manager, week);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("cvs/count/{manager}")
@@ -230,7 +227,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			@QueryParam("interactionType") String interactionType, @QueryParam("clientName") String clientName) {
 		try {
 			if (unit != null && interactionType != null && clientName != null) {
-				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName" );
+				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName");
 			}
 			if (unit != null && interactionType != null) {
 				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName");
@@ -244,7 +241,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			if (unit != null) {
 				return Response.ok().entity(I.countAllInteractionsPerUnit(unit)).build();
 			}
-			if(clientName != null) {
+			if (clientName != null) {
 				return Response.ok().entity(I.countAllInteractionsPerClient(clientName)).build();
 			}
 			if (interactionType != null) {
@@ -256,7 +253,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("count/contratsPerWeek")
@@ -264,8 +261,16 @@ public class InteractionController extends EntityController<InteractionService, 
 	public long countAllContractsPerWeek(@QueryParam("week") String week) {
 		return I.countAllContractsPerWeek(week);
 	}
-	
-	 /************************
+
+	@GET
+	@PermitAll
+	@Path("count/interviewsPerWeek")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
+	}
+
+	/************************
 	 * Dashboard Module Ends *
 	 ************************/
 }

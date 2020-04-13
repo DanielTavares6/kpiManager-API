@@ -103,6 +103,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
 	}
 	
+	protected String countAllInterviewsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK;
+	}
+	
 	 /************************
 	 * Dashboard Module Ends *
 	 ************************/
@@ -314,6 +318,15 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	 */
 	public long countAllContractsPerWeek(String week) {
 		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return entityManager.createNamedQuery(countAllInterviewsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
 	}
 	
 	/************************

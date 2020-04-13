@@ -129,8 +129,22 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
 	public long countAllContractsPerWeek(String week) {
 		return I.countAllContractsPerWeek(week);
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
 	}
 
 	
