@@ -26,8 +26,8 @@ import javax.persistence.OneToOne;
 				+ " OR i.interactionType.interactionType LIKE :search"
 				+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction"),
 		// Second TAB queries
-		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_CLIENT, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.client.name = :id AND i.interactionType.interactionType = :interaction"),
-		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_MANAGER, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.person.name = :id AND i.interactionType.interactionType = :interaction"),
+		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_CLIENT, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.client.name = :name AND i.interactionType.interactionType = :interaction"),
+		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_MANAGER, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.person.name = :name AND i.interactionType.interactionType = :interaction"),
 		
 		// Dashboard Module Starts
 		@NamedQuery(name = Interaction.GET_ALL_CVS_PER_MANAGER_PER_WEEK, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV' ORDER BY i.interactionType.id"),
