@@ -8,8 +8,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = Interaction.GET_ALL, query = "SELECT i FROM Interaction i ORDER BY i.dateInteraction + 0"),
-		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction + 0"),
+		@NamedQuery(name = Interaction.GET_ALL, query = "SELECT i FROM Interaction i ORDER BY i.dateInteraction"),
+		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_WEEKS_FILTER, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES, query = "SELECT DISTINCT i.unit.nameUnit FROM Interaction i ORDER BY i.unit.nameUnit"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES_FILTER, query = "SELECT i FROM Interaction i WHERE i.unit.nameUnit = :filter ORDER BY i.unit.nameUnit"),
@@ -25,6 +25,10 @@ import javax.persistence.OneToOne;
 				+ " OR i.unit.nameUnit LIKE :search" + " OR i.person.name LIKE :search"
 				+ " OR i.interactionType.interactionType LIKE :search"
 				+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction"),
+		// Second TAB queries
+		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_CLIENT, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.client.id = :id AND i.interactionType.interactionType = :interaction"),
+		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_MANAGER, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.person.id = :id AND i.interactionType.interactionType = :interaction"),
+		
 		// Dashboard Module Starts
 		@NamedQuery(name = Interaction.GET_ALL_CVS_PER_MANAGER_PER_WEEK, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV' ORDER BY i.interactionType.id"),
 		@NamedQuery(name = Interaction.COUNT_ALL_CVS_PER_WEEK_PER_MANAGER, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV' ORDER BY i.interactionType.id"),
@@ -49,6 +53,8 @@ public class Interaction extends Entity_ {
 	public static final String GET_ALL_SEARCH = "Interaction.getAllSearch";
 	public static final String GET_ALL = "Interaction.getAll";
 	public static final String GET_ALL_BETWEEN = "Interaction.getAllBetween";
+	public static final String GET_ALL_REVENUE_PER_CLIENT = "Interaction.getAllRevenuePerClient";
+	public static final String GET_ALL_REVENUE_PER_MANAGER = "Interaction.getAllRevenuePerManager";
 
 	// Dashboard Module Starts
 	public static final String GET_ALL_CVS_PER_MANAGER_PER_WEEK = "Interaction.getAllCvsPerManagerPerWeek";

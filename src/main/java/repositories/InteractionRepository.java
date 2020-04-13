@@ -67,6 +67,14 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.GET_ALL_BETWEEN;
 	}
 	
+	protected String getAllRevenuePerClientQueryName() {
+		return Interaction.GET_ALL_REVENUE_PER_CLIENT;
+	}
+	
+	protected String getAllRevenuePerManagerQueryName() {
+		return Interaction.GET_ALL_REVENUE_PER_MANAGER;
+	}
+	
 //	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
 //		return entityManager.createNamedQuery(getAllBetweenQueryName())
 //				.setParameter("startIndex", startIndex)
@@ -205,6 +213,22 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public Collection<Interaction> showAllSearch(String search) {
 		return entityManager.createNamedQuery
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
+	}
+	
+	public Collection<Interaction> showAllRevenuePerClient(Long id, String interaction) {
+		return entityManager.createNamedQuery
+				(getAllRevenuePerClientQueryName())
+				.setParameter("id", id)
+				.setParameter("interaction", interaction)
+				.getResultList();
+	}
+	
+	public Collection<Interaction> showAllRevenuePerManager(Long id, String interaction) {
+		return entityManager.createNamedQuery
+				(getAllRevenuePerManagerQueryName())
+				.setParameter("id", id)
+				.setParameter("interaction", interaction)
+				.getResultList();
 	}
 	
 	public Collection<Interaction> filtrer(String myselectWeek,

@@ -216,6 +216,24 @@ public class InteractionController extends EntityController<InteractionService, 
 		startIndex *= quantity;
 		return I.showAllBetween(startIndex, quantity);
 	}
+	
+	@GET
+	@PermitAll
+	@Path("revenue/client")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> getAllRevenuePerClient(@QueryParam("id") Long id,
+			@QueryParam("interaction") String interaction) {
+		return I.showAllRevenuePerClient(id, interaction);
+	}
+	
+	@GET
+	@PermitAll
+	@Path("revenue/manager")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> getAllRevenuePerManager(@QueryParam("id") Long id,
+			@QueryParam("interaction") String interaction) {
+		return I.showAllRevenuePerManager(id, interaction);
+	}
 
 	 /*************************
 	 * Dashboard Module Starts*
