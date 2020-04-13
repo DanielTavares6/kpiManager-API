@@ -87,30 +87,33 @@ public class ClientController extends EntityController <ClientService, ClientRep
 	}
 /************************************************Edit Client***********************************/
 	/**** http://localhost:8080/kpiManager/api/clients/{id} ****/
+	@Override
 	@PUT
 	@Secured 
 	@PermitAll //change to director
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response editClient(Client client,@PathParam("id") int id){
+	public Response update(@PathParam("id") long id, Client client){
 		try {
 			
-			service.edit(client,id);
+			service.editClient(client,id);
 			return Response.ok().entity("cliente editado com sucesso").build();
 		} catch (Exception e) {
-			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
 	}
 /************************************************Delete Client and Interactions --> permission granted to SuperUser***********************************/
 /**** http://localhost:8080/kpiManager/api/clients/{id} ****/
 	
-	@Transactional
+
+	@Override
 	@DELETE
 	@Secured
 	@RolesAllowed (value = { "SuperUser", "director"})
 	@Path("/{clientId}")
-	public Response clearInteractionsByClientId(@PathParam("clientId") long clientId ){
+	public Response delete(@PathParam("clientId") long clientId ){
 		try {
 			 service.clearInteractionByClientId(clientId);
 			return Response.ok().entity("sucesso").build();
@@ -119,22 +122,7 @@ public class ClientController extends EntityController <ClientService, ClientRep
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
 		}
 	}
-/************************************************Delete Client***********************************/
-/**** http://localhost:8080/kpiManager/api/clients/{id} ****/
-//	@Transactional
-//	@DELETE
-//	@Secured
-//	@RolesAllowed (value = { "director"})
-//	@Path("dir/{clientId}")
-//	public Response deleteNoInterClient(@PathParam("clientId") long clientId ){
-//		try {
-//			 service.remove(clientId);
-//			return Response.ok().entity("sucesso").build();
-//		} catch (Exception e) {
-//			e.printStackTrace();			
-//			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
-//		}
-//	}
+
 	
 /************************************************Get Interaction Count and All***********************************/
 /**** http://localhost:8080/kpiManager/api/clients/count ****/

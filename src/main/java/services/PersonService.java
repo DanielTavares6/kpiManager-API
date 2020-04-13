@@ -182,7 +182,7 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 	
 	@Override
-	public Person  getObj(long id) {
+	public Person  getObject(long id) {
 		
 	 return repository.getObj(id);
 	 

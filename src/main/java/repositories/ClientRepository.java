@@ -63,9 +63,6 @@ public class ClientRepository extends EntityRepository <Client>
 				.getSingleResult();
 	}
 
-	public void edit(Client client, int id) {
-
-	}
 
 	public void clearInteractionByClientId (long clientId )
 		{

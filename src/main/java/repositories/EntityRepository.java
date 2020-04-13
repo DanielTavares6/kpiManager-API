@@ -26,11 +26,11 @@ public abstract class EntityRepository<T extends Entity_>  {
 	protected abstract String getAllIdsQueryName();
 	
 	
-//	public T save(T entity)
-//
-//	{
-//		return entityManager.merge(entity);
-//	}
+	public T save(T entity)
+
+	{
+		return entityManager.merge(entity);
+	}
 	
 	
 	public T getObj(long id)

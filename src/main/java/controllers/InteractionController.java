@@ -212,17 +212,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	}
 
 
-	/***********Get Interactions by client id ****************/
-	/**** http://localhost:8080/kpiManager/api/interactions/interactionbyclientid/{clientid} ****/
 
-	@GET
-	@Secured
-	@PermitAll //mudar 
-	@Path("/interactionbyclientid/{clientId}")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> getInteractionsByClientId(@PathParam("clientId") long clientId ){
-		return I.getInteractionByClientId(clientId);
-	}
 	
 	
 	

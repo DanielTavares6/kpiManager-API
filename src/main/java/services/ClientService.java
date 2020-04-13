@@ -81,12 +81,16 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		return flag;
 	}
 
-	@Override
-	public void edit(Client obj, long id) throws Exception {
-
-		repository.edit(obj, id);
+	@Transactional
+	public void editClient(Client obj, long id) throws Exception {
+		try {
+			repository.edit(obj, id);
+		} catch (Exception e) {
+			throw new Exception("Username or NIPC already exists!");
+		}
 	}
 
+	@Transactional
 	public void clearInteractionByClientId(long clientId) {
 
 		repository.clearInteractionByClientId(clientId);
@@ -94,22 +98,22 @@ public class ClientService extends EntityService<ClientRepository, Client>
 	}
 
 	public PaginateDTO<Client> getCount(int startIndex, int quantity) {
-		Collection<Client> client =  repository.getCount(startIndex, quantity);
+		Collection<Client> client = repository.getCount(startIndex, quantity);
 		Long count = repository.getTotal();
 		PaginateDTO<Client> p = new PaginateDTO<Client>(client, count);
 		return p;
 
 	}
+
 	public void updateRevenue(long id, Long potentialRevenue) {
 		// TODO Auto-generated method stub
 		repository.updateRevenue(id, potentialRevenue);
-		
+
 	}
 
 	public void updateDecreaseRevenue(long id, Long potentialRevenue) {
 		// TODO Auto-generated method stub
 		repository.updateDecreaseRevenue(id, potentialRevenue);
 	}
-
 
 }

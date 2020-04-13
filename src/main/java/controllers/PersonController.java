@@ -164,7 +164,7 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 			String newName = manager.getName();
 			Unit newUnit = manager.getUnit();
 			
-			Person setManager = service.getObj(id);
+			Person setManager = service.getObject(id);
 			setManager.setName(newName);
 			setManager.setUnit(newUnit);
 			
@@ -195,21 +195,6 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	
 	
 	
-	
-/************************************************Delete Manager***********************************/
-/**** http://localhost:8080/kpiManager/api/users/{id} ****/
-	@DELETE
-	@Path("dir/{id}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String delete(@PathParam("id") long id) {
-		try {
-			service.remove(id);
-			return "Removido";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Id nao existe";
-		}
-	}
 	
 
 }
