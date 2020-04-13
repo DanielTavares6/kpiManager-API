@@ -23,7 +23,9 @@ import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 
+import models.Client;
 import models.Person;
+import models.dto.PaginateDTO;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import utils.PasswordUtils;
@@ -193,6 +195,13 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		repository.clearInteractionByUserId(id);
 		repository.remove(id);
+	}
+	
+	public PaginateDTO<Person> getCount(int startIndex, int quantity) {
+		Collection<Person> person =  repository.showAllManagers(startIndex, quantity);
+		Long count = repository.getTotal();
+		PaginateDTO<Person> p = new PaginateDTO<Person>(person, count);
+		return p;
 	}
 }
 

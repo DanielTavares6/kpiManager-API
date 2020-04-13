@@ -39,7 +39,17 @@ public class PersonRepository extends EntityRepository <Person>
 		}
 		
 		
-		public Collection<Person> showAllManagers()
+		public Collection<Person> showAllManagers(int startIndex, int quantity)
+		
+		{
+			
+			return entityManager.createNamedQuery(Person.GET_MANAGERS,Person.class)
+					.setFirstResult(startIndex)
+					.setMaxResults(quantity)
+					.getResultList();
+			
+		}
+public Collection<Person> showAllManagers()
 		
 		{
 			
@@ -80,6 +90,11 @@ public class PersonRepository extends EntityRepository <Person>
 					.setParameter("userId", id) 
 					.executeUpdate();
 				
+		}
+		
+		public Long getTotal() {
+			return (long) entityManager.createNamedQuery(Person.COUNT)
+					.getSingleResult();
 		}
 
 }

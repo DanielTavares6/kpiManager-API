@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -31,6 +32,7 @@ import controllers.PersonController.Secured;
 import models.Client;
 import models.Person;
 import models.Unit;
+import models.dto.PaginateDTO;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import services.PersonService;
@@ -111,15 +113,26 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 		return service.showAllEntitiesByUnit(unitId);
 	}
 	
-	
 	@GET
 	@Path("managers")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Person> showAllManagers()
-
+	public Response showAllManagers()
 	{
-		return service.showAllManagers();
+		
+		 Collection<Person> num = service.showAllManagers();
+		return Response.ok().entity(num).build();
+	}
+	
+	
+	@GET
+	@Path("managers/count")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response showAllManagers(@QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity)
+	{
+		
+		PaginateDTO<Person> num = service.getCount(startIndex, quantity);
+		return Response.ok().entity(num).build();
 	}
 	
 	

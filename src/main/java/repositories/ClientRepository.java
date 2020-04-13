@@ -64,10 +64,18 @@ public class ClientRepository extends EntityRepository <Client>
 				
 		}
 	
-	public   List<?> getCount() {
+	public   Collection<Client> getCount(int startIndex, int quantity) {
 		return entityManager.createNamedQuery(Client.GET_COUNT_INTERACTIONS)
+				.setFirstResult(startIndex)
+				.setMaxResults(quantity)
 				.getResultList();
 	}
+	
+	public Long getTotal() {
+		return (long) entityManager.createNamedQuery(Client.COUNT)
+				.getSingleResult();
+	}
+	
 	}
 	
 

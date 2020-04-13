@@ -16,6 +16,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -23,6 +24,7 @@ import controllers.PersonController.Secured;
 import models.Client;
 import models.Interaction;
 import models.Person;
+import models.dto.PaginateDTO;
 import repositories.ClientRepository;
 import services.ClientService;
 import services.InteractionService;
@@ -134,16 +136,17 @@ public class ClientController extends EntityController <ClientService, ClientRep
 //		}
 //	}
 	
-/************************************************Get Interaction Count***********************************/
+/************************************************Get Interaction Count and All***********************************/
 /**** http://localhost:8080/kpiManager/api/clients/count ****/
 	@GET
 	@Secured 
 	@PermitAll
 	@Path("/count")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCount(){
+	public Response getCount(@QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity){
 		try {
-			List<?> num = service.getCount();
+			PaginateDTO<Client> num = service.getCount(startIndex, quantity);
 			
 			return Response.ok().entity(num).build();
 		} catch (Exception e) {

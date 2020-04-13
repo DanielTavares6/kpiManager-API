@@ -12,7 +12,7 @@ INSERT INTO Client (nipc, potentialRevenue, name) VALUES (501591109, 100, 'Conti
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (501199993, 200, 'Microsoft');
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (508141966, 300, 'Apple');
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (505350173, 400, 'Visionbox');
-INSERT INTO Client (nipc, potentialRevenue, name) VALUES (509815316, 500, 'HRB';
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (509815316, 500, 'HRB');
 
 
 INSERT INTO Person(email,username, hashcode, salt, name, role, unit_id) VALUES ('coo@coo.com','COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser',7);

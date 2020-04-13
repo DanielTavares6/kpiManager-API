@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import models.Client;
 import models.Person;
 import models.Unit;
+import models.dto.PaginateDTO;
 import repositories.ClientRepository;
 
 @RequestScoped // Avoid circular dependency between services
@@ -92,9 +93,11 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		repository.remove(clientId);
 	}
 
-	public List<?> getCount() {
-
-		return repository.getCount();
+	public PaginateDTO<Client> getCount(int startIndex, int quantity) {
+		Collection<Client> client =  repository.getCount(startIndex, quantity);
+		Long count = repository.getTotal();
+		PaginateDTO<Client> p = new PaginateDTO<Client>(client, count);
+		return p;
 
 	}
 
