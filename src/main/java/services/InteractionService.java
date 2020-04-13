@@ -72,6 +72,14 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.showAllRevenuePerManager(name, interaction);
 
 	}
+	
+	public List<GenericInteraction> filterClient(String myselectClient) {
+		return I.filterClient(myselectClient);
+	}
+	
+	public List<GenericInteraction> filterManager(String myselectManager) {
+		return I.filterManager(myselectManager);
+	}
 
 //	public Collection<Interaction> showAllFilter(String filter) {
 //		return I.showAllFilter(filter);
@@ -149,9 +157,7 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 
-	public List<GenericInteraction> filterClient(String myselectClient) {
-		return I.filterClient(myselectClient);
-	}
+	
 	
 	/************************
 	* Dashboard Module Ends *

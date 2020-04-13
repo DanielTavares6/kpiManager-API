@@ -27,6 +27,8 @@ import javax.persistence.OneToOne;
 				+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction"),
         @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.client c "
         		+ "join i.interactionType it where i.interactionType.id in (1,2) and c.name=:clientName group by c.name, it.interactionType"),
+        @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.person c "
+        		+ "join i.interactionType it where i.interactionType.id in (1,2) and c.name=:managerName group by c.name, it.interactionType"),
 		// Second TAB queries
 		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_CLIENT, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.client.name = :name AND i.interactionType.interactionType = :interaction"),
 		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_MANAGER, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.person.name = :name AND i.interactionType.interactionType = :interaction"),
@@ -58,7 +60,9 @@ public class Interaction extends Entity_ {
 	public static final String GET_ALL_REVENUE_PER_CLIENT = "Interaction.getAllRevenuePerClient";
 	public static final String GET_ALL_REVENUE_PER_MANAGER = "Interaction.getAllRevenuePerManager";
     public static final String GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE= "Interaction.getInteractionGroupByClientAndInteractionType";
+    public static final String GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE= "Interaction.getInteractionGroupByManagerAndInteractionType";
 
+    
 	// Dashboard Module Starts
 	public static final String GET_ALL_CVS_PER_MANAGER_PER_WEEK = "Interaction.getAllCvsPerManagerPerWeek";
 	public static final String COUNT_ALL_CVS_PER_WEEK_PER_MANAGER = "Interaction.countAllCvsPerWeekPerManager";

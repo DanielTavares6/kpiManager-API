@@ -247,6 +247,15 @@ public class InteractionController extends EntityController<InteractionService, 
         return I.filterClient(myselectClient);
     }
     
+    @GET
+    @PermitAll
+    @Path("filter/manager")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public List<GenericInteraction> filterManager(@QueryParam("selecManager") String myselectManager) {
+
+        return I.filterManager(myselectManager);
+    }
+    
     
     
     

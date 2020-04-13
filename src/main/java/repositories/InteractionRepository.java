@@ -342,6 +342,15 @@ public class InteractionRepository extends EntityRepository <Interaction>{
         
         return query.getResultList();
     }
+    
+    public List<GenericInteraction>filterManager( String myselectManager) {
+        
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE);
+        
+        		query.setParameter("managerName", myselectManager);
+        
+        return query.getResultList();
+    }
 	
 	 /**************************
 	 * Dashboard Module Starts *
