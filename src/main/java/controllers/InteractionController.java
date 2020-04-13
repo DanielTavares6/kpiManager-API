@@ -242,18 +242,18 @@ public class InteractionController extends EntityController<InteractionService, 
     @PermitAll
     @Path("filter/client")
     @Produces({ MediaType.APPLICATION_JSON })
-    public List<GenericInteraction> filterClient(@QueryParam("selecClient") String myselectClient) {
+    public List<GenericInteraction> filterClient() {
 
-        return I.filterClient(myselectClient);
+        return I.filterClient();
     }
     
     @GET
     @PermitAll
     @Path("filter/manager")
     @Produces({ MediaType.APPLICATION_JSON })
-    public List<GenericInteraction> filterManager(@QueryParam("selecManager") String myselectManager) {
+    public List<GenericInteraction> filterManager() {
 
-        return I.filterManager(myselectManager);
+        return I.filterManager();
     }
     
     

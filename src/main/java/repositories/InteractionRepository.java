@@ -334,20 +334,20 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	}
 	
 	
-    public List<GenericInteraction>filterClient( String myselectClient) {
+    public List<GenericInteraction>filterClient( ) {
         
         TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE);
         
-        		query.setParameter("clientName", myselectClient);
+//        		query.setParameter("clientName", myselectClient);
         
         return query.getResultList();
     }
     
-    public List<GenericInteraction>filterManager( String myselectManager) {
+    public List<GenericInteraction>filterManager( ) {
         
         TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE);
         
-        		query.setParameter("managerName", myselectManager);
+//        		query.setParameter("managerName", myselectManager);
         
         return query.getResultList();
     }

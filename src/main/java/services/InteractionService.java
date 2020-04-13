@@ -73,12 +73,12 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 
 	}
 	
-	public List<GenericInteraction> filterClient(String myselectClient) {
-		return I.filterClient(myselectClient);
+	public List<GenericInteraction> filterClient() {
+		return I.filterClient();
 	}
 	
-	public List<GenericInteraction> filterManager(String myselectManager) {
-		return I.filterManager(myselectManager);
+	public List<GenericInteraction> filterManager() {
+		return I.filterManager();
 	}
 
 //	public Collection<Interaction> showAllFilter(String filter) {
