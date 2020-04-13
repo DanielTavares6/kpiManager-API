@@ -133,7 +133,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	}
 	
 	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
-		return entityManager.createNamedQuery(getAllQueryName()).setFirstResult(startIndex).setMaxResults(quantity).getResultList();
+		return entityManager.createNamedQuery(getAllQueryName())
+				.setFirstResult(startIndex)
+				.setMaxResults(quantity)
+				.getResultList();
 	}
 
 
@@ -215,18 +218,18 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
 	
-	public Collection<Interaction> showAllRevenuePerClient(Long id, String interaction) {
+	public Collection<Interaction> showAllRevenuePerClient(String name, String interaction) {
 		return entityManager.createNamedQuery
 				(getAllRevenuePerClientQueryName())
-				.setParameter("id", id)
+				.setParameter("name", name)
 				.setParameter("interaction", interaction)
 				.getResultList();
 	}
 	
-	public Collection<Interaction> showAllRevenuePerManager(Long id, String interaction) {
+	public Collection<Interaction> showAllRevenuePerManager(String name, String interaction) {
 		return entityManager.createNamedQuery
 				(getAllRevenuePerManagerQueryName())
-				.setParameter("id", id)
+				.setParameter("name", name)
 				.setParameter("interaction", interaction)
 				.getResultList();
 	}

@@ -61,13 +61,13 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 
 	}
 	
-	public Collection<Interaction> showAllRevenuePerClient(Long id, String interaction) {
-		return I.showAllRevenuePerClient(id, interaction);
+	public Collection<Interaction> showAllRevenuePerClient(String name, String interaction) {
+		return I.showAllRevenuePerClient(name, interaction);
 
 	}
 	
-	public Collection<Interaction> showAllRevenuePerManager(Long id, String interaction) {
-		return I.showAllRevenuePerManager(id, interaction);
+	public Collection<Interaction> showAllRevenuePerManager(String name, String interaction) {
+		return I.showAllRevenuePerManager(name, interaction);
 
 	}
 

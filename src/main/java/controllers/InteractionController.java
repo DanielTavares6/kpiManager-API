@@ -221,18 +221,18 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("revenue/client")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> getAllRevenuePerClient(@QueryParam("id") Long id,
+	public Collection<Interaction> getAllRevenuePerClient(@QueryParam("name") String name,
 			@QueryParam("interaction") String interaction) {
-		return I.showAllRevenuePerClient(id, interaction);
+		return I.showAllRevenuePerClient(name, interaction);
 	}
 	
 	@GET
 	@PermitAll
 	@Path("revenue/manager")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Collection<Interaction> getAllRevenuePerManager(@QueryParam("id") Long id,
+	public Collection<Interaction> getAllRevenuePerManager(@QueryParam("name") String name,
 			@QueryParam("interaction") String interaction) {
-		return I.showAllRevenuePerManager(id, interaction);
+		return I.showAllRevenuePerManager(name, interaction);
 	}
 
 	 /*************************
