@@ -186,8 +186,9 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		super.delete(id);
 	}
 	
-	
-	
+    public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
+        return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+    }
 	
 
 

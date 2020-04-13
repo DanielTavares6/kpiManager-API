@@ -187,6 +187,19 @@ public class InteractionController extends EntityController<InteractionService, 
 
 		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
+	
+	@GET
+    @Path("filtro")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
+            @QueryParam("sel1") String myselectUnidade,
+            @QueryParam("sel2") String myselectCliente,
+            @QueryParam("sel3") String myselectBM,
+            @QueryParam("sel4") String myselectInteration
+            ) {
+        System.out.println("sel0 = " + myselectSemana);
+        return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+    }
 
 	@GET
 	@PermitAll
