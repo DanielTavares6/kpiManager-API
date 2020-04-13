@@ -179,11 +179,12 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 	/************************************************Delete Client and Interactions --> permission granted to SuperUser***********************************/
 	/**** http://localhost:8080/kpiManager/api/users/{id} ****/
 	@Transactional
+	@Override
 	@DELETE
 	@Secured
 	@RolesAllowed (value = { "SuperUser"})
 	@Path("/{userId}")
-	public Response clearInteractionsByClientId(@PathParam("userId") long id ){
+	public Response delete(@PathParam("userId") long id ){
 		try {
 			 service.clearInteractionByUserId(id);
 			return Response.ok().entity("sucesso").build();
