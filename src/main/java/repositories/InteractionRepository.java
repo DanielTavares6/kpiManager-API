@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -331,6 +332,17 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		
 		return entityManager.createQuery(q).getSingleResult();
 	}
+	
+	
+    public List<GenericInteraction>filterClient( String myselectClient) {
+        
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE);
+        
+        		query.setParameter("clientName", myselectClient);
+        
+        return query.getResultList();
+    }
+	
 	 /**************************
 	 * Dashboard Module Starts *
 	 **************************/
@@ -381,6 +393,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public long countAllInteractionsPerClient(String clientName) {
 		return entityManager.createNamedQuery(countAllInteractionsPerClientQueryName(), Long.class).setParameter("clientName", clientName).getSingleResult();
 	}
+
+
+
 	
 	/************************
 	* Dashboard Module Ends *

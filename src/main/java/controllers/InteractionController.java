@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Response.Status;
 
 import models.Interaction;
 import models.dto.Paginate;
+import repositories.GenericInteraction;
 import repositories.InteractionRepository;
 import services.InteractionService;
 
@@ -234,6 +236,20 @@ public class InteractionController extends EntityController<InteractionService, 
 			@QueryParam("interaction") String interaction) {
 		return I.showAllRevenuePerManager(name, interaction);
 	}
+	
+	
+    @GET
+    @PermitAll
+    @Path("filter/client")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public List<GenericInteraction> filterClient(@QueryParam("selecClient") String myselectClient) {
+
+        return I.filterClient(myselectClient);
+    }
+    
+    
+    
+    
 
 	 /*************************
 	 * Dashboard Module Starts*

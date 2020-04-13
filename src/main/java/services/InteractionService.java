@@ -1,12 +1,14 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import models.Interaction;
 import models.dto.Paginate;
+import repositories.GenericInteraction;
 import repositories.InteractionRepository;
 
 @RequestScoped // Avoid circular dependency between services
@@ -145,6 +147,10 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 
 	public Long filterCount(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
+
+	public List<GenericInteraction> filterClient(String myselectClient) {
+		return I.filterClient(myselectClient);
 	}
 	
 	/************************
