@@ -26,7 +26,7 @@ public class ClientService extends EntityService<ClientRepository, Client>
 
 			throw new Exception(" Client already exists!  ");
 		} else if (checkNipcExists(entity.getNipc()) == true) {
-			throw new Exception("Nipc already exists!");
+			throw new Exception("NIPC already exists!");
 		} else {
 
 			Client c = new Client();
