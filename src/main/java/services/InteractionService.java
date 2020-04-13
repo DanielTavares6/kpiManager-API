@@ -11,8 +11,11 @@ import repositories.InteractionRepository;
 @RequestScoped // Avoid circular dependency between services
 public class InteractionService extends EntityService<InteractionRepository, Interaction>{
 
+
 	@Inject // Inject generic variable in runtime
 	protected InteractionRepository I;
+	@Inject
+	protected ClientService CS;
 	
 	public Collection<Interaction> showAll() {
 		return I.showAll();
@@ -137,6 +140,27 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.getInteractionsByUserId(personId);
 		
 	}
+
+
+	@Override
+	public Interaction save(Interaction object) throws Exception {
+		// TODO Auto-generated method stub
+		if(object.getInteractionType().getId()==2) {
+			CS.updateRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		return I.save(object);
+	}
+
+	@Override
+	public void delete(long id) throws Exception {
+		// TODO Auto-generated method stub
+		Interaction object = I.getObj(id);
+		if(object.getInteractionType().getId()==2) {
+			CS.updateDecreaseRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		super.delete(id);
+	}
+	
 	
 	
 	
