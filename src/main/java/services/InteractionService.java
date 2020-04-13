@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 
 import models.Interaction;
 import repositories.InteractionRepository;
@@ -126,6 +127,10 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 
 	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
 		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
+	
+	public long countAllContractsPerWeek(String week) {
+		return I.countAllContractsPerWeek(week);
 	}
 
 	

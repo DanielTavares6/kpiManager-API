@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.ws.rs.QueryParam;
 
 import models.Client;
 import models.Interaction;
@@ -96,6 +97,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	
 	protected String countAllInteractionsPerClientQueryName() {
 		return Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT;
+	}
+	
+	protected String countAllContractsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
 	}
 	
 	 /************************
@@ -300,6 +305,15 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	 */
 	public long countAllInteractionsPerClient(String clientName) {
 		return entityManager.createNamedQuery(countAllInteractionsPerClientQueryName(), Long.class).setParameter("clientName", clientName).getSingleResult();
+	}
+	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
 	}
 	
 	/************************

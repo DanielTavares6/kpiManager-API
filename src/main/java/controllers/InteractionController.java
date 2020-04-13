@@ -257,6 +257,14 @@ public class InteractionController extends EntityController<InteractionService, 
 		}
 	}
 	
+	@GET
+	@PermitAll
+	@Path("count/contratsPerWeek")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public long countAllContractsPerWeek(@QueryParam("week") String week) {
+		return I.countAllContractsPerWeek(week);
+	}
+	
 	 /************************
 	 * Dashboard Module Ends *
 	 ************************/
