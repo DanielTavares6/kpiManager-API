@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = Interaction.GET_ALL, query = "SELECT i FROM Interaction i ORDER BY i.dateInteraction"),
-		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction"),
+		@NamedQuery(name = Interaction.GET_ALL_WEEKS, query = "SELECT DISTINCT i.dateInteraction FROM Interaction i ORDER BY i.dateInteraction + 0"),
 		@NamedQuery(name = Interaction.GET_ALL_WEEKS_FILTER, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :filter ORDER BY i.dateInteraction"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES, query = "SELECT DISTINCT i.unit.nameUnit FROM Interaction i ORDER BY i.unit.nameUnit"),
 		@NamedQuery(name = Interaction.GET_ALL_UNITIES_FILTER, query = "SELECT i FROM Interaction i WHERE i.unit.nameUnit = :filter ORDER BY i.unit.nameUnit"),

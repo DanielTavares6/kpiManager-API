@@ -266,6 +266,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		CriteriaQuery<Interaction> q = cb.createQuery(Interaction.class);
 		Root<Interaction> root = q.from(Interaction.class);
 		q.select(root);
+		q.orderBy(cb.asc(root.get("dateInteraction").as(Integer.class)));
 		
 		List<Predicate> listPredicate = new ArrayList<Predicate>();
 		
