@@ -1,13 +1,16 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Iterator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.QueryParam;
 
+import models.GenericInteraction;
 import models.Interaction;
+import models.dto.Paginate;
 import models.Person;
 import repositories.InteractionRepository;
 
@@ -64,6 +67,24 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	public Collection<Interaction> showAllInteractionsFilter(String filter) {
 		return I.showAllInteractionsFilter(filter);
 
+	}
+	
+	public Collection<Interaction> showAllRevenuePerClient(String name, String interaction) {
+		return I.showAllRevenuePerClient(name, interaction);
+
+	}
+	
+	public Collection<Interaction> showAllRevenuePerManager(String name, String interaction) {
+		return I.showAllRevenuePerManager(name, interaction);
+
+	}
+	
+	public List<GenericInteraction> filterClient() {
+		return I.filterClient();
+	}
+	
+	public List<GenericInteraction> filterManager() {
+		return I.filterManager();
 	}
 
 //	public Collection<Interaction> showAllFilter(String filter) {
@@ -130,8 +151,12 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	}
 
 
-	public Collection<Interaction> filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
-		return I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	public Paginate filtrer(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration, int startIndex, int quantity) {
+		Collection<Interaction> interactions = I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration, startIndex, quantity ); 
+		Long count = filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+		Paginate p = new Paginate (interactions, count);
+		System.out.println("AqUI" + p);
+		return p;
 	}
 	
 	/**
@@ -152,6 +177,11 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.countAllInterviewsPerWeek(week);
 	}
 
+	public Long filterCount(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
+		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
+	}
+
+	
 	
 	/************************
 	* Dashboard Module Ends *

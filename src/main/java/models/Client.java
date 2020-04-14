@@ -40,7 +40,7 @@ public class Client extends Entity_
 
 	private String name;
 	private int nipc;
-	private int potentialRevenue;
+	private long potentialRevenue;
 	
 	public Client() {
 	}
@@ -68,13 +68,13 @@ public class Client extends Entity_
 		this.nipc = nipc;
 	}
 	
-	public int getPotentialRevenue()
+	public long getPotentialRevenue()
 
 	{
 		return potentialRevenue;
 	}
 
-	public void setPotentialRevenue(int potentialRevenue)
+	public void setPotentialRevenue(long potentialRevenue)
 	{
 		this.potentialRevenue = potentialRevenue;
 	}

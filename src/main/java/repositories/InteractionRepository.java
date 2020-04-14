@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -13,6 +14,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.QueryParam;
 
 import models.Client;
+import models.GenericInteraction;
 import models.Interaction;
 import models.InteractionType;
 import models.Person;
@@ -67,6 +69,14 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	
 	protected String getAllBetweenQueryName() {
 		return Interaction.GET_ALL_BETWEEN;
+	}
+	
+	protected String getAllRevenuePerClientQueryName() {
+		return Interaction.GET_ALL_REVENUE_PER_CLIENT;
+	}
+	
+	protected String getAllRevenuePerManagerQueryName() {
+		return Interaction.GET_ALL_REVENUE_PER_MANAGER;
 	}
 	
 //	public Collection<Interaction> showAllBetween(Long startIndex, Long quantity) {
@@ -139,7 +149,10 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	}
 	
 	public Collection<Interaction> showAllBetween(int startIndex, int quantity) {
-		return entityManager.createNamedQuery(getAllQueryName()).setFirstResult(startIndex).setMaxResults(quantity).getResultList();
+		return entityManager.createNamedQuery(getAllQueryName())
+				.setFirstResult(startIndex)
+				.setMaxResults(quantity)
+				.getResultList();
 	}
 
 
@@ -221,11 +234,29 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 				(getAllSearchQueryName(), getEntityClass()).setParameter("search", search).getResultList();
 	}
 	
+	public Collection<Interaction> showAllRevenuePerClient(String name, String interaction) {
+		return entityManager.createNamedQuery
+				(getAllRevenuePerClientQueryName())
+				.setParameter("name", name)
+				.setParameter("interaction", interaction)
+				.getResultList();
+	}
+	
+	public Collection<Interaction> showAllRevenuePerManager(String name, String interaction) {
+		return entityManager.createNamedQuery
+				(getAllRevenuePerManagerQueryName())
+				.setParameter("name", name)
+				.setParameter("interaction", interaction)
+				.getResultList();
+	}
+	
 	public Collection<Interaction> filtrer(String myselectWeek,
 			String myselectUnit,
 			String myselectClient,
 			String myselectBM,
-			String myselectInteration) {
+			String myselectInteration,
+			int startIndex,
+			int quantity) {
 
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Interaction> q = cb.createQuery(Interaction.class);
@@ -261,10 +292,81 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		q.where(listPredicate.toArray(new Predicate[0]));
 		
 		q.select(root);
-		
-		return entityManager.createQuery(q).getResultList();
+
+		List<Interaction> varFilter = entityManager.createQuery(q).getResultList();
+		if(startIndex+quantity > varFilter.size()) {
+			return varFilter.subList(startIndex, varFilter.size());			
+		} else {
+			return varFilter.subList(startIndex, startIndex+quantity);			
+		}
 	}
 
+	
+	
+	
+	public long filterCount(String myselectWeek,
+			String myselectUnit,
+			String myselectClient,
+			String myselectBM,
+			String myselectInteration) {
+
+		CriteriaBuilder qb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Long> q = qb.createQuery(Long.class);
+		Root<Interaction> root = q.from(Interaction.class);
+		q.select(qb.count(root));
+		
+		List<Predicate> listPredicate = new ArrayList<Predicate>();
+		
+		if (!myselectWeek.equals("null")) {
+			listPredicate.add(qb.equal((root.get("dateInteraction")), myselectWeek));
+		}
+		
+		if (!myselectUnit.equals("null")) {
+			Join<Interaction, Unit> join = root.join("unit"); 
+			listPredicate.add(qb.equal((join.get("nameUnit")), myselectUnit));
+		}
+		
+		if (!myselectClient.equals("null")) {
+			Join<Interaction, Client> join = root.join("client"); 
+			listPredicate.add(qb.equal((join.get("name")), myselectClient));
+		}
+		
+		if (!myselectBM.equals("null")) {
+			Join<Interaction, Person> join = root.join("person"); 
+			listPredicate.add(qb.equal((join.get("name")), myselectBM));
+		}
+		
+		if (!myselectInteration.equals("null")) {
+			Join<Interaction, InteractionType> join = root.join("interactionType"); 
+			listPredicate.add(qb.equal((join.get("interactionType")), myselectInteration));
+		}
+		
+		q.where(listPredicate.toArray(new Predicate[0]));
+		
+		q.select(qb.count(root));
+		
+		return entityManager.createQuery(q).getSingleResult();
+	}
+	
+	
+    public List<GenericInteraction>filterClient( ) {
+        
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERACTION_TYPE);
+        
+//        		query.setParameter("clientName", myselectClient);
+        
+        return query.getResultList();
+    }
+    
+    public List<GenericInteraction>filterManager( ) {
+        
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERACTION_TYPE);
+        
+//        		query.setParameter("managerName", myselectManager);
+        
+        return query.getResultList();
+    }
+	
 	 /**************************
 	 * Dashboard Module Starts *
 	 **************************/
@@ -315,6 +417,9 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public long countAllInteractionsPerClient(String clientName) {
 		return entityManager.createNamedQuery(countAllInteractionsPerClientQueryName(), Long.class).setParameter("clientName", clientName).getSingleResult();
 	}
+
+
+
 	
 	/**
 	 * Counts all contracts per week
