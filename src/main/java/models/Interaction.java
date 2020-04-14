@@ -27,8 +27,8 @@ import javax.persistence.OneToOne;
 				+ " OR i.interactionType.interactionType LIKE :search"
 				+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction"),
 		// Dashboard Module Starts
-		@NamedQuery(name = Interaction.GET_ALL_CVS_PER_MANAGER_PER_WEEK, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV' ORDER BY i.interactionType.id"),
-		@NamedQuery(name = Interaction.COUNT_ALL_CVS_PER_WEEK_PER_MANAGER, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV' ORDER BY i.interactionType.id"),
+		@NamedQuery(name = Interaction.GET_ALL_CVS_PER_MANAGER_PER_WEEK, query = "SELECT i FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV enviado' ORDER BY i.interactionType.id"),
+		@NamedQuery(name = Interaction.COUNT_ALL_CVS_PER_WEEK_PER_MANAGER, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.dateInteraction = :week AND i.person.name = :manager AND i.interactionType.interactionType = 'CV enviado' ORDER BY i.interactionType.id"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_UNIT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.unit.nameUnit = :unit"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.interactionType.interactionType = :interactionType"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
