@@ -2,20 +2,26 @@ package services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Iterator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 
 import models.GenericInteraction;
 import models.Interaction;
 import models.dto.Paginate;
+import models.Person;
 import repositories.InteractionRepository;
 
 @RequestScoped // Avoid circular dependency between services
 public class InteractionService extends EntityService<InteractionRepository, Interaction>{
 
+
 	@Inject // Inject generic variable in runtime
 	protected InteractionRepository I;
+	@Inject
+	protected ClientService CS;
 	
 	public Collection<Interaction> showAll() {
 		return I.showAll();
@@ -152,6 +158,24 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		System.out.println("AqUI" + p);
 		return p;
 	}
+	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return I.countAllContractsPerWeek(week);
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
+	}
 
 	public Long filterCount(String myselectWeek, String myselectUnity, String myselectClient, String myselectBM,String myselectInteration) {
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
@@ -163,36 +187,40 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	* Dashboard Module Ends *
 	************************/
 	
-//	public Collection<Interaction> showAll() {
-//		return I.showAll();
-//	}
-//	
-//	public Collection<String> showAllWeeks() {
-//		return I.showAllWeeks();
-//	}
-//	
-//	public Collection<String> showAllClients() {
-//		return I.showAllClients();
-//	}
-//	
-//	public Collection<String> showAllUnities() {
-//		return I.showAllUnities();
-//	}
-//	
-//	public Collection<String> showAllBManagers() {
-//		return I.showAllBManagers();
-//	}
-//	
-//	public Collection<String> showAllInteractions() {
-//		return I.showAllInteractions();
-//	}
-//
-//	public Collection<Interaction> showAllFilter(String filter) {
-//		return I.showAllFilter(filter);
-//	}
-//
-//	public Collection<Interaction> showAllSearch(String search) {
-//		return I.showAllSearch(search);
-//	}
-//	
+	
+	public Collection<Interaction> showAllInteractionsByUser(long personId)
+	
+	{
+		
+		return I.getInteractionsByUserId(personId);
+		
+	}
+
+
+	@Override
+	public Interaction save(Interaction object) throws Exception {
+		// TODO Auto-generated method stub
+		if(object.getInteractionType().getId()==2) {
+			CS.updateRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		return I.save(object);
+	}
+
+	@Override
+	public void delete(long id) throws Exception {
+		// TODO Auto-generated method stub
+		Interaction object = I.getObj(id);
+		if(object.getInteractionType().getId()==2) {
+			CS.updateDecreaseRevenue(object.getClient().getId(), object.getPotentialRevenue());
+		}
+		super.delete(id);
+	}
+	
+    public Collection<Interaction> filtro(String myselectSemana, String myselectUnidade, String myselectCliente, String myselectBM,String myselectInteration) {
+        return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+    }
+	
+
+
+
 }

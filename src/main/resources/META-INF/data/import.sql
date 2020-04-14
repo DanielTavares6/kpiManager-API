@@ -6,7 +6,13 @@ INSERT INTO Unit (nameUnit) VALUES ('Unidade E');
 INSERT INTO Unit (nameUnit) VALUES ('Unidade F');
 INSERT INTO Unit (nameUnit) VALUES ('Lisboa');
 INSERT INTO Unit (nameUnit) VALUES ('Porto');
+INSERT INTO Unit (nameUnit) VALUES ('Faro');
 
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (501591109, 100, 'Continente');
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (501199993, 200, 'Microsoft');
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (508141966, 300, 'Apple');
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (505350173, 400, 'Visionbox');
+INSERT INTO Client (nipc, potentialRevenue, name) VALUES (509815316, 500, 'HRB');
 
 
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000001, 100, 'Bnp Paribas');
@@ -17,6 +23,12 @@ INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'Sky');
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'EDP');
 INSERT INTO Client (nipc, potentialRevenue, name) VALUES (0000005, 500, 'Accenture');
 
+
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Joaquim@aubay.com', '1gfhf', 'Joaquim Marques', 'director', 'salt1' ,'Joaq', 1);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('AntonioDuarte@gmail.com', '2fghfgh', 'Antonio Duarte', 'manager','salt2', 'Anto',2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Jose76@aubay.com', '3fghfgh', 'Jose Alves', 'manager','salt3','Jose', 3);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Paulo@hotmail.com', '4fghff', 'Paulo Morim', 'manager','salt4','Paul', 2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Joao1984@gmail.com', '5gfghf', 'Joao Martins', 'manager' ,'salt5','Joao', 1);
 
 
 INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser');

@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.GET_ALL_CLIENTS, query = "SELECT DISTINCT i.client.name FROM Interaction i ORDER BY i.client.name"),
 		@NamedQuery(name = Interaction.GET_ALL_CLIENTS_FILTER, query = "SELECT i FROM Interaction i WHERE i.client.name = :filter ORDER BY i.client.name"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS, query = "SELECT DISTINCT i.interactionType.interactionType FROM Interaction i ORDER BY i.interactionType.interactionType"),
+		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_BY_USER_ID, query = "SELECT i FROM Interaction i WHERE i.person.id =: personId"),
 		@NamedQuery(name = Interaction.GET_ALL_INTERACTIONS_FILTER, query = "SELECT i FROM Interaction i WHERE i.interactionType.interactionType = :filter ORDER BY i.interactionType"),
 		@NamedQuery(name = Interaction.GET_ALL_BETWEEN, query = "SELECT i FROM Interaction i WHERE i.id >= :startIndex AND i.id < :quantity ORDER BY i.dateInteraction + 0"),
 		//	@NamedQuery(name = Interaction.GET_ALL_FILTER, query="SELECT i FROM Interaction i WHERE :filter ORDER BY i.dateInteraction"),
@@ -39,8 +40,12 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_UNIT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.unit.nameUnit = :unit"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.interactionType.interactionType = :interactionType"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
+		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Contrato' AND i.dateInteraction = :week"),
+		@NamedQuery(name = Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Entrevista' AND i.dateInteraction = :week"),
 		// Dashboard Module Ends
+		
 })
+
 public class Interaction extends Entity_ {
 
 	public static final String GET_ALL_WEEKS = "Interaction.getAllWeeks";
@@ -69,12 +74,17 @@ public class Interaction extends Entity_ {
 	public static final String COUNT_ALL_INTERACTIONS_PER_UNIT = "Interaction.countAllInteractionsPerUnit";
 	public static final String COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE = "Interaction.countAllInteractionsPerInteractionType";
 	public static final String COUNT_ALL_INTERACTIONS_PER_CLIENT = "Interaction.countAllInteractionsPerClient";
+	public static final String COUNT_ALL_CONTRACTS_PER_WEEK = "Interaction.countAllContractsPerWeek";
+	public static final String COUNT_ALL_INTERVIEWS_PER_WEEK = "Interaction.countAllInterviewsPerWeek";
 	// DashBoard Module Ends
+	
+	public static final String GET_ALL_INTERACTIONS_BY_USER_ID = "Interaction.getAllInteractionsByUserId";
 
 	private static final long serialVersionUID = 1L;
+	
 
 	private String dateInteraction;
-	
+	private Long potentialRevenue;
 	// These are the child entities (check Person, Unit, Client and InteractionType to see parent entites and its annotations
 	
 	// Not sure if implemented as for example:  https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
@@ -92,6 +102,15 @@ public class Interaction extends Entity_ {
 	@JoinColumn(name = "interactionType_id", referencedColumnName = "id")
 	private InteractionType interactionType;
 
+	
+	public Long getPotentialRevenue() {
+		return potentialRevenue;
+	}
+
+	public void setPotentialRevenue(Long potentialRevenue) {
+		this.potentialRevenue = potentialRevenue;
+	}
+	
 	public String getDateInteraction()
 
 	{

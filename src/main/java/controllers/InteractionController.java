@@ -5,19 +5,20 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import javax.ws.rs.DELETE;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.core.Response.Status;
 
 import models.GenericInteraction;
+import controllers.PersonController.Secured;
 import models.Interaction;
 import models.dto.Paginate;
 import repositories.InteractionRepository;
@@ -178,7 +179,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	public Collection<Interaction> showAllSearch(@PathParam("search") String search) {
 		return I.showAllSearch(search);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("filter")
@@ -209,6 +210,19 @@ public class InteractionController extends EntityController<InteractionService, 
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 	
+	@GET
+    @Path("filtro")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
+            @QueryParam("sel1") String myselectUnidade,
+            @QueryParam("sel2") String myselectCliente,
+            @QueryParam("sel3") String myselectBM,
+            @QueryParam("sel4") String myselectInteration
+            ) {
+        System.out.println("sel0 = " + myselectSemana);
+        return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+    }
+
 	@GET
 	@PermitAll
 	@Path("all/between")
@@ -260,7 +274,7 @@ public class InteractionController extends EntityController<InteractionService, 
     
     
 
-	 /*************************
+	/*************************
 	 * Dashboard Module Starts*
 	 *************************/
 
@@ -272,7 +286,13 @@ public class InteractionController extends EntityController<InteractionService, 
 			@NotNull @QueryParam("week") String week) {
 		return I.getAllCvsPerWeekPerManager(manager, week);
 	}
+
+
+
 	
+	
+	
+
 	@GET
 	@PermitAll
 	@Path("cvs/count/{manager}")
@@ -290,7 +310,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			@QueryParam("interactionType") String interactionType, @QueryParam("clientName") String clientName) {
 		try {
 			if (unit != null && interactionType != null && clientName != null) {
-				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName" );
+				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName");
 			}
 			if (unit != null && interactionType != null) {
 				throw new Exception("Insira apenas ou unit query ou interactionType query ou a query clientName");
@@ -304,7 +324,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			if (unit != null) {
 				return Response.ok().entity(I.countAllInteractionsPerUnit(unit)).build();
 			}
-			if(clientName != null) {
+			if (clientName != null) {
 				return Response.ok().entity(I.countAllInteractionsPerClient(clientName)).build();
 			}
 			if (interactionType != null) {
@@ -316,8 +336,38 @@ public class InteractionController extends EntityController<InteractionService, 
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 	}
-	
-	 /************************
+
+	@GET
+	@PermitAll
+	@Path("count/contratsPerWeek")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public long countAllContractsPerWeek(@QueryParam("week") String week) {
+		return I.countAllContractsPerWeek(week);
+	}
+
+	@GET
+	@PermitAll
+	@Path("count/interviewsPerWeek")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return I.countAllInterviewsPerWeek(week);
+	}
+
+	/************************
 	 * Dashboard Module Ends *
 	 ************************/
+	
+	@GET
+	@PermitAll
+	@Path("person/{personId}")
+	@Produces(MediaType.APPLICATION_JSON)
+
+	public Collection<Interaction> showAllInteractionsFilter(@PathParam("personId") long personId)
+
+	{
+		return I.showAllInteractionsByUser(personId);
+	}
+	
+	
+	
 }

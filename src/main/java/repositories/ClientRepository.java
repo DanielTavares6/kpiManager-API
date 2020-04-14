@@ -1,15 +1,20 @@
 package repositories;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.faces.bean.ApplicationScoped;
+import javax.persistence.NoResultException;
 
 import models.Client;
+import models.Interaction;
+import models.Person;
 
 @ApplicationScoped
 public class ClientRepository extends EntityRepository <Client>
 
 {
 
-	
 	@Override
 	public Class<Client> getEntityClass() 
 	
@@ -21,7 +26,7 @@ public class ClientRepository extends EntityRepository <Client>
 	public String getAllEntityQueryName() 
 	
 	{
-		return Client.GET_ALL_CLIENTS_QUERY_NAME;
+		return Client.GET_ALL_CLIENTS;
 	}
 
 	@Override
@@ -30,9 +35,56 @@ public class ClientRepository extends EntityRepository <Client>
 	{
 		return Client.GET_ALL_CLIENTS_IDS;
 	}
+	public int updateRevenue(long id, long value) {
+		return entityManager.createNamedQuery
+		(Client.UPDATE_POTENTIAL_REVENUE).setParameter("value",value).setParameter("id",id ).executeUpdate();
+
+	}
+
+	public void updateDecreaseRevenue(long id, Long potentialRevenue) {
+		// TODO Auto-generated method stub
+		entityManager.createNamedQuery
+				(Client.UPDATE_DECREASE_POTENTIAL_REVENUE).setParameter("value", potentialRevenue).setParameter("id",id ).executeUpdate();
+	}
 
 
+
+	public Client getClientByName(String name) throws NoResultException {
+		
+		return entityManager.createNamedQuery(Client.GET_CLIENT_BY_NAME, Client.class)
+				.setParameter("name", name)
+				.getSingleResult();
+	}
 	
+	public Client getClientByNipc(int nipc) throws NoResultException {
+		
+		return entityManager.createNamedQuery(Client.GET_CLIENT_BY_NIPC, Client.class)
+				.setParameter("nipc", nipc)
+				.getSingleResult();
+	}
+
+
+	public void clearInteractionByClientId (long clientId )
+		{
+				entityManager.createNamedQuery(Client.CLEAR_INTERACTION_BY_CLIENTID)
+					.setParameter("clientId", clientId) 
+					.executeUpdate();
+				
+		}
 	
+	public   Collection<Client> getCount(int startIndex, int quantity) {
+		return entityManager.createNamedQuery(Client.GET_COUNT_INTERACTIONS)
+				.setFirstResult(startIndex)
+				.setMaxResults(quantity)
+				.getResultList();
+	}
 	
-}
+	public Long getTotal() {
+		return (long) entityManager.createNamedQuery(Client.COUNT)
+				.getSingleResult();
+	}
+	
+	}
+	
+
+

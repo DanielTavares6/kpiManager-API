@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.NoResultException;
 
+import models.Client;
 import models.Person;
 
 @ApplicationScoped
@@ -17,7 +18,6 @@ public class PersonRepository extends EntityRepository <Person>
 			return entityManager.createNamedQuery(Person.GET_PERSON_BY_USERNAME,Person.class)
 					.setParameter("username", username)
 					.getSingleResult();
-		
 		}
 		
 		public Person getManagerByEmail(String email) throws NoResultException {
@@ -27,7 +27,6 @@ public class PersonRepository extends EntityRepository <Person>
 					.getSingleResult();
 		
 		}
-		
 		
 		public Collection<Person> showAllEntitiesByUnit(long unitId)
 		
@@ -40,7 +39,17 @@ public class PersonRepository extends EntityRepository <Person>
 		}
 		
 		
-		public Collection<Person> showAllManagers()
+		public Collection<Person> showAllManagers(int startIndex, int quantity)
+		
+		{
+			
+			return entityManager.createNamedQuery(Person.GET_MANAGERS,Person.class)
+					.setFirstResult(startIndex)
+					.setMaxResults(quantity)
+					.getResultList();
+			
+		}
+public Collection<Person> showAllManagers()
 		
 		{
 			
@@ -73,6 +82,19 @@ public class PersonRepository extends EntityRepository <Person>
 		@Override
 		protected String getAllIdsQueryName() {
 			return Person.GET_ALL_PERSON_IDS;
+		}
+		
+		public void clearInteractionByUserId (long id )
+		{
+				entityManager.createNamedQuery(Person.CLEAR_INTERACTION_BY_USERID)
+					.setParameter("userId", id) 
+					.executeUpdate();
+				
+		}
+		
+		public Long getTotal() {
+			return (long) entityManager.createNamedQuery(Person.COUNT)
+					.getSingleResult();
 		}
 
 }

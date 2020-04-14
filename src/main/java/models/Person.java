@@ -17,6 +17,8 @@ import javax.persistence.UniqueConstraint;
 @NamedQuery(name = Person.GET_MANAGERS, query="SELECT c FROM Person c WHERE c.role = 'manager' "),
 @NamedQuery(name = Person.GET_DIRECTORS, query="SELECT c FROM Person c WHERE c.role = 'director' "),
 @NamedQuery(name = Person.GET_PERSON_BY_EMAIL, query = "SELECT c FROM Person c WHERE c.email =:email"),
+@NamedQuery(name=  Person.CLEAR_INTERACTION_BY_USERID , query=" DELETE FROM Interaction i WHERE i.person.id = :userId"),
+@NamedQuery(name = Person.COUNT, query = "SELECT COUNT(p.id) FROM Person p  WHERE p.role = 'manager'")
 })
 
 
@@ -31,7 +33,8 @@ public class Person extends Entity_ {
 	public static final String GET_PERSON_BY_USERNAME = "Person.getPersonByUsername";
 	public static final String GET_ALL_PERSON_QUERY_NAME = "Person.getAllPersons";
 	public static final String GET_ALL_PERSON_IDS = "Person.getAllPersonsIds";
-
+	public static final String CLEAR_INTERACTION_BY_USERID = "Person.clearInteractionByUserId";
+	public static final String COUNT = "Person.Count";
 
 	private String username;
 	private String hashcode;

@@ -10,6 +10,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+import javax.ws.rs.QueryParam;
 
 import models.Client;
 import models.GenericInteraction;
@@ -108,14 +110,26 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT;
 	}
 	
+	protected String countAllContractsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
+	}
+	
+	protected String countAllInterviewsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK;
+	}
+	
 	 /************************
 	 * Dashboard Module Ends *
 	 ************************/
 	
+	protected String getAllInteractionsByUserId() {
+		return Interaction.GET_ALL_INTERACTIONS_BY_USER_ID;
+	}
+	
+	
 	@Override
 	public Class<Interaction> getEntityClass() {
-
-		return null;
+		return Interaction.class;
 	}
 
 	@Override
@@ -407,7 +421,76 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 
 
 	
+	/**
+	 * Counts all contracts per week
+	 * @param week week
+	 * @return all contracts signed per week
+	 */
+	public long countAllContractsPerWeek(String week) {
+		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+	
+	/**
+	 * Counts all interviews per week
+	 * @param week week
+	 * @return all interviews per week
+	 */
+	public long countAllInterviewsPerWeek(@QueryParam("week") String week) {
+		return entityManager.createNamedQuery(countAllInterviewsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+	
 	/************************
 	* Dashboard Module Ends *
 	************************/
+	
+	
+	
+	public Collection<Interaction> getInteractionsByUserId(long personId) {
+		return entityManager.createNamedQuery(getAllInteractionsByUserId(), getEntityClass()).setParameter("personId" , personId).getResultList();
+	}
+	
+	
+	public Collection<Interaction> filtro(String myselectSemana,
+            String myselectUnidade,
+            String myselectCliente,
+            String myselectBM,
+            String myselectInteration) {
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Interaction> q = cb.createQuery(Interaction.class);
+        Root<Interaction> root = q.from(Interaction.class);
+        q.select(root);
+
+        List<Predicate> listPredicate = new ArrayList<Predicate>();
+
+        if (!myselectSemana.equals("null")) {
+            listPredicate.add(cb.equal((root.get("dateInteraction")), myselectSemana));
+        }
+
+        if (!myselectUnidade.equals("null")) {
+            Join<Interaction, Unit> join = root.join("unit"); 
+            listPredicate.add(cb.equal((join.get("nameUnit")), myselectUnidade));
+        }
+
+        if (!myselectCliente.equals("null")) {
+            Join<Interaction, Client> join = root.join("client"); 
+            listPredicate.add(cb.equal((join.get("name")), myselectCliente));
+        }
+
+        if (!myselectBM.equals("null")) {
+            Join<Interaction, Person> join = root.join("person"); 
+            listPredicate.add(cb.equal((join.get("name")), myselectBM));
+        }
+
+        if (!myselectInteration.equals("null")) {
+            Join<Interaction, InteractionType> join = root.join("interactionType"); 
+            listPredicate.add(cb.equal((join.get("interactionType")), myselectInteration));
+        }
+
+        q.where(listPredicate.toArray(new Predicate[0]));
+
+        q.select(root);
+
+        return entityManager.createQuery(q).getResultList();
+    }
 }

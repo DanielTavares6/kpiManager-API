@@ -9,22 +9,30 @@ import java.security.Principal;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.NameBinding;
 import java.util.Collection;
 
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import controllers.PersonController.Secured;
+import models.Client;
 import models.Person;
+import models.Unit;
+import models.dto.PaginateDTO;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import services.PersonService;
@@ -107,16 +115,27 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 		return service.showAllEntitiesByUnit(unitId);
 	}
 	
-	
 	@GET
 	@PermitAll
 	@Path("managers")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Person> showAllManagers()
-
+	public Response showAllManagers()
 	{
-		return service.showAllManagers();
+		
+		 Collection<Person> num = service.showAllManagers();
+		return Response.ok().entity(num).build();
+	}
+	
+	
+	@GET
+	@Path("managers/count")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response showAllManagers(@QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity)
+	{
+		
+		PaginateDTO<Person> num = service.getCount(startIndex, quantity);
+		return Response.ok().entity(num).build();
 	}
 	
 	
@@ -129,7 +148,56 @@ public class PersonController extends EntityController<PersonService, PersonRepo
 
 	{
 		return service.showAllDirectors();
+	}
+	
+/************************************************Edit Manager***********************************/
+/**** http://localhost:8080/kpiManager/api/users/{id} ****/
+
+	@PUT
+	@Secured 
+	@PermitAll //change to director
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response editManager(Person manager,@PathParam("id") int id){
+		try {
+			String newName = manager.getName();
+			Unit newUnit = manager.getUnit();
+			
+			Person setManager = service.getObject(id);
+			setManager.setName(newName);
+			setManager.setUnit(newUnit);
+			
+			service.edit(setManager,id);
+			return Response.ok().entity("manager editado com sucesso").build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
+	}
+	
+	
+	/************************************************Delete Client and Interactions --> permission granted to SuperUser***********************************/
+	/**** http://localhost:8080/kpiManager/api/users/{id} ****/
+	@Transactional
+	@Override
+	@DELETE
+	@Secured
+	@RolesAllowed (value = { "SuperUser"})
+	@Path("/{userId}")
+	public Response delete(@PathParam("userId") long id ){
+		try {
+			 service.clearInteractionByUserId(id);
+			return Response.ok().entity("sucesso").build();
+		} catch (Exception e) {
+			e.printStackTrace();			
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+		}
 	}	
+	
+	
+	
+	
+
 }
 
 

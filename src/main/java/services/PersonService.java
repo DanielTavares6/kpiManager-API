@@ -23,7 +23,9 @@ import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 
+import models.Client;
 import models.Person;
+import models.dto.PaginateDTO;
 import models.dto.PersonDTO;
 import repositories.PersonRepository;
 import utils.PasswordUtils;
@@ -41,11 +43,11 @@ public class PersonService extends EntityService<PersonRepository, Person>
 
 		if (checkUserExists(entity.getUsername()) == true) {
 
-			throw new Exception("  Username já existe!  ");
+			throw new Exception("  Username already exists!  ");
 
 		} else if (checkEmailExists(entity.getEmail()) == true) {
 
-			throw new Exception("  Email já existe!  ");
+			throw new Exception("  Email already exists!  ");
 		} else {
 			Person m = new Person();
 
@@ -177,6 +179,27 @@ public class PersonService extends EntityService<PersonRepository, Person>
 		return repository.showAllDirectors();
 	}
 	
+
+	
+	@Override
+	public Person  getObject(long id) {
+		
+	 return repository.getObj(id);
+	 
+	}
+
+	public void clearInteractionByUserId(long id) {
+
+		repository.clearInteractionByUserId(id);
+		repository.remove(id);
+	}
+	
+	public PaginateDTO<Person> getCount(int startIndex, int quantity) {
+		Collection<Person> person =  repository.showAllManagers(startIndex, quantity);
+		Long count = repository.getTotal();
+		PaginateDTO<Person> p = new PaginateDTO<Person>(person, count);
+		return p;
+	}
 }
 
 
