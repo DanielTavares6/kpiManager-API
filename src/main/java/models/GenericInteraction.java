@@ -1,4 +1,4 @@
-package repositories;
+package models;
 
 public class GenericInteraction {
 	

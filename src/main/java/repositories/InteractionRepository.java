@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import models.Client;
+import models.GenericInteraction;
 import models.Interaction;
 import models.InteractionType;
 import models.Person;
@@ -336,7 +337,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	
     public List<GenericInteraction>filterClient( ) {
         
-        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE);
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERACTION_TYPE);
         
 //        		query.setParameter("clientName", myselectClient);
         
@@ -345,7 +346,7 @@ public class InteractionRepository extends EntityRepository <Interaction>{
     
     public List<GenericInteraction>filterManager( ) {
         
-        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE);
+        TypedQuery<GenericInteraction> query= (TypedQuery<GenericInteraction>) entityManager.createNamedQuery(Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERACTION_TYPE);
         
 //        		query.setParameter("managerName", myselectManager);
         

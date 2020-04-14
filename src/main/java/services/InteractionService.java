@@ -6,9 +6,9 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import models.GenericInteraction;
 import models.Interaction;
 import models.dto.Paginate;
-import repositories.GenericInteraction;
 import repositories.InteractionRepository;
 
 @RequestScoped // Avoid circular dependency between services

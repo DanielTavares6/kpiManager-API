@@ -17,9 +17,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
+import models.GenericInteraction;
 import models.Interaction;
 import models.dto.Paginate;
-import repositories.GenericInteraction;
 import repositories.InteractionRepository;
 import services.InteractionService;
 

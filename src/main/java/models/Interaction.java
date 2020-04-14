@@ -25,9 +25,9 @@ import javax.persistence.OneToOne;
 				+ " OR i.unit.nameUnit LIKE :search" + " OR i.person.name LIKE :search"
 				+ " OR i.interactionType.interactionType LIKE :search"
 				+ " OR i.client.name LIKE :search ORDER BY i.dateInteraction"),
-        @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.client c "
+        @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERACTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.client c "
         		+ "join i.interactionType it where i.interactionType.id in (1,2) group by c.name, it.interactionType"),
-        @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.person c "
+        @NamedQuery(name = Interaction.GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERACTION_TYPE, query=" Select count(i) as countInteractions, c.name, it.interactionType from Interaction i join i.person c "
         		+ "join i.interactionType it where i.interactionType.id in (1,2)  group by c.name, it.interactionType"),
 		// Second TAB queries
 		@NamedQuery(name = Interaction.GET_ALL_REVENUE_PER_CLIENT, query = "SELECT i.client.potentialRevenue FROM Interaction i WHERE i.client.name = :name AND i.interactionType.interactionType = :interaction"),
@@ -59,8 +59,8 @@ public class Interaction extends Entity_ {
 	public static final String GET_ALL_BETWEEN = "Interaction.getAllBetween";
 	public static final String GET_ALL_REVENUE_PER_CLIENT = "Interaction.getAllRevenuePerClient";
 	public static final String GET_ALL_REVENUE_PER_MANAGER = "Interaction.getAllRevenuePerManager";
-    public static final String GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERECTION_TYPE= "Interaction.getInteractionGroupByClientAndInteractionType";
-    public static final String GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERECTION_TYPE= "Interaction.getInteractionGroupByManagerAndInteractionType";
+    public static final String GET_INTERACTIONS_GROUP_BY_CLIENT_AND_INTERACTION_TYPE= "Interaction.getInteractionGroupByClientAndInteractionType";
+    public static final String GET_INTERACTIONS_GROUP_BY_MANAGER_AND_INTERACTION_TYPE= "Interaction.getInteractionGroupByManagerAndInteractionType";
 
     
 	// Dashboard Module Starts
