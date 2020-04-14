@@ -40,8 +40,9 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_UNIT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.unit.nameUnit = :unit"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.interactionType.interactionType = :interactionType"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
-		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Contrato' AND i.dateInteraction = :week"),
+		@NamedQuery(name = Interaction.COUNT_ACCEPTED_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Proposta aceite' AND i.dateInteraction = :week"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Entrevista' AND i.dateInteraction = :week"),
+		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.dateInteraction = :week AND i.interactionType.interactionType = 'Proposta aceite' OR i.interactionType.interactionType = 'Proposta recusada'"),
 		// Dashboard Module Ends
 		
 })
@@ -74,8 +75,9 @@ public class Interaction extends Entity_ {
 	public static final String COUNT_ALL_INTERACTIONS_PER_UNIT = "Interaction.countAllInteractionsPerUnit";
 	public static final String COUNT_ALL_INTERACTIONS_PER_INTERACTION_TYPE = "Interaction.countAllInteractionsPerInteractionType";
 	public static final String COUNT_ALL_INTERACTIONS_PER_CLIENT = "Interaction.countAllInteractionsPerClient";
-	public static final String COUNT_ALL_CONTRACTS_PER_WEEK = "Interaction.countAllContractsPerWeek";
+	public static final String COUNT_ACCEPTED_CONTRACTS_PER_WEEK = "Interaction.countAcceptedContractsPerWeek";
 	public static final String COUNT_ALL_INTERVIEWS_PER_WEEK = "Interaction.countAllInterviewsPerWeek";
+	public static final String COUNT_ALL_CONTRACTS_PER_WEEK = "Interaction.countAllContractsPerWeek";
 	// DashBoard Module Ends
 	
 	public static final String GET_ALL_INTERACTIONS_BY_USER_ID = "Interaction.getAllInteractionsByUserId";

@@ -4,11 +4,17 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import models.Client;
+import models.Interaction;
 import models.Person;
 import models.Unit;
 import models.dto.PaginateDTO;
@@ -115,5 +121,20 @@ public class ClientService extends EntityService<ClientRepository, Client>
 		// TODO Auto-generated method stub
 		repository.updateDecreaseRevenue(id, potentialRevenue);
 	}
+	
+	/***************************
+	 * Dashboard Module Starts *
+	 **************************/
+
+	/**
+	 * @return the top5 potential revenue clients
+	 */
+	public Collection<Client> top5PotentialRevenue() {
+		return repository.top5PotentialRevenue();
+	}
+	
+	/************************
+	 * Dashboard Module Ends *
+	 ************************/
 
 }

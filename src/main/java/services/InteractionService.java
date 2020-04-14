@@ -164,8 +164,8 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 	 * @param week week
 	 * @return all contracts signed per week
 	 */
-	public long countAllContractsPerWeek(String week) {
-		return I.countAllContractsPerWeek(week);
+	public long countAcceptedContractsPerWeek(String week) {
+		return I.countAcceptedContractsPerWeek(week);
 	}
 	
 	/**
@@ -181,7 +181,9 @@ public class InteractionService extends EntityService<InteractionRepository, Int
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
 
-	
+	public long countAllContractsPerWeek(@QueryParam("week") String week) {
+		return I.countAllContractsPerWeek(week);
+	}
 	
 	/************************
 	* Dashboard Module Ends *

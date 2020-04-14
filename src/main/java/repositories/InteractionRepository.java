@@ -110,12 +110,16 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT;
 	}
 	
-	protected String countAllContractsPerWeekQueryName() {
-		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
+	protected String countAcceptedContractsPerWeekQueryName() {
+		return Interaction.COUNT_ACCEPTED_CONTRACTS_PER_WEEK;
 	}
 	
 	protected String countAllInterviewsPerWeekQueryName() {
 		return Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK;
+	}
+	
+	protected String countAllContractsPerWeekQueryName() {
+		return Interaction.COUNT_ALL_CONTRACTS_PER_WEEK;
 	}
 	
 	 /************************
@@ -417,17 +421,14 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 	public long countAllInteractionsPerClient(String clientName) {
 		return entityManager.createNamedQuery(countAllInteractionsPerClientQueryName(), Long.class).setParameter("clientName", clientName).getSingleResult();
 	}
-
-
-
 	
 	/**
-	 * Counts all contracts per week
+	 * Counts all accepted contracts per week
 	 * @param week week
-	 * @return all contracts signed per week
+	 * @return all accepted contracts signed per week
 	 */
-	public long countAllContractsPerWeek(String week) {
-		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	public long countAcceptedContractsPerWeek(String week) {
+		return entityManager.createNamedQuery(countAcceptedContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
 	}
 	
 	/**
@@ -439,6 +440,15 @@ public class InteractionRepository extends EntityRepository <Interaction>{
 		return entityManager.createNamedQuery(countAllInterviewsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
 	}
 	
+	/**
+	 * Counts all contracts per week
+	 * @param week week	
+	 * @return all contracts per week
+	 */
+	public long countAllContractsPerWeek(@QueryParam("week") String week) {
+		return entityManager.createNamedQuery(countAllContractsPerWeekQueryName(), Long.class).setParameter("week", week).getSingleResult();
+	}
+
 	/************************
 	* Dashboard Module Ends *
 	************************/

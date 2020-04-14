@@ -19,7 +19,8 @@ import models.Unit;
 		@NamedQuery(name = Client.COUNT, query = "SELECT COUNT(c.id) FROM Client c"),
 @NamedQuery(name = Client.GET_ALL_CLIENTS_QUERY_NAME, query="SELECT c FROM Client c"),
 @NamedQuery(name = Client.UPDATE_POTENTIAL_REVENUE, query = "UPDATE Client c SET c.potentialRevenue = c.potentialRevenue + :value WHERE c.id =:id"),
-@NamedQuery(name = Client.UPDATE_DECREASE_POTENTIAL_REVENUE, query = "UPDATE Client c SET c.potentialRevenue = c.potentialRevenue - :value WHERE c.id =:id")
+@NamedQuery(name = Client.UPDATE_DECREASE_POTENTIAL_REVENUE, query = "UPDATE Client c SET c.potentialRevenue = c.potentialRevenue - :value WHERE c.id =:id"),
+@NamedQuery(name = Client.TOP5_POTENTIAL_REVENUE, query="SELECT c.name, c.potentialRevenue FROM Client c ORDER BY c.potentialRevenue DESC")
 })
 
 public class Client extends Entity_
@@ -35,6 +36,7 @@ public class Client extends Entity_
 	public static final String GET_ALL_CLIENTS_QUERY_NAME = "Product.getAllClients" ;
 	public static final String UPDATE_POTENTIAL_REVENUE = "Client.updateRevenue";
 	public static final String UPDATE_DECREASE_POTENTIAL_REVENUE = "Client.updateDecreaseRevenue";
+	public static final String TOP5_POTENTIAL_REVENUE = "Client.top5PotentialRevenue";
 	
 	private static final long serialVersionUID = 1L;
 

@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.Collection;
 import java.util.List;
-
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -16,7 +15,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
 import models.GenericInteraction;
 import controllers.PersonController.Secured;
 import models.Interaction;
@@ -47,9 +45,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<Interaction> showAll() {
-
 		return I.showAll();
 	}
 
@@ -57,9 +53,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allWeeks")
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<String> showAllWeeks() {
-
 		return I.showAllWeeks();
 	}
 
@@ -67,9 +61,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allWeeksFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<Interaction> showAllWeeksFilter(@PathParam("filter") String filter) {
-
 		return I.showAllWeeksFilter(filter);
 	}
 
@@ -77,7 +69,6 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allClients")
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public Collection<String> showAllClients() {
 
 		return I.showAllClients();
@@ -87,10 +78,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allClientsFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Interaction> showAllClientsFilter(@PathParam("filter") String filter)
-
-	{
+	public Collection<Interaction> showAllClientsFilter(@PathParam("filter") String filter) {
 		return I.showAllClientsFilter(filter);
 	}
 
@@ -98,10 +86,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allBManagers")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<String> getAllBManagers()
-
-	{
+	public Collection<String> getAllBManagers() {
 		return I.showAllBManagers();
 	}
 
@@ -109,10 +94,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allBManagersFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Interaction> showAllBManagersFilter(@PathParam("filter") String filter)
-
-	{
+	public Collection<Interaction> showAllBManagersFilter(@PathParam("filter") String filter) {
 		return I.showAllBManagersFilter(filter);
 	}
 
@@ -120,10 +102,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allInteractions")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<String> getAllInteractions()
-
-	{
+	public Collection<String> getAllInteractions() {
 		return I.showAllInteractions();
 	}
 
@@ -131,10 +110,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allInteractionsFilter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Interaction> showAllInteractionsFilter(@PathParam("filter") String filter)
-
-	{
+	public Collection<Interaction> showAllInteractionsFilter(@PathParam("filter") String filter) {
 		return I.showAllInteractionsFilter(filter);
 	}
 
@@ -142,10 +118,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allUnits")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<String> getAllUnities()
-
-	{
+	public Collection<String> getAllUnities() {
 		return I.showAllUnities();
 	}
 
@@ -153,10 +126,7 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("allUnits/Filter/{filter}")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Interaction> getAllUnitiesFilter(@PathParam("filter") String filter)
-
-	{
+	public Collection<Interaction> getAllUnitiesFilter(@PathParam("filter") String filter) {
 		return I.showAllUnitiesFilter(filter);
 	}
 
@@ -184,44 +154,35 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("filter")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response filtrer(@QueryParam("week") String myselectWeek,
-			@QueryParam("unit") String myselectUnity,
-			@QueryParam("client") String myselectClient,
-			@QueryParam("businessManagers") String myselectBM,
-			@QueryParam("interaction") String myselectInteration,
-			@QueryParam("startIndex") int startIndex,
-			@QueryParam("quantity") int quantity
-			) {
+	public Response filtrer(@QueryParam("week") String myselectWeek, @QueryParam("unit") String myselectUnity,
+			@QueryParam("client") String myselectClient, @QueryParam("businessManagers") String myselectBM,
+			@QueryParam("interaction") String myselectInteration, @QueryParam("startIndex") int startIndex,
+			@QueryParam("quantity") int quantity) {
 
-		return Response.ok().entity(I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration, startIndex, quantity)).build();
+		return Response.ok().entity(I.filtrer(myselectWeek, myselectUnity, myselectClient, myselectBM,
+				myselectInteration, startIndex, quantity)).build();
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("filter/count")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Long filterCount(@QueryParam("week") String myselectWeek,
-			@QueryParam("unit") String myselectUnity,
-			@QueryParam("client") String myselectClient,
-			@QueryParam("businessManagers") String myselectBM,
-			@QueryParam("interaction") String myselectInteration
-			) {
+	public Long filterCount(@QueryParam("week") String myselectWeek, @QueryParam("unit") String myselectUnity,
+			@QueryParam("client") String myselectClient, @QueryParam("businessManagers") String myselectBM,
+			@QueryParam("interaction") String myselectInteration) {
 
 		return I.filterCount(myselectWeek, myselectUnity, myselectClient, myselectBM, myselectInteration);
 	}
-	
+
 	@GET
-    @Path("filtro")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
-            @QueryParam("sel1") String myselectUnidade,
-            @QueryParam("sel2") String myselectCliente,
-            @QueryParam("sel3") String myselectBM,
-            @QueryParam("sel4") String myselectInteration
-            ) {
-        System.out.println("sel0 = " + myselectSemana);
-        return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
-    }
+	@Path("filtro")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Collection<Interaction> filtro(@QueryParam("sel0") String myselectSemana,
+			@QueryParam("sel1") String myselectUnidade, @QueryParam("sel2") String myselectCliente,
+			@QueryParam("sel3") String myselectBM, @QueryParam("sel4") String myselectInteration) {
+		System.out.println("sel0 = " + myselectSemana);
+		return I.filtro(myselectSemana, myselectUnidade, myselectCliente, myselectBM, myselectInteration);
+	}
 
 	@GET
 	@PermitAll
@@ -232,7 +193,7 @@ public class InteractionController extends EntityController<InteractionService, 
 		startIndex *= quantity;
 		return I.showAllBetween(startIndex, quantity);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("revenue/client")
@@ -241,7 +202,7 @@ public class InteractionController extends EntityController<InteractionService, 
 			@QueryParam("interaction") String interaction) {
 		return I.showAllRevenuePerClient(name, interaction);
 	}
-	
+
 	@GET
 	@PermitAll
 	@Path("revenue/manager")
@@ -250,29 +211,24 @@ public class InteractionController extends EntityController<InteractionService, 
 			@QueryParam("interaction") String interaction) {
 		return I.showAllRevenuePerManager(name, interaction);
 	}
-	
-	
-    @GET
-    @PermitAll
-    @Path("filter/client")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<GenericInteraction> filterClient() {
 
-        return I.filterClient();
-    }
-    
-    @GET
-    @PermitAll
-    @Path("filter/manager")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<GenericInteraction> filterManager() {
+	@GET
+	@PermitAll
+	@Path("filter/client")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<GenericInteraction> filterClient() {
 
-        return I.filterManager();
-    }
-    
-    
-    
-    
+		return I.filterClient();
+	}
+
+	@GET
+	@PermitAll
+	@Path("filter/manager")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<GenericInteraction> filterManager() {
+
+		return I.filterManager();
+	}
 
 	/*************************
 	 * Dashboard Module Starts*
@@ -286,12 +242,6 @@ public class InteractionController extends EntityController<InteractionService, 
 			@NotNull @QueryParam("week") String week) {
 		return I.getAllCvsPerWeekPerManager(manager, week);
 	}
-
-
-
-	
-	
-	
 
 	@GET
 	@PermitAll
@@ -341,6 +291,14 @@ public class InteractionController extends EntityController<InteractionService, 
 	@PermitAll
 	@Path("count/contratsPerWeek")
 	@Produces({ MediaType.APPLICATION_JSON })
+	public long countAcceptedContractsPerWeek(@QueryParam("week") String week) {
+		return I.countAcceptedContractsPerWeek(week);
+	}
+
+	@GET
+	@PermitAll
+	@Path("count/allContratsPerWeek")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public long countAllContractsPerWeek(@QueryParam("week") String week) {
 		return I.countAllContractsPerWeek(week);
 	}
@@ -356,18 +314,13 @@ public class InteractionController extends EntityController<InteractionService, 
 	/************************
 	 * Dashboard Module Ends *
 	 ************************/
-	
+
 	@GET
 	@PermitAll
 	@Path("person/{personId}")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public Collection<Interaction> showAllInteractionsFilter(@PathParam("personId") long personId)
-
-	{
+	public Collection<Interaction> showAllInteractionsFilter(@PathParam("personId") long personId) {
 		return I.showAllInteractionsByUser(personId);
 	}
-	
-	
-	
+
 }
