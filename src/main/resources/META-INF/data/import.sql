@@ -61,7 +61,7 @@ INSERT INTO InteractionType(interactionType) VALUES ('Ponto de Situacao');
 INSERT INTO InteractionType(interactionType) VALUES ('Realocacoes - Receber');
 INSERT INTO InteractionType(interactionType) VALUES ('Realocacoes - Dar');
 INSERT INTO InteractionType(interactionType) VALUES ('Reunioes Cliente');
-INSERT INTO InteractionType(interactionType) VALUES ('Negocio abaixo de 32%');
+INSERT INTO InteractionType(interactionType) VALUES ('Negocio abaixo de 32');
 
 
 
