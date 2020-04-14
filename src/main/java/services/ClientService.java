@@ -32,7 +32,7 @@ public class ClientService extends EntityService<ClientRepository, Client>
 			Client c = new Client();
 			String name = entity.getName();
 			int nipc = entity.getNipc();
-			int potentialRevenue = entity.getPotentialRevenue();
+			long potentialRevenue = entity.getPotentialRevenue();
 			c.setName(name);
 			c.setNipc(nipc);
 			c.setPotentialRevenue(potentialRevenue);
@@ -105,7 +105,7 @@ public class ClientService extends EntityService<ClientRepository, Client>
 
 	}
 
-	public void updateRevenue(long id, Long potentialRevenue) {
+	public void updateRevenue(long id, long potentialRevenue) {
 		// TODO Auto-generated method stub
 		repository.updateRevenue(id, potentialRevenue);
 

@@ -51,11 +51,11 @@ INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES 
 
 
 INSERT INTO InteractionType(interactionType) VALUES ('Proposta aceite');
+INSERT INTO InteractionType(interactionType) VALUES ('Aprovacao');
 INSERT INTO InteractionType(interactionType) VALUES ('Proposta Recusada');
 INSERT INTO InteractionType(interactionType) VALUES ('Pedido');
 INSERT INTO InteractionType(interactionType) VALUES ('CV enviado');
 INSERT INTO InteractionType(interactionType) VALUES ('Entrevista');
-INSERT INTO InteractionType(interactionType) VALUES ('Aprovacao');
 INSERT INTO InteractionType(interactionType) VALUES ('Saida');
 INSERT INTO InteractionType(interactionType) VALUES ('Ponto de Situacao');
 INSERT INTO InteractionType(interactionType) VALUES ('Realocacoes - Receber');
