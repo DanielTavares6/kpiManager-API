@@ -42,7 +42,7 @@ import javax.persistence.OneToOne;
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERACTIONS_PER_CLIENT, query = "SELECT COUNT(i.interactionType) FROM Interaction i WHERE i.client.name = :clientName"),
 		@NamedQuery(name = Interaction.COUNT_ACCEPTED_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Proposta aceite' AND i.dateInteraction = :week"),
 		@NamedQuery(name = Interaction.COUNT_ALL_INTERVIEWS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.interactionType.interactionType = 'Entrevista' AND i.dateInteraction = :week"),
-		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.dateInteraction = :week AND i.interactionType.interactionType = 'Proposta aceite' OR i.interactionType.interactionType = 'Proposta recusada'"),
+		@NamedQuery(name = Interaction.COUNT_ALL_CONTRACTS_PER_WEEK, query = "SELECT COUNT(i) FROM Interaction i WHERE i.dateInteraction = :week AND (i.interactionType.interactionType = 'Proposta aceite' OR i.interactionType.interactionType = 'Proposta recusada')"),
 		// Dashboard Module Ends
 		
 })

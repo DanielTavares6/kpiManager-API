@@ -66,6 +66,9 @@ INSERT INTO InteractionType(interactionType) VALUES ('Negocio abaixo de 32');
 
 
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1', 1, 1, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('5', 1, 3, 5, 1);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('1', 2, 2, 6, 1);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2', 2, 2, 5, 2);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('3', 3, 1, 7, 3);
@@ -100,3 +103,18 @@ INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_i
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('3', 4, 2, 5, 1);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('11', 5, 2, 5, 3);
 INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('21', 2, 5, 5, 1);
+
+
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('4', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('5', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('6', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('7', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('7', 1, 3, 5, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('8', 2, 3, 6, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('9', 2, 3, 5, 2);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('10', 3, 3, 7, 3);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('11', 4, 3, 6, 1);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('13', 5, 3, 7, 4);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('21', 2, 3, 7, 6);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('21', 6, 3, 8, 6);
+INSERT INTO Interaction(dateInteraction, client_id, interactionType_id, person_id, unit_id) VALUES ('2', 6, 3, 8, 6);
