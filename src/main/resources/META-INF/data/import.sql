@@ -31,23 +31,16 @@ INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES 
 INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('Joao1984@gmail.com', '5gfghf', 'Joao Martins', 'manager' ,'salt5','Joao', 1);
 
 
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('COO', 'ShVOBO+A','7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=', 'SuperUser', 'SuperUser');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerA', 'tmPfdYmE','hQFcM1z6ld3eYZPGKOFcdBSFNcGezFDonNbI0i3zwj7hJH/pxd6pJ3ZsufbjzRBDHhA=', 'ManagerA', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerB', 'iefgh2K9','RRK8yVxdZeuNzcwFJ1aDteMsbr7KwH9P8J+ng5BXhdgm+7Hj7YmrSwe2UcHLBxw44p8=', 'ManagerB', 'manager');
-INSERT INTO Person(username, hashcode, salt, name, role) VALUES ('managerC', 'RdM3ro6P','1KOSGjIv5gfAHy8kjJLP6eNVNoMNoAtciqd/GMTox2nWPgdYRznruGy8bxkQz3TPInY=', 'ManagerC', 'manager');
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('COO@gmail.com','ShVOBO+A','COO', 'SuperUser', '7yaYTHQ4RI2Yd3KUwTiMezw3pIKe417EMPU51pGidPefqzs40Cp+1UBPaozGvyFnsmY=','coo', 1);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('manA@gmail.com', 'tmPfdYmE','Manager A', 'manager','hQFcM1z6ld3eYZPGKOFcdBSFNcGezFDonNbI0i3zwj7hJH/pxd6pJ3ZsufbjzRBDHhA=','managerA', 2 );
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('manB@gmail.com', 'iefgh2K9','Manager B', 'manager','RRK8yVxdZeuNzcwFJ1aDteMsbr7KwH9P8J+ng5BXhdgm+7Hj7YmrSwe2UcHLBxw44p8=', 'managerB',4);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('manC@gmail.com', 'RdM3ro6P','Manager C', 'manager','1KOSGjIv5gfAHy8kjJLP6eNVNoMNoAtciqd/GMTox2nWPgdYRznruGy8bxkQz3TPInY=', 'managerC',3);
 
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Joaquim', 'director', 'salt1' ,'Joaq', 1);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Antonio', 'manager','salt2', 'Anto',2);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Jose', 'manager','salt3','Jose', 5);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Paulo', 'manager','salt4','Paul', 2);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Joao', 'manager' ,'salt5','Joao', 4);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Daiana', 'manager', 'salt1' ,'Joaq', 8);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Flavio', 'maganer','salt2', 'Anto',6);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Ana', 'manager','salt3','Jose', 3);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Amanda', 'manager','salt4','Paul', 7);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Pedro', 'manager' ,'salt5','Joao', 1);
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', 'asss', 'Diogo', 'manager','salt6','Diogo',4 );
-INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5ffff', 'Vitor', 'manager' ,'salt7','Vitor', 6);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('a@a', '1gfhf', 'Joaquim', 'director', 'salt1' ,'Joaq2', 1);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('b@b', '2fghfgh', 'Antonio', 'manager','salt2', 'Anto2',2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('c@c', '3fghfgh', 'Jose', 'manager','salt3','Jose2', 5);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('d@d', '4fghff', 'Paulo', 'manager','salt4','Paul2', 2);
+INSERT INTO Person(email, hashcode, name, role, salt, username, unit_id) VALUES ('e@e', '5gfghf', 'Joao', 'manager' ,'salt5','Joao2', 4);
 
 
 INSERT INTO InteractionType(interactionType) VALUES ('Proposta aceite');
